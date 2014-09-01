@@ -1,0 +1,16 @@
+{% block subject %}
+vmail.me - {% trans %}Forgot your password?{% endtrans %}
+{% endblock %}
+
+{% block body %}
+{% trans %}Hello{% endtrans %},
+
+{% trans %}To reset your password, please follow the link below{% endtrans %}:
+
+https://www.vmail.me/en/reset/{{ rescueEmail|url_encode }}/{{ token }}/
+
+{% trans %}If you didn't request to reset your vmail.me password, please ignore this email{% endtrans %}.
+
+{% trans %}Thanks{% endtrans %},
+{% trans %}The vmail.me team{% endtrans %}
+{% endblock %}

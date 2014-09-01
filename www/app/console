@@ -1,0 +1,68 @@
+#!/usr/bin/env php
+<?php
+
+// if you don't want to setup permissions the proper way, just uncomment the following PHP line
+// read http://symfony.com/doc/current/book/installation.html#configuration-and-setup for more information
+//umask(0000);
+
+set_time_limit(0);
+
+require_once __DIR__.'/bootstrap.php.cache';
+require_once __DIR__.'/AppKernel.php';
+
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Debug\Debug;
+
+use rootio\Bundle\vmailmeBundle\Command\BanCommand;
+use rootio\Bundle\vmailmeBundle\Command\DeliveryCommand;
+use rootio\Bundle\vmailmeBundle\Command\DisableCommand;
+use rootio\Bundle\vmailmeBundle\Command\EnableCommand;
+use rootio\Bundle\vmailmeBundle\Command\PasswordlegacyCommand;
+use rootio\Bundle\vmailmeBundle\Command\QuotaCommand;
+use rootio\Bundle\vmailmeBundle\Command\PostloginCommand;
+use rootio\Bundle\vmailmeBundle\Command\WardenCommand;
+
+$input = new ArgvInput();
+$env = $input->getParameterOption(array('--env', '-e'), getenv('SYMFONY_ENV') ?: 'dev');
+$debug = getenv('SYMFONY_DEBUG') !== '0' && !$input->hasParameterOption(array('--no-debug', '')) && $env !== 'prod';
+
+if ($debug) {
+    Debug::enable();
+}
+
+$kernel = new AppKernel($env, $debug);
+$application = new Application($kernel);
+$application->run($input);
+
+$application = new Application();
+$application->add(new BanCommand);
+$application->run();
+
+$application = new Application();
+$application->add(new DisableCommand);
+$application->run();
+
+$application = new Application();
+$application->add(new EnableCommand);
+$application->run();
+
+$application = new Application();
+$application->add(new PasswordlegacyCommand);
+$application->run();
+
+$application = new Application();
+$application->add(new QuotaCommand);
+$application->run();
+
+$application = new Application();
+$application->add(new WardenCommand);
+$application->run();
+
+$application = new Application();
+$application->add(new PostloginCommand);
+$application->run();
+
+$application = new Application();
+$application->add(new DeliveryCommand);
+$application->run();

@@ -1,0 +1,88 @@
+Forgot your password?: Mot de passe oublié?
+Hello: Bonjour
+To reset your password, please follow the link below: Pour réinitialiser votre mot de passe, veuillez suivre le lien ci-dessous
+If you didn't request to reset your vmail.me password, please ignore this email: Si vous n'avez pas fait de demande de réinitialisation de votre mot de passe vmail.me, ignorez cet email
+Thanks: Merci
+The vmail.me team: L'équipe vmail.me
+Quota warning!: Avertissement quota!
+Your mailbox is %percent% full, please follow the link below to get an upgrade: Votre boîte de réception est pleine à %percent%, veuillez suivre le lien ci-dessous pour obtenir une mise à niveau
+Plan expiration!: Expiration abonnement!
+Your plan will expire in %remain% days, please follow the link below to renew: Votre abonnement expire dans %remain% jours, veuillez suivre le lien ci-dessous pour renouveler
+Home: Accueil
+Configure an email app: Configurer une application de messagerie
+Rescue email: Email de secours
+Edit password: Modifier mot de passe
+Email forwarding: Redirection email
+Suspend account: Suspendre compte
+Logout: Se déconnecter
+Plans: Plans
+Sign up: S'inscrire
+Sign up (temporarily disabled): S'inscrire (temporairement désactivé)
+Login: Se connecter
+Report spam: Signaler spam
+Report phishing: Signaler phishing
+Legal documents: Mentions légales
+Terms of service: Conditions d'utilisation
+Simplicity, security & privacy: Simplicité, sécurité & vie privée
+Registration: Inscription
+Email: Email
+Password: Mot de passe
+Password again: Confirmez mot de passe
+Security code: Code de sécurité
+I agree to the vmail.me %termsOfService%: J'accepte les %termsOfService% de vmail.me
+The simple and secure email service which respects your privacy: Le service de messagerie simple et sécurisé qui respecte votre vie privée
+Create my email: Créer mon email
+Reset password: Réinitialiser mot de passe
+New password: Nouveau mot de passe
+New password again: Confirmez nouveau mot de passe
+Save: Enregistrer
+Website hosting: Hébergement web
+Confirm: Confirmer
+Basic: Basic
+Free: Gratuit
+Subscribe: Choisir
+500Mb storage (≈ 5000 emails): 500Mo de stockage (≈ 5000 emails)
+5Gb storage (≈ 50 000 emails): 5Go storage (≈ 50 000 emails)
+Webmail: Webmail
+Spam protection: Anti-spam
+Secure browsing: Navigation sécurisée
+No targeted advertising: Pas de publicité ciblée
+IMAP & POP: IMAP & POP
+Current password: Mot de passe actuel
+Warning!: Avertissement!
+Account suspension is irreversible: La suspension de compte est irréversible
+Yes, I want to suspend my account: Oui, je veux suspendre mon compte
+Forward emails from %user% to: Redirige les emails de %user% vers
+If you send or receive sensitive informations, we recommend you leave the rescue email field blank: Si vous envoyez ou recevez des informations sensibles, nous vous recommandons de laisser le champ email de secours vide
+Protocols: Protocoles
+IMAP: IMAP
+SMTP: SMTP
+Username: Nom d'utilisateur
+Authentication method: Méthode d'authentification
+Normal password: Mot de passe normal
+Server: Serveur
+Port: Port
+Connection security: Sécurité de la connexion
+Logs: Logs
+Bad security code: Erreur dans le code de sécurité
+Email not available: Email non disponible
+Email {{ value }}@vmail.me is incorrect (Only letters (a-z), numbers (0-9), dashes (-) and dots (.) are allowed): L'email {{ value }}@vmail.me est incorrect (Seul les lettres (a-z), chiffres (0-9), tiret (-) et points (.) sont autorisés)
+Email must have at least {{ limit }} characters: L'email doit avoir au moins {{ limit }} caractères
+Email must have less than {{ limit }} characters: L'email doit avoir moins de {{ limit }} caractères
+Email {{ value }} is incorrect (Only letters (a-z), numbers (0-9), dashes (-) and dots (.) are allowed): L'email {{ value }} est incorrect (Seul les lettres (a-z), chiffres (0-9), tiret (-) et points (.) sont autorisés)
+Password must have at least {{ limit }} characters: Le mot de passe doit avoir au moins {{ limit }} caractères
+Email {{ value }} is incorrect: L'email {{ value }} est incorrect
+Password reset's instructions sent!: Instructions de réinitialisation de mot de passe envoyés!
+Password updated!: Mot de passe mis à jour!
+Rescue email updated!: Email de secours mise à jour!
+Forwarding email updated!: Email de redirection mise à jour!
+Account now suspended!: Compte maintenant suspendu!
+Bad login: Erreur de connexion
+You have written two different passwords: Vous avez écrit deux mots de passe différents
+Privacy policy: Politique confidentialité
+Encrypted data storage: Stockage de données chiffrées
+You can delete your account: Vous pouvez supprimer votre compte
+Our Piwik web analytics respects the Do Not Track (DNT) technology and anonymizes visitors' IP addresses (last two bits): Notre analyseur de trafic Piwik respecte la technologie Do Not Track (DNT) et anonymise les adresses IP des visiteurs (deux derniers bits)
+We collect minimal personal data for security and European Union %europeanunion% data retention laws: Nous collectons le minimum de données personnelles pour la sécurité et en respect des lois de l'Union européenne %europeanunion% sur la rétention des données
+IP addresses and email client user agent are removed from email headers: Les adresses IP et le user-agent des clients de messagerie sont supprimés des headers des emails
+We do not use third party services or hosted libraries: Nous n'utilisons pas de services tiers ou de bibliothèques hébergées

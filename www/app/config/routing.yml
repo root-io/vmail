@@ -1,0 +1,13 @@
+root:
+    pattern: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        path: /%locale%/
+        permanent: true
+
+rootiovmailme:
+    resource: "@rootiovmailmeBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}/
+    defaults: { _locale: en }
+    requirements:
+        _locale: en|fr

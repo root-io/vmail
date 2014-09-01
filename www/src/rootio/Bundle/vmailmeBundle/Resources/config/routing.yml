@@ -1,0 +1,114 @@
+homepage:
+    pattern: /
+    defaults: { _controller: rootiovmailmeBundle:Default:index }
+
+legalDocuments:
+    pattern: /legalDocuments
+    defaults: { _controller: rootiovmailmeBundle:Default:legalDocuments }
+
+termsOfService:
+    pattern: /termsOfService
+    defaults: { _controller: rootiovmailmeBundle:Default:termsOfService }
+
+privacyPolicy:
+    pattern: /privacyPolicy
+    defaults: { _controller: rootiovmailmeBundle:Default:privacyPolicy }
+
+plans:
+    pattern: /plans
+    defaults: { _controller: rootiovmailmeBundle:Default:plans }
+
+subscribe:
+    pattern: /subscribe
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        path: /%locale%/registration
+        permanent: true
+
+registration:
+    pattern: /registration
+    defaults: { _controller: rootiovmailmeBundle:Default:registration }
+
+registration_alias:
+    pattern: /subscribe
+    defaults: { _controller: rootiovmailmeBundle:Default:registration }
+
+registration_new:
+    pattern: /registration/new
+    defaults: { _controller: rootiovmailmeBundle:Default:registrationNew }
+
+forgot:
+    pattern: /forgot
+    defaults:  { _controller: rootiovmailmeBundle:Default:forgot }
+
+forgot_check:
+    pattern: /forgot/check
+    defaults:  { _controller: rootiovmailmeBundle:Default:forgotCheck }
+
+reset:
+    pattern: /reset/{rescueEmail}/{token}/
+    defaults:  { _controller: rootiovmailmeBundle:Default:reset }
+    requirements:
+        token: "[0-9a-f]{64}"
+
+reset_check:
+    pattern: /reset/check/{rescueEmail}/{token}/
+    defaults:  { _controller: rootiovmailmeBundle:Default:resetCheck }
+
+login:
+    pattern: /login
+    defaults:  { _controller: rootiovmailmeBundle:Default:login }
+
+login_check:
+    pattern: /login_check
+
+logout:
+    pattern: /logout
+
+user_webmail:
+    pattern: /user/webmail/
+    defaults:  { _controller: rootiovmailmeBundle:User:webmail }
+
+user_webmail_addressbook:
+    pattern: /user/webmail/addressbook/
+    defaults:  { _controller: rootiovmailmeBundle:User:webmailAddressbook }
+
+user_webmail_settings:
+    pattern: /user/webmail/settings/
+    defaults:  { _controller: rootiovmailmeBundle:User:webmailSettings }
+
+user_settings:
+    pattern: /user/settings
+    defaults:  { _controller: rootiovmailmeBundle:User:settings }
+
+user_password:
+    pattern: /user/password/
+    defaults: { _controller: rootiovmailmeBundle:User:password }
+
+user_password_edit:
+    pattern:  /user/password/edit
+    defaults: { _controller: rootiovmailmeBundle:User:passwordEdit }
+
+user_forwarding:
+    pattern: /user/forwarding/
+    defaults: { _controller: rootiovmailmeBundle:User:forwarding }
+
+user_forwarding_edit:
+    pattern: /user/forwarding/edit
+    defaults: { _controller: rootiovmailmeBundle:User:forwardingEdit }
+
+user_rescue:
+    pattern: /user/rescue/
+    defaults: { _controller: rootiovmailmeBundle:User:rescue }
+
+user_rescue_edit:
+    pattern: /user/rescue/edit
+    defaults: { _controller: rootiovmailmeBundle:User:rescueEdit}
+
+user_account:
+    pattern: /user/account/
+    defaults:  { _controller: rootiovmailmeBundle:User:account }
+
+user_account_suspend:
+    pattern: /user/account/suspend
+    defaults:  { _controller: rootiovmailmeBundle:User:accountSuspend }

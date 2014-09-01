@@ -1,0 +1,5 @@
+user = server
+password = CONFIG_MARIADB_SERVER_PASSWORD
+dbname = vmailme
+query = SELECT forwardingEmail FROM user WHERE email = '%s' AND forwardingEmail IS NOT NULL
+hosts = localhost

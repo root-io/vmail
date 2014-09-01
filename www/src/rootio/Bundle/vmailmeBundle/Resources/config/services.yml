@@ -1,0 +1,22 @@
+parameters:
+    rootiovmailme.user_manager.class: rootio\Bundle\vmailmeBundle\Manager\UserManager
+    rootiovmailme.login_manager.class: rootio\Bundle\vmailmeBundle\Manager\LoginManager
+    rootiovmailme.loginSuccess_handler.class: rootio\Bundle\vmailmeBundle\Authentication\LoginSuccessHandler
+    rootiovmailme.logoutSuccess_handler.class: rootio\Bundle\vmailmeBundle\Authentication\LogoutSuccessHandler
+
+services:
+    rootiovmailme.user_manager:
+        class: %rootiovmailme.user_manager.class%
+        arguments: [@doctrine, @service_container]
+
+    rootiovmailme.login_manager:
+        class: %rootiovmailme.login_manager.class%
+        arguments: [@doctrine, @service_container]
+
+    rootiovmailme.loginSuccess_handler:
+        class: %rootiovmailme.loginSuccess_handler.class%
+        arguments: [@router]
+
+    rootiovmailme.logoutSuccess_handler:
+        class: %rootiovmailme.logoutSuccess_handler.class%
+        arguments: [@router]

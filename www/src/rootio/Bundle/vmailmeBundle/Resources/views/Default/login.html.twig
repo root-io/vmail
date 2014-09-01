@@ -1,0 +1,36 @@
+{% extends 'rootiovmailmeBundle::base.html.twig' %}
+
+{% block title %}{% trans %}Login{% endtrans %}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>{% trans %}Login{% endtrans %}</h1>
+</div>
+
+<form class="form-horizontal" action="{{ path('login_check')}}" method="post">
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error.message|trans }}</div>
+    {% endif %}
+
+    <div class="form-group">
+        <label class="control-label" for="username">{% trans %}Email{% endtrans %}</label>
+            <input type="text"  id="username" name="_username" class="form-control input-lg" value="{{ last_username }}">
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="password">{% trans %}Password{% endtrans %}</label>
+        <input type="password" id="password" name="_password" class="form-control input-lg">
+    </div>
+
+    <div class="form-group">
+        <a href="{{ path('forgot')}}">{% trans %}Forgot your password?{% endtrans %}</a><br>
+    </div>
+
+    <div class="form-actions">
+        <input class="btn btn-inverse btn-lg" type="submit" value="{% trans %}Login{% endtrans %} »" />
+    </div>
+
+</form>
+
+{% endblock %}

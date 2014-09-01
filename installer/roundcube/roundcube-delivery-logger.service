@@ -1,0 +1,11 @@
+[Unit]
+Description=Roundcube delivery logger
+Before=mysqld.target php-fpm.target nginx.target
+
+[Service]
+ExecStart=/usr/local/bin/roundcube-delivery-logger.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

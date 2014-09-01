@@ -1,0 +1,39 @@
+security:
+    encoders:
+        rootio\Bundle\vmailmeBundle\Entity\User: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        main:
+          entity: { class: rootio\Bundle\vmailmeBundle\Entity\User }
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        login:
+            pattern:  ^/login$
+            security: false
+
+        secured_area:
+            pattern:    ^/
+            form_login:
+                check_path: login_check
+                login_path: login
+                success_handler: rootiovmailme.loginSuccess_handler
+                always_use_default_target_path: true
+                default_target_path: user_webmail
+                require_previous_session: false
+            logout:
+                path: logout
+                success_handler: rootiovmailme.logoutSuccess_handler
+                target: homepage
+            anonymous: ~
+
+    access_control:
+        - { path: ^/[a-z]+/user/, role: ROLE_USER, requires_channel: https }
+        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

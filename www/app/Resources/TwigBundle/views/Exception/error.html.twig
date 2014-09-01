@@ -1,0 +1,11 @@
+{# extends 'rootiovmailmeBundle::base.html.twig' #}
+
+{% block title %}{{ status_code }} {{ status_text }}{% endblock %}
+
+{% block content %}
+<div class="hero-unit registration">
+    <h1>Oops, {{ status_text }}</h1>
+    <p>&nbsp;</p>
+    <p><a class="btn btn-xlarge btn-inverse" href="{{ path('homepage') }}">{% trans %}Go to homepage{% endtrans %}</a></p>
+</div>
+{% endblock %}

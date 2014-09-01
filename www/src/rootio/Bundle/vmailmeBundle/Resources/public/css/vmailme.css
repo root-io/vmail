@@ -1,0 +1,88 @@
+body {
+    padding-top: 70px;
+}
+
+@media (max-width:980px) {
+    body {
+        padding-top: 30px;
+    }
+}
+
+.navbar-brand {
+    padding: 12px 15px;
+}
+
+.navbar-nav > li > button {
+    margin-top: 10px;
+}
+
+.registration {
+    padding: 40px;
+}
+
+#registration_captcha {
+    height: 64px;
+}
+
+.price {
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.pricing li {
+    border-color: #E5E5E5;
+    border-style: none none solid;
+    border-width: 0 0 1px;
+    margin: 18px 10px;
+    padding-bottom: 10px;
+}
+
+.form-horizontal .form-group {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.btn-xlarge {
+    border-radius: 5px;
+    font-size: 28px;
+    line-height: normal;
+    padding: 9px 25%;
+}
+
+.login.dropdown-menu {
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+}
+
+.login.dropdown-menu input[type="submit"] {
+    width: 100%;
+}
+
+.btn-inverse {
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-color: #363636;
+    background-image: linear-gradient(to bottom, #444, #222);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+
+.btn-inverse:hover, .btn-inverse:focus, .btn-inverse:active, .btn-inverse.active, .btn-inverse.disabled, .btn-inverse[disabled] {
+    color: #fff;
+    background-color: #222;
+}
+
+.red {
+    color: #ff0000;
+}
+
+.followus, .bitcoin {
+    margin: 0;
+    padding: 10px 15px;
+}
+
+.navbar-nav > li > p {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}

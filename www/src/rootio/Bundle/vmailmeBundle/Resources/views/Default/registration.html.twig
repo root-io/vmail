@@ -1,0 +1,94 @@
+{% extends 'rootiovmailmeBundle::base.html.twig' %}
+
+{% form_theme form _self %}
+
+{% block captcha_widget %}
+{% spaceless %}
+    {{ form_widget(form) }}
+    <span class="input-group-addon"><img src="{{ captcha_code }}" width="{{ captcha_width }}" height="{{ captcha_height }}" alt="{{ 'Security code'|trans }}" title="{{ 'Security code'|trans }}" /></span>
+{% endspaceless %}
+{% endblock %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+        <div class="alert alert-danger">
+            {% for error in errors %}
+                {{
+                        error.messageTemplate|trans(error.messageParameters, 'messages')
+                }}
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+
+{% block title %}{% trans %}Registration{% endtrans %}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>{% trans %}Registration{% endtrans %}</h1>
+</div>
+
+<form class="form-horizontal" action="{{ path('registration_new')}}" method="post" {{ form_enctype(form) }}>
+
+    {{ form_errors(form.username) }}
+    {{ form_errors(form.password.password) }}
+    {{ form_errors(form.password.confirm) }}
+    {{ form_errors(form.captcha) }}
+    {{ form_errors(form.termsOfService) }}
+
+    {% if errors is defined %}
+        {% for error in errors %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="form-group">
+        {{ form_label(form.username, 'Email'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+        <div class="input-group">
+            {{ form_widget(form.username, { 'attr': {'class': 'form-control input-lg'} }) }}
+            <span class="input-group-addon">@vmail.me</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.password.password, 'Password'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+        {{ form_widget(form.password.password, { 'attr': {'class': 'form-control input-lg'} }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.password.confirm, 'Password again'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+        {{ form_widget(form.password.confirm, { 'attr': {'class': 'form-control input-lg'} }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.captcha, 'Security code'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+        <div class="input-group">
+            {{ form_widget(form.captcha, { 'attr': {'class': 'form-control input-lg'} }) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="input-group">
+            {{ form_widget(form.termsOfService) }}
+            {% trans with {'%termsOfService%': '<a target="_blank" href="' ~ path('termsOfService') ~ '">' ~ 'Terms of service'|trans ~ '</a>'} %}I agree to the vmail.me %termsOfService%{% endtrans %}
+        </label>
+    </div>
+
+    {% if registration %}{{ form_rest(form) }}{% endif %}
+
+    <div class="form-actions">
+        {% if registration %}
+            <input class="btn btn-inverse btn-lg" type="submit" value="{% trans %}Sign up{% endtrans %} »" />
+        {% else %}
+            <input class="btn btn-inverse btn-lg" type="submit" value="{% trans %}Sign up (temporarily disabled){% endtrans %} »" disabled="disabled" />
+        {% endif %}
+    </div>
+
+</form>
+
+{% endblock %}

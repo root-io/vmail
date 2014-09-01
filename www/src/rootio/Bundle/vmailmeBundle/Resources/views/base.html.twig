@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta charset="utf-8">
+    <title>vmail.me (beta) - {% block title %}{% trans %}Simplicity, security & privacy{% endtrans %}{% endblock %}</title>
+
+    <link rel="icon" type="image/png" href="{{ asset('/media/images/favicon.png') }}" />
+
+    <meta name="description" content="{% trans %}The simple and secure email service which respects your privacy{% endtrans %}.">
+    <meta name="keywords" content="vmail, mail, email, e-mail, imap, pop3, simplicity, security, privacy, webmail, spam protection, ssl, encryption">
+    <meta name="robots" content="noarchive">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="canonical" href="https://www.vmail.me">
+    <link rel="alternate" hreflang="en" href="https://www.vmail.me/en/">
+    <link rel="alternate" hreflang="fr" href="https://www.vmail.me/fr/">
+
+    <link type="text/css" rel="stylesheet" href="{{ asset('/media/css/bootstrap.min.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset('/media/css/vmailme.css') }}" />
+
+    <meta property="og:image" content="{{ app.request.schemeAndHttpHost ~ asset('/media/images/facebook_share.png') }}" />
+</head>
+<body>
+
+    <!-- Read source code, ain't nobody got time fo dat -->
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#menus">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('homepage') }}"><img src="{{ asset('/media/images/logo.png') }}" alt="logo"
+                                                                           width="106" height="23"/></a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="menus">
+                <ul class="nav navbar-nav">
+                    {% if app.user %}
+                        <li class="{% if app.request.attributes.get('_route') == 'user_webmail' %}active{% endif %}"><a
+                                    href="{{ path('user_webmail') }}">{% trans %}Home{% endtrans %}</a></li>
+                        <li class="dropdown">
+                            {% if app.user.forwardingEmail == null %}
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ app.user.email }} <b
+                                            class="caret"></b></a>
+                            {% else %}
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                   title="{% trans with {'%user%': app.user.email} %}Forward emails from %user% to{% endtrans %} {{ app.user.forwardingEmail }}">{{ app.user.email }}
+                                    <span class="glyphicon glyphicon-random"></span> {{ app.user.forwardingEmail }} <b
+                                            class="caret"></b></a>
+                            {% endif %}
+                            <ul class="dropdown-menu">
+                                <li class="{% if app.request.attributes.get('_route') == 'user_settings' %}active{% endif %}">
+                                    <a href="{{ path('user_settings') }}">{% trans %}Configure an email
+                                        app{% endtrans %}</a></li>
+                                <li class="{% if app.request.attributes.get('_route') == 'user_rescue' %}active{% endif %}">
+                                    <a href="{{ path('user_rescue') }}">{% trans %}Rescue email{% endtrans %}</a></li>
+                                <li class="{% if app.request.attributes.get('_route') == 'user_password' %}active{% endif %}">
+                                    <a href="{{ path('user_password') }}">{% trans %}Edit password{% endtrans %}</a></li>
+                                <li class="{% if app.request.attributes.get('_route') == 'user_forwarding' %}active{% endif %}">
+                                    <a href="{{ path('user_forwarding') }}">{% trans %}Email forwarding{% endtrans %}</a>
+                                </li>
+                                <li class="{% if app.request.attributes.get('_route') == 'user_account' %}active{% endif %}">
+                                    <a href="{{ path('user_account') }}">{% trans %}Suspend account{% endtrans %}</a></li>
+                            </ul>
+                        </li>
+                        <li class="{% if app.request.attributes.get('_route') == 'user_webmail_addressbook' %}active{% endif %}">
+                            <a href="{{ path('user_webmail_addressbook') }}">{% trans %}Address book{% endtrans %}</a></li>
+                        <li class="{% if app.request.attributes.get('_route') == 'user_webmail_settings' %}active{% endif %}">
+                            <a href="{{ path('user_webmail_settings') }}">{% trans %}Settings{% endtrans %}</a></li>
+                        <li><a href="{{ path('logout') }}">{% trans %}Logout{% endtrans %}</a></li>
+                    {% else %}
+                        <li class="{% if app.request.attributes.get('_route') == 'homepage' %}active{% endif %}"><a
+                                    href="{{ path('homepage') }}">{% trans %}Home{% endtrans %}</a></li>
+                        <li class="{% if app.request.attributes.get('_route') == 'plans' %}active{% endif %}"><a
+                                    href="{{ path('plans') }}">{% trans %}Plans{% endtrans %}</a></li>
+                        <li class="{% if app.request.attributes.get('_route') == 'registration' %}active{% endif %}"><a
+                                    href="{{ path('registration') }}">{% trans %}Sign up{% endtrans %}</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans %}Login{% endtrans %}</a>
+                            <form method="post" action="{{ path('login_check') }}"
+                                  class="login form-horizontal dropdown-menu">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="username" name="_username"
+                                           placeholder="{% trans %}Email{% endtrans %}">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="password" name="_password"
+                                           placeholder="{% trans %}Password{% endtrans %}">
+                                </div>
+
+                                <span class="help-block"><a href="{{ path('forgot') }}">
+                                    {% trans %}Forgot your password?{% endtrans %}</a></span>
+
+                                <input class="btn btn-inverse" type="submit" value="{% trans %}Login{% endtrans %} »"/>
+                            </form>
+                        </li>
+                    {% endif %}
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <p class="navbar-text followus">
+                            {% trans %}Follow us{% endtrans %} <a href="https://twitter.com/vmailme"
+                                                                  rel="noreferrer">@vmailme</a>
+                        </p>
+                    </li>
+                    <li>
+                        <p class="navbar-text bitcoin">
+                            <a href="https://blockchain.info/address/19n7XtXfS2VpCDMkjKkDA6b3KZqMXxwAg" rel="noreferrer">
+                                <img src="{{ asset('/media/images/bitcoin.png') }}" width="16" height="16"
+                                                                        alt="bitcoin donate"/>
+                            </a>
+                        </p>
+                    </li>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><img
+                                    src="{{ asset('/media/images/flags/' ~ app.request.locale ~ '.png') }}" width="16"
+                                    height="11" alt=""/> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}"><img
+                                            src="{{ asset('/media/images/flags/en.png') }}" width="16" height="11"
+                                            alt="English" title="English"/> English</a></li>
+                            <li>
+                                <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}"><img
+                                            src="{{ asset('/media/images/flags/fr.png') }}" width="16" height="11"
+                                            alt="Français" title="Français"/> Français</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <div class="footer">
+        <ul class="list-unstyled text-center">
+            <li>
+                <a href="mailto:abuse@vmail.me?Subject=Spam%20report">{% trans %}Report spam{% endtrans %}</a> -
+                <a href="https://www.google.com/safebrowsing/report_phish/" target="_blank" rel="noreferrer">{% trans %}Report phishing{% endtrans %}</a> -
+                <a href="https://www.stopbadware.org/report-badware" target="_blank" rel="noreferrer">{% trans %}Report badware{% endtrans %}</a> -
+                <a href="{{ path('legalDocuments') }}">{% trans %}Legal documents{% endtrans %}</a> -
+                <a href="{{ path('termsOfService') }}">{% trans %}Terms of service{% endtrans %}</a> -
+                <a href="{{ path('privacyPolicy') }}">{% trans %}Privacy policy{% endtrans %}</a>
+            </li>
+            <li>Made with <span class="glyphicon glyphicon-heart red" alt="love"></span> by a french student &copy; 2010-{{ "now"|date("Y") }} vmail.me</li>
+        </ul>
+    </div>
+
+    <script type="text/javascript" src="{{ asset('/media/js/jquery-1.11.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/media/js/bootstrap.min.js') }}"></script>
+    <!--[if lt IE 10]><script type="text/javascript" src="{{ asset('/media/js/ie.js') }}"></script><![endif]-->
+
+    <!-- Piwik -->
+    <script type="text/javascript">
+      var _paq = _paq || [];
+      _paq.push(["trackPageView"]);
+      _paq.push(["enableLinkTracking"]);
+
+      (function() {
+        var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.vmail.me/piwik/";
+        _paq.push(["setTrackerUrl", u+"piwik.php"]);
+        _paq.push(["setSiteId", "1"]);
+        var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+        g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Piwik Code -->
+
+</body>
+</html>

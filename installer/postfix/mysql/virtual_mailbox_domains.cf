@@ -1,0 +1,5 @@
+user = server
+password = CONFIG_MARIADB_SERVER_PASSWORD
+dbname = vmailme
+query = SELECT name AS virtual FROM domain WHERE name='%s'
+hosts = localhost

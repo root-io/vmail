@@ -1,0 +1,36 @@
+{% extends 'rootiovmailmeBundle::base.html.twig' %}
+{% form_theme form 'rootiovmailmeBundle::fields_errors.html.twig' %}
+
+{% block title %}{% trans %}Email forwarding{% endtrans %}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>{% trans %}Email forwarding{% endtrans %}</h1>
+</div>
+
+<form class="form-inline" action="{{ path('user_forwarding_edit')}}" method="post" {{ form_enctype(form) }}>
+    <fieldset>
+
+        {{ form_errors(form.forwardingEmail) }}
+
+        {% for flashMessage in app.session.flashbag.get('success') %}
+            <div class="alert alert-success">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+
+        <div class="form-group">
+            {% trans with {'%user%': '<span class="label label-primary">' ~ app.user.email ~ '</span>'} %}Forward emails from %user% to{% endtrans %}
+            {{ form_widget(form.forwardingEmail, { 'attr': {'class': 'form-control input-lg'}, value: app.user.forwardingEmail }) }}
+        </div>
+
+        {{ form_rest(form) }}
+
+        <div class="form-actions">
+            <input class="btn btn-inverse btn-lg" type="submit" value="{% trans %}Save{% endtrans %} »" />
+        </div>
+
+    </fieldset>
+</form>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+User-agent: SurveyBot
+Disallow: /
+
+User-agent: AboutUsBot
+Disallow: /
+
+User-agent: ia_archiver
+Disallow: /
+
+User-agent: wget
+Disallow: /
+
+User-agent: *
+Disallow: /piwik/
+
+Sitemap: http://www.vmail.me/sitemap.txt

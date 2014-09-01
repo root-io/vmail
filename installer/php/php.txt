@@ -1,0 +1,24 @@
+open_basedir = /tmp/:/var/www:/usr/share/webapps/roundcubemail:/etc/webapps/roundcubemail:/usr/share/webapps/piwik:/usr/share/pear/:/var/log/roundcubemail
+expose_php = Off
+session.cookie_secure = 1
+session.name = SESSION
+session.cookie_domain = .$CONFIG_DOMAIN
+
+cgi.fix_pathinfo = 0
+short_open_tag = Off
+magic_quotes_gpc = Off
+register_globals = Off
+session.autostart = Off
+
+upload_max_filesize = 25M
+post_max_size = 25M
+default_charset = "UTF-8"
+date.timezone = "Europe/Paris"
+extension=gd.so (Captcha)
+extension=iconv.so (Piwik)
+extension=imap.so (Roundcube)
+extension=mysql.so (Piwik & Roundcube)
+extension=openssl.so (Roundcube)
+extension=pdo_mysql.so (Symfony & Piwik)
+extension=phar.so (Symfony)
+extension=zip.so (Symfony)

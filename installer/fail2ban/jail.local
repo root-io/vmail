@@ -1,0 +1,42 @@
+[sshd]
+enabled = true
+
+[sshd-ddos]
+enabled = true
+
+[postfix]
+enabled = true
+logpath  = /var/log/mail.log
+
+[postfix-sasl]
+enabled = true
+logpath  = /var/log/mail.log
+
+[sendmail-auth]
+enabled = true
+
+[sendmail-reject]
+enabled = true
+
+[dovecot]
+enabled = true
+logpath  = /var/log/dovecot.log
+
+[roundcube-auth]
+enabled = true
+logpath  = /var/log/roundcubemail/userlogins
+maxretry = 30
+
+[vmailme-auth]
+enabled  = true
+port     = http,https
+filter   = vmailme-auth
+logpath  = /var/log/nginx.log
+maxretry = 100
+
+[piwik-auth]
+enabled = true
+port     = http,https
+filter   = piwik-auth
+logpath  = /var/log/nginx.log
+maxretry = 100

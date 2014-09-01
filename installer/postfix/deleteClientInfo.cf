@@ -1,0 +1,1 @@
+/^(Received|X-Greylist|X-Originating-IP|X-Originating-Email|Mail-System-Version|Mailer|Originating-Client|X-Mailer|X-Newsreader|X-MimeOLE|User-Agent|X-PHP-Originating-Script):/ IGNORE

@@ -1,0 +1,9 @@
+{% extends 'rootiovmailmeBundle::base.html.twig' %}
+
+{% block content %}
+<div class="jumbotron text-center registration">
+    <h1>{% trans %}Simplicity, security & privacy{% endtrans %}</h1>
+    <p>{% trans %}The simple and secure email service which respects your privacy{% endtrans %}</p>
+    <p><a class="btn btn-xlarge btn-inverse" href="{{ path('registration') }}">{% trans %}Create a mailbox{% endtrans %}</a></p>
+</div>
+{% endblock %}
