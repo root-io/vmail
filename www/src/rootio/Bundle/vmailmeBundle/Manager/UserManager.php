@@ -162,24 +162,4 @@ class UserManager {
 
         return $user;
     }
-
-    /**
-     * Update user plan
-     *
-     * @return User
-     */
-    public function updateUserPlan($user, $plan)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $user->setPlan($plan);
-        if ($plan === null) {
-            $user->setIsEnabled(false);
-        }
-
-        $em->persist($user);
-        $em->flush();
-
-        return $user;
-    }
 }
