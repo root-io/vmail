@@ -1,4 +1,2 @@
 ## SSL/TLS certificates
-/ssl/*
-!/ssl/.gitkeep
-/opendkim/*.private
+config.conf

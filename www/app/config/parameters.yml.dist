@@ -1,18 +1,18 @@
 parameters:
     database_driver:   pdo_mysql
     database_host:     localhost
-    database_port:     ~
+    database_port:     null
     database_name:     vmailme
-    database_user:     ~
-    database_password: ~
+    database_user:     www
+    database_password: CONFIG_MARIADB_WWW_PASSWORD
 
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
-    mailer_user:       ~
-    mailer_password:   ~
+    mailer_user:       null
+    mailer_password:   null
 
     locale:            en
-    secret:            1ac316a6a329ecc8c9ba564d2d235f1010
+    secret:            ThisTokenIsNotSoSecretChangeIt
 
     registration: false
 

@@ -16,6 +16,3 @@ mx1                    IN A    CONFIG_IP_PRIMARY
 autoconfig             IN A    CONFIG_IP_PRIMARY
 CONFIG_DOMAIN.         IN TXT  "v=spf1 mx -all"
 mx1.CONFIG_DOMAIN.     IN TXT  "v=spf1 mx -all"
-mx1._domainkey         IN TXT  ( "v=DKIM1; k=rsa; t=s; s=email; "
-	  "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwFF1ejJ3KBbDPeUnR8AUD8WfjMTRxOYY5+gcMQOkDJXEgn2C6S1RKTI+acHdjfoA2W3vFRULvluwjZm3ywtMWc0oaspY6HLDxAT5i5/0/s16UdSmHaKC9+WmYAu91gg+krhIRepBEEEjA8CQtARZMc3oPB7WlQmEwcz7lI2JnE+k/t/AFmRVG9H3Aq4YnfSR7xLNEyG5Cpj21f"
-	  "zBSDHzznsXY6J4YhOvqyaLuauyXnRTZlr/oGcNkjNB+vbkkHRnadx2I9o75iliWDFbnarBZ/gjwmVhgvFQxCYB98Sllpw+10+ex3XNZlLvdPm9fWwXTW5A0rECPNMiGmS30NHGaQIDAQAB" )

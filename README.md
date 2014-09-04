@@ -35,15 +35,13 @@ Getting started
 
 See LUKS.md for disk encryption
 
-1. Adapt the installer/config.conf file
+1. `git clone https://github.com/root-io/vmail.git /home/vmail`
 
-1. Copy/past your server.crt and server.key to installer/ssl directory
+1. `cd /home/vmail/installer`
 
-1. Upload installer/ to /home/installer
+1. `cp config.conf.example config.conf`
 
-1. Upload www/ to /var/www
-
-1. Exec /home/installer/install.sh
+1. `bash install.sh`
 
 
 Production environment

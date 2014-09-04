@@ -10,7 +10,6 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 80, host: 3000
   config.vm.network :forwarded_port, guest: 443, host: 3443
 
-  config.vm.synced_folder 'installer', '/home/installer'
-  config.vm.synced_folder 'www', '/var/www', owner: "http", group: "http"
+  config.vm.synced_folder '.', '/home/vmail'
   config.vm.provision :shell, :path => 'installer/install.sh'
 end

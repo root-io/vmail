@@ -1,21 +1,14 @@
 ## Symfony2
-# Cache and logs
+/web/bundles/
+/app/bootstrap.php.cache
 /app/cache/*
+/app/config/parameters.yml
 /app/logs/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
-# Parameters
-/app/config/parameters.yml
-/app/config/parameters.ini
-# Managed by Composer
-/app/bootstrap.php.cache
-/bin/
+/build/
 /vendor/
-# Assets and user uploads
-/web/bundles/
-# PHPUnit
-/app/phpunit.xml
-# Composer PHAR
+/bin/
 /composer.phar
 
 ## Console scripts
