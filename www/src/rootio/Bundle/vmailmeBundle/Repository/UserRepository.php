@@ -39,27 +39,21 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
         return $qry->getOneOrNullResult();
     }
 
-    public function isUsernameOrEmailExist($usernameOrEmail) {
+    public function isUsernameTaken($username) {
         $qb = $this->createQueryBuilder('u');
         $expr = $qb->expr();
         $qb->select(
             $expr->count('u.id')
         );
         $qb->where(
-            $expr->orx(
-                $expr->eq(
-                    'u.username',
-                    ':usernameOrEmail'
-                ),
-                $expr->eq(
-                    'u.email',
-                    ':usernameOrEmail'
-                )
+            $expr->eq(
+                'u.username',
+                ':username'
             )
         );
         $qb->setParameter(
-            'usernameOrEmail',
-            $usernameOrEmail
+            'username',
+            $username
         );
         $qry = $qb->getQuery();
 

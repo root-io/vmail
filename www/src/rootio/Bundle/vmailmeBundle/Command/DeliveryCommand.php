@@ -40,7 +40,6 @@ class DeliveryCommand extends ContainerAwareCommand
         $delivery->setRecipient($recipient);
 
         $em->persist($delivery);
-
         $em->flush();
     }
 }

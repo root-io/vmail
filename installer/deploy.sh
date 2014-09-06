@@ -10,13 +10,15 @@ if [ -f $REPO_PATH/installer/config.conf ]; then
 
 
     ## www
+    rm -r /var/www
     cp -r $REPO_PATH/www /var/www
-    sed -i -e "s/CONFIG_MARIADB_WWW_PASSWORD/$CONFIG_MARIADB_WWW_PASSWORD/g" /var/www/app/config/parameters.yml.dist
+    cp /var/www/app/config/parameters.yml.dist /var/www/app/config/parameters.yml
+    sed -i -e "s/CONFIG_MARIADB_WWW_PASSWORD/$CONFIG_MARIADB_WWW_PASSWORD/g" /var/www/app/config/parameters.yml
+    composer self-update
     cd /var/www
-    php composer.phar self-update
-    php composer.phar update
+    composer update
+    composer dump-autoload --optimize
     php app/console assets:install
-    php composer.phar dump-autoload --optimize
     php app/console doctrine:schema:update --force
 
 

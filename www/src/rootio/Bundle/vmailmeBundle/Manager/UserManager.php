@@ -36,84 +36,84 @@ class UserManager {
     }
 
     /**
-     * Is username or email forbidden ?
+     * Is username forbidden ?
      *
      * @return boolean
      */
-    public function isUserForbidden($username) {
+    public function isUsernameForbidden($username) {
 
-        $forbiddenUsers = array(
-        "admin",
-        "administrator",
-        "hostmaster",
-        "webmaster",
-        "postmaster",
-        "root",
-        "ssladmin",
-        "ssl-admin",
-        "sysadmin",
-        "info",
-        "it",
-        "abuse",
-        "noc",
-        "support",
-        "www",
-        "test",
+        $forbiddenUsers = [
+            "admin",
+            "administrator",
+            "hostmaster",
+            "webmaster",
+            "postmaster",
+            "root",
+            "ssladmin",
+            "ssl-admin",
+            "sysadmin",
+            "info",
+            "it",
+            "abuse",
+            "noc",
+            "support",
+            "www",
+            "test",
 
-        "noreply",
-        "no-reply",
-        "no.reply",
-        "vmail",
-        "vmailme",
-        "vmail-me",
-        "vmail.me",
-        "help",
-        "helps",
-        "infos",
-        "nobody",
-        "anyone",
-        "somebody",
-        "supports",
-        "www-data",
-        "www.data",
-        "webmasters",
-        "contact",
-        "contacts",
-        "bank",
-        "banks",
-        "local",
-        "new",
-        "news",
-        "update",
-        "bug",
-        "bugs",
-        "unix",
-        "bsd",
-        "linux",
-        "foo",
-        "samples",
-        "spam",
-        "spams",
-        "example",
-        "examples",
-        "mydomain",
-        "mydomains",
-        "nodomain",
-        "nodomains",
-        "gov",
-        "gouv",
-        "sendmail",
-        "sendmails",
-        "secure",
-        "privacy",
-        "service",
-        "services",
-        "submit",
-        "plan",
-        "plans",
-        "quota",
-        "quotas",
-        );
+            "noreply",
+            "no-reply",
+            "no.reply",
+            "vmail",
+            "vmailme",
+            "vmail-me",
+            "vmail.me",
+            "help",
+            "helps",
+            "infos",
+            "nobody",
+            "anyone",
+            "somebody",
+            "supports",
+            "www-data",
+            "www.data",
+            "webmasters",
+            "contact",
+            "contacts",
+            "bank",
+            "banks",
+            "local",
+            "new",
+            "news",
+            "update",
+            "bug",
+            "bugs",
+            "unix",
+            "bsd",
+            "linux",
+            "foo",
+            "samples",
+            "spam",
+            "spams",
+            "example",
+            "examples",
+            "mydomain",
+            "mydomains",
+            "nodomain",
+            "nodomains",
+            "gov",
+            "gouv",
+            "sendmail",
+            "sendmails",
+            "secure",
+            "privacy",
+            "service",
+            "services",
+            "submit",
+            "plan",
+            "plans",
+            "quota",
+            "quotas"
+        ];
 
         if (in_array($username, $forbiddenUsers)) {
             return true;
@@ -123,16 +123,16 @@ class UserManager {
     }
 
     /**
-     * Is username or email already exist ?
+     * Is username taken ?
      *
      * @return boolean
      */
-    public function isUsernameOrEmailExist($usernameOrEmail)
+    public function isUsernameTaken($username)
     {
         return $this
             ->getDoctrine()
             ->getRepository('rootiovmailmeBundle:User')
-            ->isUsernameOrEmailExist($usernameOrEmail);
+            ->isUsernameTaken($username);
     }
 
     /**

@@ -62,29 +62,6 @@ class Forgot
     }
 
     /**
-     * Set rescueEmail
-     *
-     * @param string $rescueEmail
-     * @return Forgot
-     */
-    public function setRescueEmail($rescueEmail)
-    {
-        $this->rescueEmail = $rescueEmail;
-
-        return $this;
-    }
-
-    /**
-     * Get rescueEmail
-     *
-     * @return string
-     */
-    public function getRescueEmail()
-    {
-        return $this->rescueEmail;
-    }
-
-    /**
      * Set token
      *
      * @param string $token

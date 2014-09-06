@@ -54,6 +54,8 @@ reset:
 reset_check:
     pattern: /reset/check/{rescueEmail}/{token}/
     defaults:  { _controller: rootiovmailmeBundle:Default:resetCheck }
+    requirements:
+        token: "[0-9a-f]{64}"
 
 login:
     pattern: /login

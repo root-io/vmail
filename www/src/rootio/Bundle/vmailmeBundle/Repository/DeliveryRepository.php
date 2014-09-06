@@ -3,7 +3,6 @@
 namespace rootio\Bundle\vmailmeBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use \DateTime;
 
 /**
  * DeliveryRepository

@@ -61,16 +61,21 @@ class UserController extends Controller
         if ($form->isValid()) {
 
             $rescueEmail = $form->getData()->getRescueEmail();
-            if (empty($rescueEmail) || $rescueEmail == $user->getEmail()) {
+
+            // Remove rescue email
+            if (empty($rescueEmail)) {
                 $rescueEmail = null;
             }
-            $user->setRescueEmail($rescueEmail);
 
-            $em->persist($user);
-            $em->flush();
+            if ($rescueEmail !== $user->getEmail()) {
+                $user->setRescueEmail($rescueEmail);
 
-            $t = $this->get('translator')->trans('Rescue email updated!');
-            $this->get('session')->getFlashBag()->set('success', $t);
+                $em->persist($user);
+                $em->flush();
+
+                $t = $this->get('translator')->trans('Rescue email updated!');
+                $this->get('session')->getFlashBag()->set('success', $t);
+            }
         }
 
         return $this->render('rootiovmailmeBundle:User:rescue.html.twig', array('form' => $form->createView()));
@@ -137,16 +142,18 @@ class UserController extends Controller
         if ($form->isValid()) {
 
             $forwardingEmail = $form->getData()->getForwardingEmail();
-            if (empty($forwardingEmail) || $forwardingEmail == $user->getEmail()) {
+
+            // Remove forwarding email
+            if (empty($forwardingEmail)) {
                 $forwardingEmail = null;
             }
 
+            // Avoid user1 forwards to user2 and user2 forwards to user1
             $loop = $this->getDoctrine()
                 ->getRepository('rootiovmailmeBundle:User')
                 ->findOneBy(array('email' => $forwardingEmail, 'forwardingEmail' => $user->getEmail()));
 
-            if (!$loop) {
-
+            if ($forwardingEmail !== $user->getEmail() && !$loop) {
                 $user->setForwardingEmail($forwardingEmail);
 
                 $em->persist($user);

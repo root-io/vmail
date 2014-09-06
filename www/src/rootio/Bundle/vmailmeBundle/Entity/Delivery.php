@@ -97,7 +97,7 @@ class Delivery
      * Set ip
      *
      * @param string $ip
-     * @return Login
+     * @return Delivery
      */
     public function setIp($ip)
     {

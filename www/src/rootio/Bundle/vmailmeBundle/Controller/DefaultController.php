@@ -104,19 +104,16 @@ class DefaultController extends Controller
 
                 foreach ($users as $user) {
 
-                    // Save forgot demand
-                    $forgot = $em->getRepository('rootiovmailmeBundle:Forgot')->findOneByUser($user);
+                    $forgot = $this->getDoctrine()
+                        ->getRepository('rootiovmailmeBundle:Forgot')
+                        ->findOneByUser($user);
 
-                    if (!$forgot) {
-
-                        $forgot = new Forgot();
-                    }
-
-                    if ($forgot->getExpire() < new \DateTime('now')) { // Wait token expiration to send another
+                    if (!$forgot || $forgot->getExpire() < new \DateTime('now')) { // No forgot or expired
 
                         // Generate token
                         $token = hash('sha256', uniqid('', true));
 
+                        $forgot = new Forgot();
                         $forgot->setUser($user);
                         $forgot->setToken($token);
                         $forgot->setExpire(new \DateTime('+5 minutes'));
@@ -219,8 +216,7 @@ class DefaultController extends Controller
 
         $form->bind($this->getRequest());
 
-        $error = false;
-        $errors = array();
+        $errors = [];
 
         if ($form->isValid()) {
 
@@ -229,15 +225,14 @@ class DefaultController extends Controller
             $email = $registration->getUsername() . '@vmail.me';
             $password = $registration->getPassword();
 
-            $isUserForbidden = $this->get('rootiovmailme.user_manager')->isUserForbidden($username);
-            $isUsernameOrEmailExist = $this->get('rootiovmailme.user_manager')->isUsernameOrEmailExist($username);
+            $isUsernameForbidden = $this->get('rootiovmailme.user_manager')->isUsernameForbidden($username);
+            $isUsernameTaken = $this->get('rootiovmailme.user_manager')->isUsernameTaken($username);
 
-            if ($isUserForbidden || $isUsernameOrEmailExist) {
+            if ($isUsernameForbidden || $isUsernameTaken) {
                 $errors['message'] = $this->get('translator')->trans('Email not available');
-                $error = true;
             }
 
-            if (!$error) {
+            if (empty($errors)) {
                 $user = $this->get('rootiovmailme.user_manager')->createUser($username, $email, $password, null, null, 'basic', true);
 
                 $this->get('rootiovmailme.login_manager')->createLogin($email, $this->get('request')->getClientIp(), 'web');

@@ -24,7 +24,8 @@ class RegistrationType extends AbstractType
             'width'    => 220,
             'height'   => 50,
             'length'   => 8,
-            'invalid_message' => 'Bad security code'));
+            'invalid_message' => 'Bad security code'
+        ));
         $builder->add('termsOfService', 'checkbox');
     }
 

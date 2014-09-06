@@ -54,7 +54,6 @@ class BanCommand extends ContainerAwareCommand
             $ban->setReason($reason);
 
             $em->persist($ban);
-
             $em->flush();
 
             $this->removeQueuedMessages($user->getEmail());

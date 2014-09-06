@@ -276,6 +276,8 @@ EOF
 
 
     ## Deploy www
+    curl -sS https://getcomposer.org/installer | php
+    mv composer.phar /usr/local/bin/composer
     source $REPO_PATH/installer/deploy.sh
 
 

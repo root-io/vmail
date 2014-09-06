@@ -37,6 +37,10 @@ class Login
      */
     private $ip;
 
+    const PROTOCOL_WEB = 'web';
+    const PROTOCOL_POP = 'pop';
+    const PROTOCOL_IMAP = 'imap';
+
     /**
      * @var string
      *
@@ -91,29 +95,6 @@ class Login
     }
 
     /**
-     * Set date
-     *
-     * @param \DateTime $date
-     * @return Login
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
-
-    /**
      * Set ip
      *
      * @param string $ip
@@ -144,6 +125,9 @@ class Login
      */
     public function setProtocol($protocol)
     {
+        if (!in_array($protocol, array(self::PROTOCOL_WEB, self::PROTOCOL_POP, self::PROTOCOL_IMAP))) {
+            throw new \InvalidArgumentException("Invalid protocol");
+        }
         $this->protocol = $protocol;
 
         return $this;
@@ -157,5 +141,28 @@ class Login
     public function getProtocol()
     {
         return $this->protocol;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Login
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 }

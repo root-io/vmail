@@ -37,7 +37,6 @@ class DisableCommand extends ContainerAwareCommand
             $user->setIsEnabled(false);
 
             $em->persist($user);
-
             $em->flush();
         }
     }

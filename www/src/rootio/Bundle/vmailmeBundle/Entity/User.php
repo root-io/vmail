@@ -107,6 +107,9 @@ class User implements AdvancedUserInterface
      */
     protected $forwardingEmail;
 
+    const PLAN_BASIC = 'basic';
+    const PLAN_PREMIUM = 'premium';
+
     /**
      * @var string
      *
@@ -310,6 +313,9 @@ class User implements AdvancedUserInterface
      */
     public function setPlan($plan)
     {
+        if (!in_array($plan, array(self::PLAN_BASIC, self::PLAN_PREMIUM))) {
+            throw new \InvalidArgumentException("Invalid plan");
+        }
         $this->plan = $plan;
 
         return $this;
