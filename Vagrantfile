@@ -7,8 +7,7 @@ Vagrant.configure("2") do |config|
     v.customize ["modifyvm", :id, "--memory", 2048]
   end
 
-  config.vm.network :forwarded_port, guest: 80, host: 3000
-  config.vm.network :forwarded_port, guest: 443, host: 3443
+  config.vm.network :private_network, ip: "1.3.3.7"
 
   config.vm.synced_folder '.', '/home/vmail'
   config.vm.provision :shell, :path => 'installer/install.sh'
