@@ -136,7 +136,7 @@ class User implements AdvancedUserInterface
 
         $this->rescueEmail = null;
         $this->forwardingEmail = null;
-        $this->plan = null;
+        $this->plan = 'basic';
         $this->isEnabled = false;
     }
 

@@ -112,7 +112,8 @@ class UserManager {
             "plan",
             "plans",
             "quota",
-            "quotas"
+            "quotas",
+            "security"
         ];
 
         if (in_array($username, $forbiddenUsers)) {

@@ -222,7 +222,7 @@ class DefaultController extends Controller
 
             $registration = $form->getData();
             $username = $registration->getUsername();
-            $email = $registration->getUsername() . '@vmail.me';
+            $email = $registration->getUsername() . "@vmail.me";
             $password = $registration->getPassword();
 
             $isUsernameForbidden = $this->get('rootiovmailme.user_manager')->isUsernameForbidden($username);
