@@ -10,8 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * @author David Routhieau <rootio@vmail.me>
- * Created on June, 2014
- * This feature need to be remove 9 months later: March, 2015
+ * This feature needs to be remove at March, 2015
  */
 class PasswordlegacyCommand extends ContainerAwareCommand
 {
@@ -38,35 +37,32 @@ class PasswordlegacyCommand extends ContainerAwareCommand
 
             $salt = substr($user->getPasswordLegacy(), -8);
             $salt_ascii = $user->hexToAscii($salt);
-            $ssha512hexHash = "{SSHA512.hex}" . hash('sha512', $password . $salt_ascii) . $salt;
 
+            $ssha512hexHash = "{SSHA512.hex}" . hash('sha512', $password . $salt_ascii) . $salt;
             $sha256Hash = "{SHA256}" . hash('sha256', $password);
 
-            if ($user->getPasswordLegacy() === $sha256Hash || $user->getPasswordLegacy() === $ssha512hexHash) {
+            $em = $this->getContainer()->get('doctrine')->getManager();
 
-                $em = $this->getContainer()->get('doctrine')->getManager();
+            if ($user->getPasswordLegacy() === $sha256Hash) {
+                $user->setPasswordLegacy($password);
 
-                if ($user->getPasswordLegacy() === $sha256Hash) {
-                    $user->setPasswordLegacy($password);
+                $em->persist($user);
+                $em->flush();
 
-                    $em->persist($user);
-                    $em->flush();
+                $output->writeln('SHA256 password updated to SSHA512HEX');
+            }
 
-                    $output->writeln('SHA256 passwordLegacy updated to SSHA512HEX');
-                }
+            if ($user->getPassword() === 'vmailme-temp-password' && $user->getPasswordLegacy() === $ssha512hexHash) {
 
-                if ($user->getPassword() === 'vmailme-temp-password') {
+                $factory = $this->get('security.encoder_factory');
+                $encoder = $factory->getEncoder($user);
+                $password = $encoder->encodePassword($password, $user->getSalt());
+                $user->setPassword($password);
 
-                    $factory = $this->get('security.encoder_factory');
-                    $encoder = $factory->getEncoder($user);
-                    $password = $encoder->encodePassword($password, $user->getSalt());
-                    $user->setPassword($password);
+                $em->persist($user);
+                $em->flush();
 
-                    $em->persist($user);
-                    $em->flush();
-
-                    $output->writeln('Password updated!');
-                }
+                $output->writeln('Broken password updated');
             }
         }
     }
