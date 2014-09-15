@@ -113,11 +113,15 @@ class DefaultController extends Controller
                         // Generate token
                         $token = hash('sha256', uniqid('', true));
 
+                        if ($forgot) {
+                            $em->remove($forgot);
+                            $em->flush();
+                        }
+
                         $forgot = new Forgot();
                         $forgot->setUser($user);
                         $forgot->setToken($token);
                         $forgot->setExpire(new \DateTime('+5 minutes'));
-
                         $em->persist($forgot);
                         $em->flush();
 
@@ -172,7 +176,7 @@ class DefaultController extends Controller
 
                 $forgot = $this->getDoctrine()
                     ->getRepository('rootiovmailmeBundle:Forgot')
-                    ->findOneBy(array('user_id' => $user->getId(), 'token' => $token));
+                    ->findOneBy(array('user' => $user->getId(), 'token' => $token));
 
                 if ($forgot) {
 
