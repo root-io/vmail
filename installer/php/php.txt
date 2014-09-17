@@ -2,13 +2,11 @@ open_basedir = /tmp/:/var/www:/usr/share/webapps/roundcubemail:/etc/webapps/roun
 expose_php = Off
 session.cookie_secure = 1
 session.name = SESSION
-session.cookie_domain = .$CONFIG_DOMAIN
+session.cookie_domain = .CONFIG_DOMAIN
 
 cgi.fix_pathinfo = 0
 short_open_tag = Off
-magic_quotes_gpc = Off
-register_globals = Off
-session.autostart = Off
+session.auto_start = 0
 
 upload_max_filesize = 25M
 post_max_size = 25M
