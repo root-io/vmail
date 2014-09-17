@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @author David Routhieau <rootio@vmail.me>
  *
  * @ORM\Table(name="delivery")
- * @ORM\Entity
-*/
+ * @ORM\Entity(repositoryClass="rootio\Bundle\vmailmeBundle\Repository\DeliveryRepository")
+ */
 class Delivery
 {
     /**
@@ -23,14 +23,12 @@ class Delivery
      */
     private $id;
 
-
     /**
      * @var string
      *
      * @ORM\Column(name="sender", type="string", length=255)
      */
     private $sender;
-
 
     /**
      * @var string
