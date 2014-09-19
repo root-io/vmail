@@ -33,7 +33,7 @@ Instead, all security issues must be sent to support [at] vmail.me.
 Getting started
 --------------
 
-See LUKS.md for disk encryption
+See [LUKS.md](./LUKS.md) for disk encryption
 
 1. `git clone https://github.com/root-io/vmail.git /home/vmail`
 
