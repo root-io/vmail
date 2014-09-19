@@ -2,9 +2,9 @@ LUKS disk-encryption
 =========
 
 ```sh
-cfdisk /dev/sda
-sda1 -> 200 Mb + Boot
-sda2
+echo -e "n\np\n1\n\n+200M\nw" | fdisk /dev/sda
+echo -e "a\n1\nw" | fdisk /dev/sda
+echo -e "n\np\n2\n\n\nw" | fdisk /dev/sda
 
 modprobe dm-crypt
 cryptsetup -c camellia -y -s 256 luksFormat /dev/sda2
@@ -33,13 +33,11 @@ systemctl enable sshd
 ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
 hwclock --systohc --utc
 
-# nano /etc/mkinitcpio.conf
-HOOKS="keymap encrypt lvm2 filesystems"
+sed -i -e "s/ filesystems / keymap encrypt lvm2 filesystems /g" /etc/mkinitcpio.conf
 
 grub-install /dev/sda
 
-# nano /etc/default/grub
-GRUB_CMDLINE_LINUX="cryptdevice=/dev/sda2:main"
+sed -i -e "s/GRUB_CMDLINE_LINUX=\"\"/GRUB_CMDLINE_LINUX=\"cryptdevice=/dev/sda2:main\"/g" /etc/default/grub
 
 grub-mkconfig -o /boot/grub/grub.cfg
 
