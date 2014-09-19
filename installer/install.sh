@@ -171,6 +171,9 @@ EOF
     chmod +x /usr/local/bin/roundcube-login-logger.py
     cp $REPO_PATH/installer/roundcube/roundcube-delivery-logger.service /etc/systemd/system/roundcube-delivery-logger.service
     cp $REPO_PATH/installer/roundcube/roundcube-login-logger.service /etc/systemd/system/roundcube-login-logger.service
+
+    mysql -u root -p"$CONFIG_MARIADB_ROOT_PASSWORD" roundcube < /usr/share/webapps/roundcubemail/SQL/mysql.initial.sql
+
     systemctl enable roundcube-delivery-logger
     systemctl start roundcube-delivery-logger
     systemctl enable roundcube-login-logger
