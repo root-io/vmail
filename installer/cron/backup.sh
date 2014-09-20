@@ -4,6 +4,8 @@
 # Backup www, logs, databases, mailboxes & queue
 # Keep last 7 days backup and the first backup of each last three months
 #
+# @author David Routhieau <rootio@vmail.me>
+#
 
 mkdir -p /home/backup
 

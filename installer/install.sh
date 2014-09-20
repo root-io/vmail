@@ -57,8 +57,6 @@ if [ -f $REPO_PATH/installer/config.conf ]; then
     mv /etc/named.conf /etc/named.conf.save
     cp $REPO_PATH/installer/bind/named.conf /etc/named.conf
     cp $REPO_PATH/installer/bind/zone /var/named/$CONFIG_DOMAIN
-    touch /var/log/named.log
-    chown named:named /var/log/named.log
     sed -i -e "s/CONFIG_IP_SECONDARY/$CONFIG_IP_SECONDARY/g" /etc/named.conf
     sed -i -e "s/CONFIG_DOMAIN/$CONFIG_DOMAIN/g" /etc/named.conf
     sed -i -e "s/CONFIG_REVERSE_PRIMARY/$CONFIG_REVERSE_PRIMARY/g" /var/named/$CONFIG_DOMAIN
@@ -77,25 +75,18 @@ if [ -f $REPO_PATH/installer/config.conf ]; then
 
     expect << EOF
     spawn mysql_secure_installation
-
     expect "Enter current password for root (enter for none):"
     send "\r"
-
     expect "Set root password?"
     send "n\r"
-
     expect "Remove anonymous users?"
     send "y\r"
-
     expect "Disallow root login remotely?"
     send "y\r"
-
     expect "Remove test database and access to it?"
     send "y\r"
-
     expect "Reload privilege tables now?"
     send "y\r"
-
     interact
 EOF
 
@@ -113,10 +104,10 @@ EOF
     mysql -u root -e "CREATE USER 'piwik'@'localhost' IDENTIFIED BY '$CONFIG_MARIADB_PIWIK_PASSWORD';"
     mysql -u root -e "GRANT ALL ON piwik.* TO 'piwik'@'localhost';"
 
-    mysql -u root -e "DROP USER 'root'@'127.0.0.1';"
+    mysql -u root -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$CONFIG_MARIADB_ROOT_PASSWORD');"
+    mysql -u root -e "SET PASSWORD FOR 'root'@'127.0.0.1' = PASSWORD('$CONFIG_MARIADB_ROOT_PASSWORD');"
     mysql -u root -e "DROP USER 'root'@'::1';"
 
-    mysql -u root -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$CONFIG_MARIADB_ROOT_PASSWORD');"
     mysql -u root -p"$CONFIG_MARIADB_ROOT_PASSWORD" -e "FLUSH PRIVILEGES;"
 
     systemctl enable mysqld.service
@@ -136,6 +127,7 @@ EOF
     mv /etc/php/php.ini /etc/php/php.ini.save
     cp $REPO_PATH/installer/php/php.ini /etc/php/php.ini
     sed -i -e "s/CONFIG_DOMAIN/$CONFIG_DOMAIN/g" /etc/php/php.ini
+    sed -i -e "s#CONFIG_TIMEZONE#$CONFIG_TIMEZONE#g" /etc/php/php.ini
     systemctl enable php-fpm.service
     systemctl start php-fpm.service
     echo "PHP [OK]."
@@ -161,18 +153,25 @@ EOF
 
     sed -i -e "s/CONFIG_MARIADB_ROUNDCUBE_PASSWORD/$CONFIG_MARIADB_ROUNDCUBE_PASSWORD/g" /etc/webapps/roundcubemail/config/config.inc.php
     sed -i -e "s/CONFIG_DOMAIN/$CONFIG_DOMAIN/g" /etc/webapps/roundcubemail/config/config.inc.php
-    chmod 644 /etc/webapps/roundcubemail/config/config.inc.php
 
     cp $REPO_PATH/installer/roundcube/*.py /usr/local/bin/
     sed -i -e "s/CONFIG_MARIADB_SERVER_PASSWORD/$CONFIG_MARIADB_SERVER_PASSWORD/g" /usr/local/bin/roundcube-delivery-logger.py
     sed -i -e "s/CONFIG_MARIADB_SERVER_PASSWORD/$CONFIG_MARIADB_SERVER_PASSWORD/g" /usr/local/bin/roundcube-login-logger.py
     sed -i -e "s/CONFIG_IP_PRIMARY/$CONFIG_IP_PRIMARY/g" /usr/local/bin/roundcube-login-logger.py
-    chmod +x /usr/local/bin/roundcube-delivery-logger.py
-    chmod +x /usr/local/bin/roundcube-login-logger.py
     cp $REPO_PATH/installer/roundcube/roundcube-delivery-logger.service /etc/systemd/system/roundcube-delivery-logger.service
     cp $REPO_PATH/installer/roundcube/roundcube-login-logger.service /etc/systemd/system/roundcube-login-logger.service
 
     mysql -u root -p"$CONFIG_MARIADB_ROOT_PASSWORD" roundcube < /usr/share/webapps/roundcubemail/SQL/mysql.initial.sql
+
+    chown -R http:http /usr/share/webapps/roundcubemail
+    chown -R http:http /etc/webapps/roundcubemail
+    chmod 600 /etc/webapps/roundcubemail/config/config.inc.php
+    chmod +x /usr/local/bin/roundcube-delivery-logger.py
+    chmod +x /usr/local/bin/roundcube-login-logger.py
+    touch /var/log/roundcubemail/userlogins
+    touch /var/log/roundcubemail/sendmail
+    chown http:http /var/log/roundcubemail/userlogins
+    chown http:http /var/log/roundcubemail/sendmail
 
     systemctl enable roundcube-delivery-logger
     systemctl start roundcube-delivery-logger
@@ -195,11 +194,8 @@ EOF
 
     ## Postfix (MTA)
     pacman -S postfix --noconfirm
-    groupadd -g 5000 vmail
-    useradd -u 5000 -g vmail -s /sbin/nologin -d /home/mailboxes -m vmail
-    chmod 750 /home/mailboxes/
     mkdir -p /etc/aliases
-    newaliases
+    newaliases # fix me
     mv /etc/postfix/master.cf /etc/postfix/master.cf.save
     mv /etc/postfix/main.cf /etc/postfix/main.cf.save
     cp $REPO_PATH/installer/postfix/*.cf /etc/postfix/
@@ -212,11 +208,12 @@ EOF
     sed -i -e "s/CONFIG_MARIADB_SERVER_PASSWORD/$CONFIG_MARIADB_SERVER_PASSWORD/g" /etc/postfix/mysql/virtual_mailbox_domains.cf
     sed -i -e "s/CONFIG_MARIADB_SERVER_PASSWORD/$CONFIG_MARIADB_SERVER_PASSWORD/g" /etc/postfix/mysql/virtual_mailbox_maps.cf
     sed -i -e "s/CONFIG_MARIADB_SERVER_PASSWORD/$CONFIG_MARIADB_SERVER_PASSWORD/g" /etc/postfix/mysql/sender_login_maps.cf
-    chmod 644 /etc/postfix/mysql/virtual_alias_maps.cf
-    chmod 644 /etc/postfix/mysql/virtual_mailbox_domains.cf
-    chmod 644 /etc/postfix/mysql/virtual_mailbox_maps.cf
-    chmod 644 /etc/postfix/mysql/sender_login_maps.cf
-    chmod 644 /usr/local/bin/pfdel.pl
+
+    groupadd -g 5000 vmail
+    useradd -u 5000 -g vmail -s /sbin/nologin -d /home/mailboxes -m vmail
+    chmod 750 /home/mailboxes
+    chmod +x /usr/local/bin/pfdel.pl
+
     systemctl enable postfix.service
     systemctl start postfix.service
     echo "Postfix [OK]."
@@ -255,12 +252,12 @@ EOF
     ## Dovecot (MDA)
     pacman -S dovecot --noconfirm
     cp $REPO_PATH/installer/dovecot/* /etc/dovecot/
-    touch /var/log/dovecot-deliver.log
-    chown postfix:postfix /var/log/dovecot-deliver.log
     sed -i -e "s/CONFIG_MARIADB_SERVER_PASSWORD/$CONFIG_MARIADB_SERVER_PASSWORD/g" /etc/dovecot/dovecot-sql.conf
     sed -i -e "s/CONFIG_DOMAIN/$CONFIG_DOMAIN/g" /etc/dovecot/dovecot.conf
-    chmod 644 /etc/dovecot/dovecot-sql.conf
+
+    touch /var/log/dovecot-deliver.log
     chmod 777 /var/log/dovecot-deliver.log
+
     systemctl enable dovecot.service
     systemctl start dovecot.service
     echo "Dovecot [OK]."
@@ -271,8 +268,6 @@ EOF
     cp $REPO_PATH/installer/fail2ban/jail.local /etc/fail2ban/jail.local
     cp $REPO_PATH/installer/fail2ban/filter.d/vmailme-auth.conf /etc/fail2ban/filter.d/vmailme-auth.conf
     cp $REPO_PATH/installer/fail2ban/filter.d/piwik-auth.conf /etc/fail2ban/filter.d/piwik-auth.conf
-    touch /var/log/roundcubemail/userlogins
-    chown http:http /var/log/roundcubemail/userlogins
     systemctl enable fail2ban.service
     systemctl start fail2ban.service
     echo "Fail2ban [OK]."
@@ -295,7 +290,7 @@ EOF
     pacman -S cronie --noconfirm
     cp $REPO_PATH/installer/cron/backup.sh /usr/local/bin/backup.sh
     sed -i -e "s/CONFIG_MARIADB_ROOT_PASSWORD/$CONFIG_MARIADB_ROOT_PASSWORD/g" /usr/local/bin/backup.sh
-    chmod 644 /usr/local/bin/backup.sh
+    chmod +x /usr/local/bin/backup.sh
     source $REPO_PATH/installer/cron/cron.sh
     systemctl enable cronie.service
     systemctl start cronie.service

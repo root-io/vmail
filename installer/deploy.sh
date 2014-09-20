@@ -29,7 +29,6 @@ if [ -f $REPO_PATH/installer/config.conf ]; then
 
     ## Console scripts
     cp $REPO_PATH/installer/console/* /var/www
-    chmod 777 /var/www/*.sh
     sed -i -e "s/CONFIG_IP_PRIMARY/$CONFIG_IP_PRIMARY/g" /var/www/dfilter.sh
 
 
@@ -39,5 +38,6 @@ if [ -f $REPO_PATH/installer/config.conf ]; then
 
 
     chown -R http:http /var/www/
+    chmod -R 755 /var/www/
     echo "Deploy www [OK]."
 fi
