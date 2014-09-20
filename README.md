@@ -21,6 +21,8 @@ Community
 
 Follow vmail.me on [Twitter](https://twitter.com/vmailme) and [Facebook](https://www.facebook.com/pages/vmailme/181655708543682).
 
+Help us with [translation](./www/src/rootio/Bundle/vmailmeBundle/Resources/translations).
+
 
 Reporting a security issue
 --------------
