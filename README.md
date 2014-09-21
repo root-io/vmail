@@ -46,6 +46,30 @@ See [LUKS.md](./LUKS.md) for disk encryption
 1. `bash install.sh`
 
 
+Development environment
+--------------
+
+Windows
+
+1. Open "C:\Windows\System32\drivers\etc\hosts" with a text editor in administrator mode
+
+1. Add a new line to the file, with the following text: `1.3.3.7 vmail.dev www.vmail.dev`
+
+1. Save
+
+Mac
+
+1. Open Terminal
+
+1. In the terminal window, type: `sudo bash -c 'echo -e "1.3.3.7 vmail.dev www.vmail.dev" >> /private/etc/hosts'`
+
+Linux
+
+1. Open Terminal
+
+1. In the terminal window, type: `sudo bash -c 'echo -e "1.3.3.7 vmail.dev www.vmail.dev" >> /etc/hosts'`
+
+
 Production environment
 --------------
 
