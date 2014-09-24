@@ -43,7 +43,9 @@ See [LUKS.md](./LUKS.md) for disk encryption
 
 1. `cp config.conf.example config.conf`
 
-1. `bash install.sh`
+1. `bash install_server.sh`
+
+1. `bash install_website.sh`
 
 
 Development environment

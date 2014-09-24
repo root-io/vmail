@@ -209,6 +209,8 @@ EOF
     sed -i -e "s/CONFIG_MARIADB_SERVER_PASSWORD/$CONFIG_MARIADB_SERVER_PASSWORD/g" /etc/postfix/mysql/virtual_mailbox_maps.cf
     sed -i -e "s/CONFIG_MARIADB_SERVER_PASSWORD/$CONFIG_MARIADB_SERVER_PASSWORD/g" /etc/postfix/mysql/sender_login_maps.cf
 
+    mysql -u root -p"$CONFIG_MARIADB_ROOT_PASSWORD" -e "INSERT INTO vmailme.domain SET name=\"$CONFIG_DOMAIN\";"
+
     groupadd -g 5000 vmail
     useradd -u 5000 -g vmail -s /sbin/nologin -d /home/mailboxes -m vmail
     chmod 750 /home/mailboxes
@@ -273,12 +275,6 @@ EOF
     echo "Fail2ban [OK]."
 
 
-    ## Deploy www
-    curl -sS https://getcomposer.org/installer | php
-    mv composer.phar /usr/local/bin/composer
-    source $REPO_PATH/installer/deploy.sh
-
-
     ## Shortcuts
     ln -s /var/log /home/log
     ln -s /var/lib/mysql /home/database
@@ -295,4 +291,12 @@ EOF
     systemctl enable cronie.service
     systemctl start cronie.service
     echo "Cronie [OK]."
+
+
+    ## Composer
+    curl -sS https://getcomposer.org/installer | php
+    mv composer.phar /usr/local/bin/composer
+
+
+    echo "Install server [OK]."
 fi
