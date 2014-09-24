@@ -38,5 +38,5 @@ if [ -f $REPO_PATH/installer/config.conf ]; then
     chmod -R 755 /var/www/
 
 
-    echo "Deploy www [OK]."
+    echo "Install website [OK]."
 fi
