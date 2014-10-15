@@ -23,14 +23,14 @@ if [ -f $REPO_PATH/installer/config.conf ]; then
     php app/console doctrine:schema:update --force
 
 
-    ## Console scripts
-    cp $REPO_PATH/installer/console/* /var/www
-    sed -i -e "s/CONFIG_IP_PRIMARY/$CONFIG_IP_PRIMARY/g" /var/www/dfilter.sh
-
-
     ## Symbolic links
     ln -s /usr/share/webapps/roundcubemail/ /var/www/web/webmail
     ln -s /usr/share/webapps/piwik/ /var/www/web/piwik
+
+
+    ## Console scripts
+    cp $REPO_PATH/installer/console/* /var/www
+    sed -i -e "s/CONFIG_IP_PRIMARY/$CONFIG_IP_PRIMARY/g" /var/www/dfilter.sh
 
 
     ## Permissions
