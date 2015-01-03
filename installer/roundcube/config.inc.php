@@ -22,3 +22,17 @@ $config['identities_level'] = 1;
 $config['spellcheck_dictionary'] = false;
 $config['default_charset'] = 'UTF-8';
 $config['refresh_interval'] = 300;
+
+$config['imap_conn_options'] = array(
+  'ssl'         => array(
+	 'verify_peer'  => false,
+	 'verfify_peer_name' => false,
+   ),
+);
+
+$config['smtp_conn_options'] = array(
+  'ssl'         => array(
+	 'verify_peer'  => false,
+	 'verfify_peer_name' => false,
+   ),
+);
