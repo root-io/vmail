@@ -1,4 +1,3 @@
-open_basedir = /tmp/:/var/www:/usr/share/webapps/roundcubemail:/etc/webapps/roundcubemail:/usr/share/webapps/piwik:/usr/share/pear/:/var/log/roundcubemail
 expose_php = Off
 session.cookie_secure = 1
 session.name = SESSION
