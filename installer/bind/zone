@@ -1,18 +1,22 @@
 $TTL 14400
 @ IN SOA CONFIG_REVERSE_PRIMARY. postmaster.CONFIG_DOMAIN. (
-CURRENT_DATE01         ;date & revision
-3600                   ;refresh period
-900                    ;retry refresh this often
-604800                 ;expiration period
-3600                   ;minimum TTL
+CURRENT_DATE01        ;date & revision
+3600                  ;refresh period
+900                   ;retry refresh this often
+604800                ;expiration period
+3600                  ;minimum TTL
 )
 
-CONFIG_DOMAIN.         IN NS   CONFIG_REVERSE_PRIMARY.
-CONFIG_DOMAIN.         IN NS   CONFIG_REVERSE_SECONDARY.
-CONFIG_DOMAIN.         IN MX   10 CONFIG_REVERSE_PRIMARY.
-CONFIG_DOMAIN.         IN A    CONFIG_IP_PRIMARY
-www                    IN A    CONFIG_IP_PRIMARY
-mx1                    IN A    CONFIG_IP_PRIMARY
-autoconfig             IN A    CONFIG_IP_PRIMARY
-CONFIG_DOMAIN.         IN TXT  "v=spf1 mx -all"
-mx1.CONFIG_DOMAIN.     IN TXT  "v=spf1 mx -all"
+CONFIG_DOMAIN.        IN NS       CONFIG_REVERSE_PRIMARY.
+CONFIG_DOMAIN.        IN NS       CONFIG_REVERSE_SECONDARY.
+CONFIG_DOMAIN.        IN MX       10 CONFIG_REVERSE_PRIMARY.
+CONFIG_DOMAIN.        IN A        CONFIG_IP_PRIMARY
+www                   IN A        CONFIG_IP_PRIMARY
+mx1                   IN A        CONFIG_IP_PRIMARY
+CONFIG_DOMAIN.        IN TXT      "v=spf1 mx -all"
+mx1.CONFIG_DOMAIN.    IN TXT      "v=spf1 mx -all"
+autoconfig            IN CNAME    www.CONFIG_DOMAIN.
+imap                  IN CNAME    CONFIG_DOMAIN.
+pop                   IN CNAME    CONFIG_DOMAIN.
+pop3                  IN CNAME    CONFIG_DOMAIN.
+smtp                  IN CNAME    CONFIG_DOMAIN.

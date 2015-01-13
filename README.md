@@ -29,7 +29,7 @@ Reporting a security issue
 
 If you think that you have found a security issue in vmail.me project, please don't use the bug tracker and don't publish it publicly.
 
-Instead, all security issues must be sent to support [at] vmail.me.
+Instead, all security issues must be sent to security [at] vmail.me.
 
 
 Getting started
@@ -88,6 +88,7 @@ Commands
 php app/console vmailme:ban [username or email] [reason]
 php app/console vmailme:disable [username or email]
 php app/console vmailme:enable [username or email]
+pfdel [email]
 ```
 
 

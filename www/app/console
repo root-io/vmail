@@ -18,10 +18,8 @@ use rootio\Bundle\vmailmeBundle\Command\BanCommand;
 use rootio\Bundle\vmailmeBundle\Command\DeliveryCommand;
 use rootio\Bundle\vmailmeBundle\Command\DisableCommand;
 use rootio\Bundle\vmailmeBundle\Command\EnableCommand;
-use rootio\Bundle\vmailmeBundle\Command\PasswordlegacyCommand;
-use rootio\Bundle\vmailmeBundle\Command\QuotaCommand;
 use rootio\Bundle\vmailmeBundle\Command\PostloginCommand;
-use rootio\Bundle\vmailmeBundle\Command\WardenCommand;
+use rootio\Bundle\vmailmeBundle\Command\QuotaCommand;
 
 $input = new ArgvInput();
 $env = $input->getParameterOption(array('--env', '-e'), getenv('SYMFONY_ENV') ?: 'dev');
@@ -40,6 +38,10 @@ $application->add(new BanCommand);
 $application->run();
 
 $application = new Application();
+$application->add(new DeliveryCommand);
+$application->run();
+
+$application = new Application();
 $application->add(new DisableCommand);
 $application->run();
 
@@ -48,21 +50,9 @@ $application->add(new EnableCommand);
 $application->run();
 
 $application = new Application();
-$application->add(new PasswordlegacyCommand);
-$application->run();
-
-$application = new Application();
-$application->add(new QuotaCommand);
-$application->run();
-
-$application = new Application();
-$application->add(new WardenCommand);
-$application->run();
-
-$application = new Application();
 $application->add(new PostloginCommand);
 $application->run();
 
 $application = new Application();
-$application->add(new DeliveryCommand);
+$application->add(new QuotaCommand);
 $application->run();

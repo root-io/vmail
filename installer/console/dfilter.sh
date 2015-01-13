@@ -12,8 +12,6 @@ if [ "$ip" != "127.0.0.1" ] && [ "$ip" != "::1" ] && [ "$ip" != "CONFIG_IP_PRIMA
     php app/console vmailme:delivery $sender $ip $recipient
 fi
 
-php app/console vmailme:warden $sender
-
 $SENDMAIL -i -f $sender -- $recipient
 
 exit $?

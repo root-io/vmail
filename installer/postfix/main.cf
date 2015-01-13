@@ -40,13 +40,16 @@ smtpd_sender_login_maps = mysql:/etc/postfix/mysql/sender_login_maps.cf
 smtpd_sender_restrictions = reject_unknown_sender_domain, reject_authenticated_sender_login_mismatch
 
 # Whitelisting: local clients may specify any destination domain.
-smtpd_recipient_restrictions = permit_sasl_authenticated, reject_unauth_pipelining, reject_unknown_reverse_client_hostname, reject_invalid_hostname, reject_non_fqdn_sender, reject_unknown_sender_domain, reject_unauth_destination, reject_unknown_recipient_domain, reject_rbl_client zen.spamhaus.org, reject_rbl_client bl.spamcop.net, check_policy_service inet:127.0.0.1:10030, reject_non_fqdn_recipient
+smtpd_recipient_restrictions = permit_sasl_authenticated, reject_unauth_pipelining, reject_unknown_reverse_client_hostname, reject_invalid_hostname, reject_non_fqdn_sender, reject_unknown_sender_domain, reject_unauth_destination, reject_unknown_recipient_domain, check_policy_service inet:127.0.0.1:10040, reject_non_fqdn_recipient
+
+smtpd_restriction_classes = check_postgrey
+check_postgrey = check_policy_service inet:127.0.0.1:10030
 
 # Block clients that speak too early.
 smtpd_data_restrictions = reject_unauth_pipelining
 
 # SSL/TLS
-tls_high_cipherlist = EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA+RC4:EECDH:EDH+aRSA:RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS:+RC4:RC4
+tls_high_cipherlist = EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA+RC4:EECDH:EDH+aRSA:RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS:!RC4
 tls_random_source = dev:/dev/urandom
 # Input
 smtpd_tls_mandatory_protocols = !SSLv2, !SSLv3

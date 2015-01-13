@@ -12,9 +12,6 @@ parameters:
     mailer_password:   null
 
     locale:            en
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    secret:            SECRET
 
     registration: true
-
-    smtp_quota_daily: 100
-    smtp_quota_monthly: 500

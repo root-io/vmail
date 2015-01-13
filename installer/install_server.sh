@@ -11,10 +11,11 @@ if [ -f $REPO_PATH/installer/config.conf ]; then
 
     ## Update
     pacman -Syu --noconfirm
+    pacman-db-upgrade
 
 
     ## Install some tools
-    pacman -S wget gzip git --noconfirm
+    pacman -S wget gzip git apg --noconfirm
 
 
     ## Change the hardware clock time standard to localtime
@@ -33,14 +34,10 @@ if [ -f $REPO_PATH/installer/config.conf ]; then
     echo "Hostname [OK]."
 
 
-    ## Syslog & Logrotate
-    pacman -S syslog-ng logrotate --noconfirm
-    mv /etc/logrotate.conf /etc/logrotate.conf.save
-    cp $REPO_PATH/installer/logrotate/logrotate.conf /etc/logrotate.conf
-    mkdir -p /var/log/archive
-    systemctl enable syslog-ng.service
-    systemctl start syslog-ng.service
-    echo "Syslog & logrotate [OK]."
+    ## Journald
+    mv /etc/systemd/journald.conf /etc/systemd/journald.conf.save
+    cp $REPO_PATH/installer/systemd/journald.conf /etc/systemd/journald.conf
+    echo "Journald [OK]."
 
 
     ## Iptables
@@ -146,6 +143,7 @@ EOF
     ## Roundcube
     pacman -S roundcubemail mysql-python --noconfirm
     cp $REPO_PATH/installer/roundcube/config.inc.php /etc/webapps/roundcubemail/config/config.inc.php
+    sed -i -e "s/SECRET/$(apg -n 1 -m 24 -x 24)/g" /etc/webapps/roundcubemail/config/config.inc.php
     rm -r /usr/share/webapps/roundcubemail/installer/
     echo '' > /usr/share/webapps/roundcubemail/skins/classic/includes/header.html
     echo '' > /usr/share/webapps/roundcubemail/skins/larry/includes/header.html
@@ -154,29 +152,15 @@ EOF
     sed -i -e "s/CONFIG_MARIADB_ROUNDCUBE_PASSWORD/$CONFIG_MARIADB_ROUNDCUBE_PASSWORD/g" /etc/webapps/roundcubemail/config/config.inc.php
     sed -i -e "s/CONFIG_DOMAIN/$CONFIG_DOMAIN/g" /etc/webapps/roundcubemail/config/config.inc.php
 
-    cp $REPO_PATH/installer/roundcube/*.py /usr/local/bin/
-    sed -i -e "s/CONFIG_MARIADB_SERVER_PASSWORD/$CONFIG_MARIADB_SERVER_PASSWORD/g" /usr/local/bin/roundcube-delivery-logger.py
-    sed -i -e "s/CONFIG_MARIADB_SERVER_PASSWORD/$CONFIG_MARIADB_SERVER_PASSWORD/g" /usr/local/bin/roundcube-login-logger.py
-    sed -i -e "s/CONFIG_IP_PRIMARY/$CONFIG_IP_PRIMARY/g" /usr/local/bin/roundcube-login-logger.py
-    cp $REPO_PATH/installer/roundcube/roundcube-delivery-logger.service /etc/systemd/system/roundcube-delivery-logger.service
-    cp $REPO_PATH/installer/roundcube/roundcube-login-logger.service /etc/systemd/system/roundcube-login-logger.service
-
     mysql -u root -p"$CONFIG_MARIADB_ROOT_PASSWORD" roundcube < /usr/share/webapps/roundcubemail/SQL/mysql.initial.sql
 
     chown -R http:http /usr/share/webapps/roundcubemail
     chown -R http:http /etc/webapps/roundcubemail
     chmod 600 /etc/webapps/roundcubemail/config/config.inc.php
-    chmod +x /usr/local/bin/roundcube-delivery-logger.py
-    chmod +x /usr/local/bin/roundcube-login-logger.py
     touch /var/log/roundcubemail/userlogins
     touch /var/log/roundcubemail/sendmail
     chown http:http /var/log/roundcubemail/userlogins
     chown http:http /var/log/roundcubemail/sendmail
-
-    systemctl enable roundcube-delivery-logger
-    systemctl start roundcube-delivery-logger
-    systemctl enable roundcube-login-logger
-    systemctl start roundcube-login-logger
     echo "Roundcube [OK]."
 
 
@@ -200,7 +184,7 @@ EOF
     mv /etc/postfix/main.cf /etc/postfix/main.cf.save
     cp $REPO_PATH/installer/postfix/*.cf /etc/postfix/
     cp -r $REPO_PATH/installer/postfix/mysql /etc/postfix/
-    cp $REPO_PATH/installer/postfix/pfdel.pl /usr/local/bin/pfdel.pl
+    cp $REPO_PATH/installer/postfix/pfdel.pl /usr/local/bin/pfdel
     sed -i -e "s/CONFIG_REVERSE_PRIMARY/$CONFIG_REVERSE_PRIMARY/g" /etc/postfix/main.cf
     sed -i -e "s/CONFIG_DOMAIN/$CONFIG_DOMAIN/g" /etc/postfix/main.cf
     sed -i -e "s/CONFIG_IP_PRIMARY/$CONFIG_IP_PRIMARY/g" /etc/postfix/main.cf
@@ -214,7 +198,7 @@ EOF
     groupadd -g 5000 vmail
     useradd -u 5000 -g vmail -s /sbin/nologin -d /home/mailboxes -m vmail
     chmod 750 /home/mailboxes
-    chmod +x /usr/local/bin/pfdel.pl
+    chmod +x /usr/local/bin/pfdel
 
     systemctl enable postfix.service
     systemctl start postfix.service
@@ -234,6 +218,14 @@ EOF
     systemctl enable postgrey.service
     systemctl start postgrey.service
     echo "Postgrey [OK]."
+
+
+    ## Postfwd
+    pacman -S postfwd --noconfirm
+    cp $REPO_PATH/installer/postfwd/postfwd.cf /etc/postfwd/postfwd.cf
+    systemctl enable postfwd.service
+    systemctl start postfwd.service
+    echo "Postfwd [OK]."
 
 
     ## OpenDKIM

@@ -3,15 +3,15 @@ homepage:
     defaults: { _controller: rootiovmailmeBundle:Default:index }
 
 legalDocuments:
-    pattern: /legalDocuments
+    pattern: /legal
     defaults: { _controller: rootiovmailmeBundle:Default:legalDocuments }
 
 termsOfService:
-    pattern: /termsOfService
+    pattern: /tos
     defaults: { _controller: rootiovmailmeBundle:Default:termsOfService }
 
 privacyPolicy:
-    pattern: /privacyPolicy
+    pattern: /privacy
     defaults: { _controller: rootiovmailmeBundle:Default:privacyPolicy }
 
 plans:

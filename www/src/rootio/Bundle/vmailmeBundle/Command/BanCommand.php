@@ -27,7 +27,7 @@ class BanCommand extends ContainerAwareCommand
 
     public function removeQueuedMessages($email) {
 
-        $command = 'perl /usr/local/bin/pfdel.pl ' . $email;
+        $command = '/usr/local/bin/pfdel ' . $email;
         exec($command);
     }
 

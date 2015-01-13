@@ -22,6 +22,7 @@ $config['identities_level'] = 1;
 $config['spellcheck_dictionary'] = false;
 $config['default_charset'] = 'UTF-8';
 $config['refresh_interval'] = 300;
+$config['des_key'] = 'SECRET';
 
 $config['imap_conn_options'] = array(
   'ssl'         => array(

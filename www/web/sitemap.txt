@@ -1,17 +1,17 @@
 https://www.vmail.me/en/
 https://www.vmail.me/en/forgot
-https://www.vmail.me/en/legalDocuments
+https://www.vmail.me/en/legal
 https://www.vmail.me/en/login
 https://www.vmail.me/en/plans
 https://www.vmail.me/en/registration
-https://www.vmail.me/en/termsOfService
-https://www.vmail.me/en/privacyPolicy
+https://www.vmail.me/en/tos
+https://www.vmail.me/en/privacy
 
 https://www.vmail.me/fr/
 https://www.vmail.me/fr/forgot
-https://www.vmail.me/fr/legalDocuments
+https://www.vmail.me/fr/legal
 https://www.vmail.me/fr/login
 https://www.vmail.me/fr/plans
 https://www.vmail.me/fr/registration
-https://www.vmail.me/fr/termsOfService
-https://www.vmail.me/fr/privacyPolicy
+https://www.vmail.me/fr/tos
+https://www.vmail.me/fr/privacy

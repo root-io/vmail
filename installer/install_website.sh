@@ -10,11 +10,14 @@ if [ -f $REPO_PATH/installer/config.conf ]; then
 
 
     ## www
-    rm -r /var/www
-    cp -r $REPO_PATH/www /var/www
+    if [ "$VAGRANT" == false ]; then
+        rm -r /var/www
+        cp -r $REPO_PATH/www /var/www
+    fi
     cp /var/www/app/config/parameters.yml.dist /var/www/app/config/parameters.yml
     sed -i -e "s/CONFIG_MARIADB_WWW_PASSWORD/$CONFIG_MARIADB_WWW_PASSWORD/g" /var/www/app/config/parameters.yml
     sed -i -e "s/CONFIG_DOMAIN/$CONFIG_DOMAIN/g" /var/www/app/config/parameters.yml
+    sed -i -e "s/SECRET/$(apg -n1 -M ncl)/g" /var/www/app/config/parameters.yml
     composer self-update
     cd /var/www
     composer update
@@ -31,6 +34,8 @@ if [ -f $REPO_PATH/installer/config.conf ]; then
     ## Console scripts
     cp $REPO_PATH/installer/console/* /var/www
     sed -i -e "s/CONFIG_IP_PRIMARY/$CONFIG_IP_PRIMARY/g" /var/www/dfilter.sh
+    sed -i -e "s/CONFIG_IP_PRIMARY/$CONFIG_IP_PRIMARY/g" /var/www/imap-postlogin.sh
+    sed -i -e "s/CONFIG_IP_PRIMARY/$CONFIG_IP_PRIMARY/g" /var/www/pop-postlogin.sh
 
 
     ## Permissions
