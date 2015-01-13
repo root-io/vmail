@@ -25,12 +25,6 @@ class BanCommand extends ContainerAwareCommand
         ;
     }
 
-    public function removeQueuedMessages($email) {
-
-        $command = '/usr/local/bin/pfdel ' . $email;
-        exec($command);
-    }
-
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $emailOrUsername = $input->getArgument('emailOrUsername');
@@ -56,7 +50,13 @@ class BanCommand extends ContainerAwareCommand
             $em->persist($ban);
             $em->flush();
 
-            $this->removeQueuedMessages($user->getEmail());
+            $command = $this->getApplication()->find('vmailme:pfdel');
+            $arguments = array(
+                'command'         => $command->getName(),
+                'emailOrUsername' => $user->getEmail()
+            );
+            $input = new ArrayInput($arguments);
+            $command->run($input, $output);
         }
     }
 }

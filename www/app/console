@@ -18,6 +18,7 @@ use rootio\Bundle\vmailmeBundle\Command\BanCommand;
 use rootio\Bundle\vmailmeBundle\Command\DeliveryCommand;
 use rootio\Bundle\vmailmeBundle\Command\DisableCommand;
 use rootio\Bundle\vmailmeBundle\Command\EnableCommand;
+use rootio\Bundle\vmailmeBundle\Command\PostfixDeleteCommand;
 use rootio\Bundle\vmailmeBundle\Command\PostloginCommand;
 use rootio\Bundle\vmailmeBundle\Command\QuotaCommand;
 
@@ -47,6 +48,10 @@ $application->run();
 
 $application = new Application();
 $application->add(new EnableCommand);
+$application->run();
+
+$application = new Application();
+$application->add(new PostfixDeleteCommand);
 $application->run();
 
 $application = new Application();

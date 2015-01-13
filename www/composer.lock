@@ -670,12 +670,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Gregwar/CaptchaBundle.git",
-                "reference": "94c5f0a03bcaf6ac3d7e2e269e2fb18a79d49950"
+                "reference": "c844d0a440af820da085a87305493193b03d02d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Gregwar/CaptchaBundle/zipball/94c5f0a03bcaf6ac3d7e2e269e2fb18a79d49950",
-                "reference": "94c5f0a03bcaf6ac3d7e2e269e2fb18a79d49950",
+                "url": "https://api.github.com/repos/Gregwar/CaptchaBundle/zipball/c844d0a440af820da085a87305493193b03d02d9",
+                "reference": "c844d0a440af820da085a87305493193b03d02d9",
                 "shasum": ""
             },
             "require": {
@@ -716,7 +716,7 @@
                 "spam",
                 "visual"
             ],
-            "time": "2014-09-26 19:07:06"
+            "time": "2015-01-13 13:43:37"
         },
         {
             "name": "incenteev/composer-parameter-handler",
