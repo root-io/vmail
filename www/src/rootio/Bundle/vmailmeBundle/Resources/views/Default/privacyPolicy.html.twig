@@ -8,11 +8,12 @@
 </div>
 
 <pre>
+    <span class="glyphicon glyphicon-asterisk"></span> {% trans %}Register an account without providing any personal information{% endtrans %}.
     <span class="glyphicon glyphicon-asterisk"></span> {% trans %}Encrypted data storage{% endtrans %}.
-    <span class="glyphicon glyphicon-asterisk"></span> {% trans %}You can delete your account{% endtrans %}.
-    <span class="glyphicon glyphicon-asterisk"></span> {% trans %}Our Piwik web analytics respects the Do Not Track (DNT) technology and anonymizes visitors' IP addresses (last two bits){% endtrans %}.
-    <span class="glyphicon glyphicon-asterisk"></span> {% trans with {'%europeanunion%': '<img width="16" height="11" alt="European Union" src="' ~ asset('/media/images/flags/europeanunion.png') ~ '" />'} %}We collect minimal personal data for security and European Union %europeanunion% data retention laws{% endtrans %}.
-    <span class="glyphicon glyphicon-asterisk"></span> {% trans %}IP addresses and email client user agent are removed from email headers{% endtrans %}.
-    <span class="glyphicon glyphicon-asterisk"></span> {% trans %}We do not use third party services or hosted libraries{% endtrans %}.
+    <span class="glyphicon glyphicon-asterisk"></span> {% trans %}Account deletion{% endtrans %}.
+    <span class="glyphicon glyphicon-asterisk"></span> {% trans %}Piwik web analytics respects the Do Not Track (DNT) technology and anonymizes the last two bits visitors' IP addresses{% endtrans %}.
+    <span class="glyphicon glyphicon-asterisk"></span> {% trans %}Minimal server logs (comply with European Data Retention Directive){% endtrans %}.
+    <span class="glyphicon glyphicon-asterisk"></span> {% trans %}IP addresses and user agent are removed from email headers{% endtrans %}.
+    <span class="glyphicon glyphicon-asterisk"></span> {% trans %}No use of third party services or hosted libraries{% endtrans %}.
 </pre>
 {% endblock %}

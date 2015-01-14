@@ -74,18 +74,19 @@ Password must have at least {{ limit }} characters: Le mot de passe doit avoir a
 Email {{ value }} is incorrect: L'email {{ value }} est incorrect
 Password reset's instructions sent!: Instructions de réinitialisation de mot de passe envoyés!
 Password updated!: Mot de passe mis à jour!
-Rescue email updated!: Email de secours mise à jour!
-Forwarding email updated!: Email de redirection mise à jour!
+Rescue email updated!: Email de secours mis à jour!
+Forwarding email updated!: Email de redirection mis à jour!
 Account now suspended!: Compte maintenant suspendu!
 Bad login: Erreur de connexion
 You have written two different passwords: Vous avez écrit deux mots de passe différents
-Privacy policy: Politique confidentialité
+Privacy policy: Politique de confidentialité
+Register an account without providing any personal information: Créer un compte sans fournir la moindre information personnelle
 Encrypted data storage: Stockage de données chiffrées
-You can delete your account: Vous pouvez supprimer votre compte
-Our Piwik web analytics respects the Do Not Track (DNT) technology and anonymizes visitors' IP addresses (last two bits): Notre analyseur de trafic Piwik respecte la technologie Do Not Track (DNT) et anonymise les adresses IP des visiteurs (deux derniers bits)
-We collect minimal personal data for security and European Union %europeanunion% data retention laws: Nous collectons le minimum de données personnelles pour la sécurité et en respect des lois de l'Union européenne %europeanunion% sur la rétention des données
-IP addresses and email client user agent are removed from email headers: Les adresses IP et le user-agent des clients de messagerie sont supprimés des headers des emails
-We do not use third party services or hosted libraries: Nous n'utilisons pas de services tiers ou de bibliothèques hébergées
+Account deletion: Suppression de votre compte
+Piwik web analytics respects the Do Not Track (DNT) technology and anonymizes the last two bits visitors' IP addresses: L'analyseur de trafic Piwik respecte la technologie Do Not Track (DNT) et anonymise les deux derniers bits des adresses IP des visiteurs
+Minimal server logs (comply with European Data Retention Directive): Logs minimal côté serveur (conformer à la directive européenne sur la conservation des données)
+IP addresses and user agent are removed from email headers: Les adresses IP et le user agent des clients de messagerie sont supprimés des en-têtes des emails
+No use of third party services or hosted libraries: Pas d'utilisation de services tiers ou de bibliothèques hébergées
 TOS: >
   Conditions d'Utilisation de vmail.me
 
