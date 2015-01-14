@@ -37,6 +37,7 @@ if [ -f $REPO_PATH/installer/config.conf ]; then
     ## Journald
     mv /etc/systemd/journald.conf /etc/systemd/journald.conf.save
     cp $REPO_PATH/installer/systemd/journald.conf /etc/systemd/journald.conf
+    systemctl restart systemd-journald.service
     echo "Journald [OK]."
 
 
