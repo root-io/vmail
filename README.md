@@ -1,7 +1,7 @@
-vmail.me
+vmail
 =========
 
-![vmail.me](https://pbs.twimg.com/profile_images/1515989449/vmail_wallpaper.png)
+![vmail](https://pbs.twimg.com/profile_images/1515989449/vmail_wallpaper.png)
 
 The simple and secure email service which respects your privacy.
 
@@ -19,7 +19,7 @@ Symfony2 (PHP)
 Community
 --------------
 
-Follow vmail.me on [Twitter](https://twitter.com/vmail) and [Facebook](https://www.facebook.com/pages/vmailme/181655708543682).
+Follow vmail on [Twitter](https://twitter.com/vmail).
 
 Help us with [translation](./www/src/rootio/Bundle/vmailmeBundle/Resources/translations).
 
@@ -27,9 +27,9 @@ Help us with [translation](./www/src/rootio/Bundle/vmailmeBundle/Resources/trans
 Reporting a security issue
 --------------
 
-If you think that you have found a security issue in vmail.me project, please don't use the bug tracker and don't publish it publicly.
+If you think that you have found a security issue in vmail project, please don't use the bug tracker and don't publish it publicly.
 
-Instead, all security issues must be sent to security [at] vmail.me.
+Instead, all security issues must be sent to security [at] vmail.me ([PGP public key](https://keybase.io/rootio)).
 
 
 Getting started
