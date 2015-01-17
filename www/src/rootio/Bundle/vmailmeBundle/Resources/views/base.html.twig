@@ -2,7 +2,7 @@
 <html lang="{{ app.request.locale }}">
 <head>
     <meta charset="utf-8">
-    <title>vmail.me (beta) - {% block title %}{% trans %}Simplicity, security & privacy{% endtrans %}{% endblock %}</title>
+    <title>vmail - {% block title %}{% trans %}Simplicity, security & privacy{% endtrans %}{% endblock %}</title>
 
     <link rel="icon" type="image/png" href="{{ asset('/media/images/favicon.png') }}" />
 
@@ -152,14 +152,11 @@
     <div class="footer">
         <ul class="list-unstyled text-center">
             <li>
-                <a href="mailto:abuse@vmail.me?Subject=Spam%20report">{% trans %}Report spam{% endtrans %}</a> -
-                <a href="https://www.google.com/safebrowsing/report_phish/" target="_blank" rel="noreferrer">{% trans %}Report phishing{% endtrans %}</a> -
-                <a href="https://www.stopbadware.org/report-badware" target="_blank" rel="noreferrer">{% trans %}Report badware{% endtrans %}</a> -
-                <a href="{{ path('legalDocuments') }}">{% trans %}Legal documents{% endtrans %}</a> -
-                <a href="{{ path('termsOfService') }}">{% trans %}Terms of service{% endtrans %}</a> -
-                <a href="{{ path('privacyPolicy') }}">{% trans %}Privacy policy{% endtrans %}</a>
+                <a href="{{ path('termsOfService') }}">{% trans %}Terms{% endtrans %}</a> -
+                <a href="{{ path('privacyPolicy') }}">{% trans %}Privacy{% endtrans %}</a> -
+                <a href="{{ path('legalDocuments') }}">{% trans %}Legal{% endtrans %}</a>
             </li>
-            <li>Made with <span class="glyphicon glyphicon-heart red" alt="love"></span> by a french student &copy; 2010-{{ "now"|date("Y") }} vmail.me</li>
+            <li>&copy; 2010-{{ "now"|date("Y") }} vmail.me</li>
         </ul>
     </div>
 

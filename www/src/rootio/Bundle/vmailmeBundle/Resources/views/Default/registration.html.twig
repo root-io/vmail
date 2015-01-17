@@ -75,7 +75,7 @@
     <div class="form-group">
         <label class="input-group">
             {{ form_widget(form.termsOfService) }}
-            {% trans with {'%termsOfService%': '<a target="_blank" href="' ~ path('termsOfService') ~ '">' ~ 'Terms of service'|trans ~ '</a>'} %}I agree to the vmail.me %termsOfService%{% endtrans %}
+            {% trans with {'%termsOfService%': '<a target="_blank" href="' ~ path('termsOfService') ~ '">' ~ 'Terms of service'|trans ~ '</a>', '%privacyPolicy%': '<a target="_blank" href="' ~ path('privacyPolicy') ~ '">' ~ 'Privacy policy'|trans ~ '</a>'} %}I agree to the vmail.me %termsOfService% and %privacyPolicy%{% endtrans %}
         </label>
     </div>
 

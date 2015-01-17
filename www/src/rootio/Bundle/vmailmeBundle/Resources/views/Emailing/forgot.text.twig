@@ -1,5 +1,5 @@
 {% block subject %}
-vmail.me - {% trans %}Forgot your password?{% endtrans %}
+vmail - {% trans %}Forgot your password?{% endtrans %}
 {% endblock %}
 
 {% block body %}
@@ -9,8 +9,8 @@ vmail.me - {% trans %}Forgot your password?{% endtrans %}
 
 https://www.vmail.me/en/reset/{{ rescueEmail|url_encode }}/{{ token }}/
 
-{% trans %}If you didn't request to reset your vmail.me password, please ignore this email{% endtrans %}.
+{% trans %}If you didn't request to reset your vmail password, please ignore this email{% endtrans %}.
 
 {% trans %}Thanks{% endtrans %},
-{% trans %}The vmail.me team{% endtrans %}
+{% trans %}The vmail team{% endtrans %}
 {% endblock %}

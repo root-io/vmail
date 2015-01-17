@@ -1,9 +1,9 @@
 Forgot your password?: Mot de passe oublié?
 Hello: Bonjour
 To reset your password, please follow the link below: Pour réinitialiser votre mot de passe, veuillez suivre le lien ci-dessous
-If you didn't request to reset your vmail.me password, please ignore this email: Si vous n'avez pas fait de demande de réinitialisation de votre mot de passe vmail.me, ignorez cet email
+If you didn't request to reset your vmail password, please ignore this email: Si vous n'avez pas fait de demande de réinitialisation de votre mot de passe vmail.me, ignorez cet email
 Thanks: Merci
-The vmail.me team: L'équipe vmail.me
+The vmail team: L'équipe vmail
 Quota warning!: Avertissement quota!
 Your mailbox is %percent% full, please follow the link below to get an upgrade: Votre boîte de réception est pleine à %percent%, veuillez suivre le lien ci-dessous pour obtenir une mise à niveau
 Plan expiration!: Expiration abonnement!
@@ -12,24 +12,24 @@ Home: Accueil
 Configure an email app: Configurer une application de messagerie
 Rescue email: Email de secours
 Edit password: Modifier mot de passe
-Email forwarding: Redirection email
+Email forwarding: Redirection d'email
 Suspend account: Suspendre compte
 Logout: Se déconnecter
 Plans: Plans
 Sign up: S'inscrire
 Sign up (temporarily disabled): S'inscrire (temporairement désactivé)
 Login: Se connecter
-Report spam: Signaler spam
-Report phishing: Signaler phishing
 Legal documents: Mentions légales
+Legal: Mentions légales
 Terms of service: Conditions d'utilisation
+Terms: CGU
 Simplicity, security & privacy: Simplicité, sécurité & vie privée
 Registration: Inscription
 Email: Email
 Password: Mot de passe
 Password again: Confirmez mot de passe
 Security code: Code de sécurité
-I agree to the vmail.me %termsOfService%: J'accepte les %termsOfService% de vmail.me
+I agree to the vmail.me %termsOfService% and %privacyPolicy%: J'accepte les %termsOfService% de vmail.me et sa %privacyPolicy%
 The simple and secure email service which respects your privacy: Le service de messagerie simple et sécurisé qui respecte votre vie privée
 Create my email: Créer mon email
 Reset password: Réinitialiser mot de passe
@@ -44,9 +44,10 @@ Subscribe: Choisir
 500Mb storage (≈ 5000 emails): 500Mo de stockage (≈ 5000 emails)
 5Gb storage (≈ 50 000 emails): 5Go storage (≈ 50 000 emails)
 Webmail: Webmail
-Spam protection: Anti-spam
+Spam protection: Antispam
 Secure browsing: Navigation sécurisée
-No targeted advertising: Pas de publicité ciblée
+Secure email transit: Transport des emails sécurisée
+No advertising: Pas de publicité
 IMAP & POP: IMAP & POP
 Current password: Mot de passe actuel
 Warning!: Avertissement!
@@ -80,13 +81,14 @@ Account now suspended!: Compte maintenant suspendu!
 Bad login: Erreur de connexion
 You have written two different passwords: Vous avez écrit deux mots de passe différents
 Privacy policy: Politique de confidentialité
+Privacy: Politique de confidentialité
 Register an account without providing any personal information: Créer un compte sans fournir la moindre information personnelle
 Encrypted data storage: Stockage de données chiffrées
 Account deletion: Suppression de votre compte
 Piwik web analytics respects the Do Not Track (DNT) technology and anonymizes the last two bits visitors' IP addresses: L'analyseur de trafic Piwik respecte la technologie Do Not Track (DNT) et anonymise les deux derniers bits des adresses IP des visiteurs
 Minimal server logs (comply with European Data Retention Directive): Logs minimal côté serveur (conformer à la directive européenne sur la conservation des données)
 IP addresses and user agent are removed from email headers: Les adresses IP et le user agent des clients de messagerie sont supprimés des en-têtes des emails
-No use of third party services or hosted libraries: Pas d'utilisation de services tiers ou de bibliothèques hébergées
+No use of closed source software, third party services or hosted libraries: Pas d'utilisation de logiciels propriétaires, de services tiers ou de bibliothèques hébergées
 TOS: >
   Conditions d'Utilisation de vmail.me
 
