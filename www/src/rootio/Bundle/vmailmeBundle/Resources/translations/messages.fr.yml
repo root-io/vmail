@@ -89,7 +89,7 @@ Piwik web analytics respects the Do Not Track (DNT) technology and anonymizes th
 Minimal server logs (comply with European Data Retention Directive): Logs minimal côté serveur (conformer à la directive européenne sur la conservation des données)
 IP addresses and user agent are removed from email headers: Les adresses IP et le user agent des clients de messagerie sont supprimés des en-têtes des emails
 No use of closed source software, third party services or hosted libraries: Pas d'utilisation de logiciels propriétaires, de services tiers ou de bibliothèques hébergées
-TOS: >
+TOS: |
   Conditions d'Utilisation de vmail.me
 
   Dernière modification : 14 janvier 2015
