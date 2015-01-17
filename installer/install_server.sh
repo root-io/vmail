@@ -103,8 +103,8 @@ EOF
     mysql -u root -e "GRANT ALL ON piwik.* TO 'piwik'@'localhost';"
 
     mysql -u root -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$CONFIG_MARIADB_ROOT_PASSWORD');"
-    mysql -u root -e "SET PASSWORD FOR 'root'@'127.0.0.1' = PASSWORD('$CONFIG_MARIADB_ROOT_PASSWORD');"
-    mysql -u root -e "DROP USER 'root'@'::1';"
+    mysql -u root -p"$CONFIG_MARIADB_ROOT_PASSWORD" -e "SET PASSWORD FOR 'root'@'127.0.0.1' = PASSWORD('$CONFIG_MARIADB_ROOT_PASSWORD');"
+    mysql -u root -p"$CONFIG_MARIADB_ROOT_PASSWORD" -e "SET PASSWORD FOR 'root'@'::1' = PASSWORD('$CONFIG_MARIADB_ROOT_PASSWORD');"
 
     mysql -u root -p"$CONFIG_MARIADB_ROOT_PASSWORD" -e "FLUSH PRIVILEGES;"
 
