@@ -10,7 +10,7 @@ if [ -f $REPO_PATH/installer/config.conf ]; then
 
 
     ## www
-    if [ "$VAGRANT" == false ]; then
+    if [ "$VAGRANT" != true ]; then
         rm -r /var/www
         cp -r $REPO_PATH/www /var/www
     fi
