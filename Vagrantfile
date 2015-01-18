@@ -1,3 +1,5 @@
+Vagrant.require_version ">= 1.7.2"
+
 Vagrant.configure("2") do |config|
 
   config.vm.box = 'arch64'
