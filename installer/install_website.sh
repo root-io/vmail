@@ -22,7 +22,7 @@ if [ -f $REPO_PATH/installer/config.conf ]; then
     cd /var/www
     composer update
     composer dump-autoload --optimize
-    php app/console assets:install
+    php app/console assets:install --symlink
     php app/console doctrine:schema:update --force
 
 
