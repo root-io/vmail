@@ -83,7 +83,7 @@ You have written two different passwords: Vous avez écrit deux mots de passe di
 Privacy policy: Politique de confidentialité
 Privacy: Politique de confidentialité
 Register an account without providing any personal information: Créer un compte sans fournir la moindre information personnelle
-Encrypted data storage: Stockage de données chiffrées
+Encrypted data storage (LUKS disk-encryption): Stockage de données chiffrées (chiffrement de disque LUKS)
 Account deletion: Suppression de votre compte
 Piwik web analytics respects the Do Not Track (DNT) technology and anonymizes the last two bits visitors' IP addresses: L'analyseur de trafic Piwik respecte la technologie Do Not Track (DNT) et anonymise les deux derniers bits des adresses IP des visiteurs
 Minimal server logs (comply with European Data Retention Directive): Logs minimal côté serveur (conformer à la directive européenne sur la conservation des données)
