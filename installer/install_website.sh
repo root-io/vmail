@@ -24,6 +24,7 @@ if [ -f $REPO_PATH/installer/config.conf ]; then
     composer dump-autoload --optimize
     php app/console assets:install --symlink
     php app/console doctrine:schema:update --force
+    mysql -u root -p"$CONFIG_MARIADB_ROOT_PASSWORD" -e "INSERT INTO vmailme.domain SET name=\"$CONFIG_DOMAIN\";"
 
 
     ## Symbolic links
