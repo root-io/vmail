@@ -3,7 +3,6 @@
 $config = array();
 
 $config['db_dsnw'] = 'mysql://roundcube:CONFIG_MARIADB_ROUNDCUBE_PASSWORD@localhost/roundcube';
-$config['log_date_format'] = 'Y-m-d H:i:s';
 $config['log_logins'] = true;
 $config['default_host'] = 'ssl://CONFIG_DOMAIN';
 $config['default_port'] = 993;

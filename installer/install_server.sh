@@ -259,7 +259,8 @@ EOF
     ## Fail2ban
     pacman -S gamin fail2ban --noconfirm
     cp $REPO_PATH/installer/fail2ban/jail.local /etc/fail2ban/jail.local
-    cp $REPO_PATH/installer/fail2ban/filter.d/vmailme-auth.conf /etc/fail2ban/filter.d/vmailme-auth.conf
+    sed -i -e "s/CONFIG_IP_PRIMARY/$CONFIG_IP_PRIMARY/g" /etc/fail2ban/jail.local
+    cp $REPO_PATH/installer/fail2ban/filter.d/symfony2-auth.conf /etc/fail2ban/filter.d/symfony2-auth.conf
     cp $REPO_PATH/installer/fail2ban/filter.d/piwik-auth.conf /etc/fail2ban/filter.d/piwik-auth.conf
     systemctl enable fail2ban.service
     systemctl start fail2ban.service

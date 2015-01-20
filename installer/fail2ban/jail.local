@@ -1,42 +1,33 @@
+[DEFAULT]
+ignoreip = 127.0.0.1/8 CONFIG_IP_PRIMARY
+bantime  = 3600
+findtime = 600
+maxretry = 30
+
 [sshd]
 enabled = true
 
-[sshd-ddos]
+[symfony2-auth]
 enabled = true
-
-[postfix]
-enabled = true
-logpath  = /var/log/mail.log
-
-[postfix-sasl]
-enabled = true
-logpath  = /var/log/mail.log
-
-[sendmail-auth]
-enabled = true
-
-[sendmail-reject]
-enabled = true
-
-[dovecot]
-enabled = true
-logpath  = /var/log/dovecot.log
+port    = https,pop3s,imaps,smtp,465
+logpath = /var/log/nginx.log
 
 [roundcube-auth]
 enabled = true
-logpath  = /var/log/roundcubemail/userlogins
-maxretry = 30
-
-[vmailme-auth]
-enabled  = true
-port     = http,https
-filter   = vmailme-auth
-logpath  = /var/log/nginx.log
-maxretry = 100
+port    = https,pop3s,imaps,smtp,465
+logpath = /var/log/roundcubemail/userlogins
 
 [piwik-auth]
 enabled = true
-port     = http,https
-filter   = piwik-auth
-logpath  = /var/log/nginx.log
-maxretry = 100
+port    = https,pop3s,imaps,smtp,465
+logpath = /var/log/nginx.log
+
+[dovecot]
+enabled = true
+port    = https,pop3s,imaps,smtp,465
+logpath = /var/log/dovecot.log
+
+[postfix-sasl]
+enabled = true
+port    = https,pop3s,imaps,smtp,465
+logpath = /var/log/mail.log
