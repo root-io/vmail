@@ -1,3 +1,50 @@
+EMAILING_FORGOT: |
+  Hello,
+
+  To reset your password, please follow the link below:
+
+  %link%
+
+  If you didn't request to reset your vmail password, please ignore this email.
+
+  Thanks,
+  The vmail team
+
+EMAILING_QUOTA_WARNING: |
+  Hello,
+
+  Your mailbox is %percent%%% full, please follow the link below to get an upgrade:
+
+  https://www.vmail.me/plans
+
+  Thanks,
+  The vmail team
+
+EMAILING_REGISTER_COMMAND: |
+  Hey %username%!
+
+  Welcome to vmail, your registration is complete.
+
+  You can login with the following credentials:
+
+  Username: %username%
+  Email:    %username%@vmail.me
+  Password: %password% (change it now: https://www.vmail.me/user/password/)
+
+
+  Thanks,
+  The vmail team
+
+EMAILING_WARDEN: |
+  Hello,
+
+  You have sent too many emails recently.
+
+  Your account can't temporarily send emails in order to not impact the quality of the service.
+
+  Thanks,
+  The vmail team
+
 TOS: |
   Terms of Service of vmail.me
 

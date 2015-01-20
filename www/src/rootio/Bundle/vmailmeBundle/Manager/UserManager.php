@@ -141,22 +141,18 @@ class UserManager {
      *
      * @return User
      */
-    public function createUser($username, $email, $password, $rescueEmail = null, $forwardingEmail = null, $plan = null, $isEnabled = false)
+    public function createUser($username, $password)
     {
         $em = $this->getDoctrine()->getManager();
 
         $user = new User();
         $user->setUsername($username);
-        $user->setEmail($email);
+        $user->setEmail($username . '@vmail.me');
         $factory = $this->container->get('security.encoder_factory');
         $encoder = $factory->getEncoder($user);
         $passwordEncoded = $encoder->encodePassword($password, $user->getSalt());
         $user->setPassword($passwordEncoded);
         $user->setPasswordLegacy($password);
-        $user->setRescueEmail($rescueEmail);
-        $user->setForwardingEmail($forwardingEmail);
-        $user->setPlan($plan);
-        $user->setIsEnabled($isEnabled);
 
         $em->persist($user);
         $em->flush();

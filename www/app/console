@@ -14,8 +14,9 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Debug\Debug;
 
+use rootio\Bundle\vmailmeBundle\Command\ActivityCommand;
 use rootio\Bundle\vmailmeBundle\Command\BanCommand;
-use rootio\Bundle\vmailmeBundle\Command\DeliveryCommand;
+use rootio\Bundle\vmailmeBundle\Command\CleanLogsCommand;
 use rootio\Bundle\vmailmeBundle\Command\DisableCommand;
 use rootio\Bundle\vmailmeBundle\Command\EnableCommand;
 use rootio\Bundle\vmailmeBundle\Command\PostfixDeleteCommand;
@@ -35,11 +36,15 @@ $application = new Application($kernel);
 $application->run($input);
 
 $application = new Application();
+$application->add(new ActivityCommand);
+$application->run();
+
+$application = new Application();
 $application->add(new BanCommand);
 $application->run();
 
 $application = new Application();
-$application->add(new DeliveryCommand);
+$application->add(new CleanLogsCommand);
 $application->run();
 
 $application = new Application();
@@ -52,10 +57,6 @@ $application->run();
 
 $application = new Application();
 $application->add(new PostfixDeleteCommand);
-$application->run();
-
-$application = new Application();
-$application->add(new PostloginCommand);
 $application->run();
 
 $application = new Application();

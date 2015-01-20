@@ -16,7 +16,7 @@ class EnableCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('vmailme:enable')
+            ->setName('vmail:enable')
             ->setDescription('Enable a user')
             ->addArgument('emailOrUsername', InputArgument::REQUIRED, 'Email or username?')
         ;

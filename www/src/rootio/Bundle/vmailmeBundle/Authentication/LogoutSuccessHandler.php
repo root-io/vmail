@@ -29,4 +29,3 @@ class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
         return new RedirectResponse($this->router->generate('homepage'));
     }
 }
-?>

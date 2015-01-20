@@ -18,7 +18,7 @@ class BanCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('vmailme:ban')
+            ->setName('vmail:ban')
             ->setDescription('Ban a user')
             ->addArgument('emailOrUsername', InputArgument::REQUIRED, 'Email or username?')
             ->addArgument('reason', InputArgument::REQUIRED, 'Reason?')
@@ -50,7 +50,7 @@ class BanCommand extends ContainerAwareCommand
             $em->persist($ban);
             $em->flush();
 
-            $command = $this->getApplication()->find('vmailme:pfdel');
+            $command = $this->getApplication()->find('vmail:pfdel');
             $arguments = array(
                 'command'         => $command->getName(),
                 'emailOrUsername' => $user->getEmail()

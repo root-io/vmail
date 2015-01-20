@@ -130,4 +130,4 @@ scache    unix  -       -       n       -       1       scache
 #  ${nexthop} ${user}
 
 dovecot         unix    -       n       n       -       -       pipe flags=DRhu user=vmail argv=/usr/bin/vendor_perl/spamc -f -e /usr/lib/dovecot/deliver -d $recipient
-dfilter         unix    -       n       n       -       -       pipe flags=Rq user=vmail argv=/var/www/dfilter.sh ${sender} ${client_address} ${recipient}
+dfilter         unix    -       n       n       -       -       pipe flags=Rq user=vmail argv=/var/www/dfilter.sh ${sender} ${recipient}

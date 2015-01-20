@@ -16,7 +16,7 @@ class DisableCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('vmailme:disable')
+            ->setName('vmail:disable')
             ->setDescription('Disable a user')
             ->addArgument('emailOrUsername', InputArgument::REQUIRED, 'Email or username?')
         ;

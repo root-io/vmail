@@ -61,10 +61,11 @@ Commands
 ---------
 
 ```sh
-php app/console vmailme:ban [username or email] [reason]
-php app/console vmailme:disable [username or email]
-php app/console vmailme:enable [username or email]
-php app/console vmailme:pfdel [username or email]
+php app/console vmail:ban [username or email] [reason]
+php app/console vmail:disable [username or email]
+php app/console vmail:enable [username or email]
+php app/console vmail:pfdel [username or email]
+php app/console vmail:register [username] [recipient]
 ```
 
 

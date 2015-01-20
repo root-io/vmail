@@ -3,14 +3,7 @@ vmail - {% trans %}Forgot your password?{% endtrans %}
 {% endblock %}
 
 {% block body %}
-{% trans %}Hello{% endtrans %},
-
-{% trans %}To reset your password, please follow the link below{% endtrans %}:
-
-https://www.vmail.me/en/reset/{{ rescueEmail|url_encode }}/{{ token }}/
-
-{% trans %}If you didn't request to reset your vmail password, please ignore this email{% endtrans %}.
-
-{% trans %}Thanks{% endtrans %},
-{% trans %}The vmail team{% endtrans %}
+{% trans with {'%link%': 'https://www.vmail.me/reset/' ~ rescueEmail|url_encode ~ '/' ~ token ~ '/'} %}
+EMAILING_FORGOT
+{% endtrans %}
 {% endblock %}

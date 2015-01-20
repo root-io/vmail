@@ -125,6 +125,13 @@ class User implements AdvancedUserInterface
     protected $bans;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="lastActivity", type="datetime")
+     */
+    private $lastActivity;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="isEnabled", type="boolean")
@@ -137,7 +144,8 @@ class User implements AdvancedUserInterface
         $this->rescueEmail = null;
         $this->forwardingEmail = null;
         $this->plan = 'basic';
-        $this->isEnabled = false;
+        $this->isEnabled = true;
+        $this->lastActivity = new \DateTime('now');
     }
 
 
@@ -220,7 +228,7 @@ class User implements AdvancedUserInterface
         return $this->password;
     }
 
-    public function hexToAscii($hex)
+    private function hexToAscii($hex)
     {
         $strLength = strlen($hex);
         $returnVal = '';
@@ -352,6 +360,28 @@ class User implements AdvancedUserInterface
     public function getBans()
     {
         return $this->bans;
+    }
+
+    /**
+     * Set lastActivity
+     *
+     * @return User
+     */
+    public function setLastActivity()
+    {
+        $this->lastActivity = new \DateTime('now');
+
+        return $this;
+    }
+
+    /**
+     * Get lastActivity
+     *
+     * @return \DateTime
+     */
+    public function getLastActivity()
+    {
+        return $this->lastActivity;
     }
 
     /**

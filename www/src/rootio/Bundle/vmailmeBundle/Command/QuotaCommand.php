@@ -16,7 +16,7 @@ class QuotaCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('vmailme:quota')
+            ->setName('vmail:quota')
             ->setDescription('Quota warning email')
             ->addArgument('recipient')
             ->addArgument('percent')

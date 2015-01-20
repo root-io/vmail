@@ -8,29 +8,25 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use rootio\Bundle\vmailmeBundle\Entity\Login;
+use rootio\Bundle\vmailmeBundle\Entity\User;
 
 /**
  * @author David Routhieau <rootio@vmail.me>
  */
-class PostloginCommand extends ContainerAwareCommand
+class ActivityCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
         $this
-            ->setName('vmailme:postlogin')
-            ->setDescription('Postlogin logger for IMAP/POP auth')
+            ->setName('vmail:activity')
+            ->setDescription('Activity datetime logger for Symfony2/POP/IMAP/SMTP_SASL auth')
             ->addArgument('emailOrUsername', InputArgument::REQUIRED, 'Email or username?')
-            ->addArgument('ip', InputArgument::REQUIRED, 'IP?')
-            ->addArgument('protocol', InputArgument::REQUIRED, 'Protocol?')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $emailOrUsername = $input->getArgument('emailOrUsername');
-        $ip = $input->getArgument('ip');
-        $protocol = $input->getArgument('protocol');
 
         $user = $this->getContainer()->get('doctrine')
             ->getRepository('rootiovmailmeBundle:User')
@@ -40,13 +36,9 @@ class PostloginCommand extends ContainerAwareCommand
 
             $em = $this->getContainer()->get('doctrine')->getManager();
 
-            $login = new Login();
-            $login->setEmail($emailOrUsername);
-            $login->setIp($ip);
-            $login->setProtocol($protocol);
+            $user->setLastActivity(new \DateTime('now'));
 
-            $em->persist($login);
-
+            $em->persist($user);
             $em->flush();
         }
     }

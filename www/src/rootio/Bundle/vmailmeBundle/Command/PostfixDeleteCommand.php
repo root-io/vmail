@@ -16,7 +16,7 @@ class PostfixDeleteCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('vmailme:pfdel')
+            ->setName('vmail:pfdel')
             ->setDescription('Delete messages from Postfix queue')
             ->addArgument('emailOrUsername', InputArgument::REQUIRED, 'Email or username?')
         ;

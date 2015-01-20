@@ -3,12 +3,5 @@ vmail - {% trans %}Quota warning!{% endtrans %}
 {% endblock %}
 
 {% block body %}
-{% trans %}Hello{% endtrans %},
-
-{% trans with {'%percent%':percent} %}Your mailbox is %percent%%% full, please follow the link below to get an upgrade{% endtrans %}:
-
-https://www.vmail.me/en/plans
-
-{% trans %}Thanks{% endtrans %},
-{% trans %}The vmail team{% endtrans %}
+{% trans with {'%percent%': percent} %}EMAILING_QUOTA_WARNING{% endtrans %}
 {% endblock %}
