@@ -42,6 +42,8 @@ if [ -f $REPO_PATH/installer/config.conf ]; then
     ## Permissions
     chown -R http:http /var/www/
     chmod -R 755 /var/www/
+    chmod -R 777 /var/www/app/cache/
+    chmod -R 777 /var/www/app/logs/
 
 
     echo "Install website [OK]."
