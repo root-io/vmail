@@ -3,5 +3,7 @@ vmail - {% trans %}Get started!{% endtrans %}
 {% endblock %}
 
 {% block body %}
-{% trans %}EMAILING_REGISTER_COMMAND{% endtrans %}
+{% trans with {'%username%': username, '%password%': password} %}
+EMAILING_REGISTER_COMMAND
+{% endtrans %}
 {% endblock %}
