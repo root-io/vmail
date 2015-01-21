@@ -25,7 +25,7 @@ EMAILING_REGISTER_COMMAND: |
 
   Welcome to vmail, your registration is complete.
 
-  You can login with the following credentials:
+  You can now login with the following credentials:
 
   Username: %username%
   Email:    %username%@vmail.me

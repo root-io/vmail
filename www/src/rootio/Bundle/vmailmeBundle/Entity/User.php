@@ -32,7 +32,7 @@ class User implements AdvancedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
@@ -51,7 +51,7 @@ class User implements AdvancedUserInterface
      *
      * @ORM\Column(name="username", type="string", length=255, unique=true)
      */
-    protected $username;
+    private $username;
 
     /**
      * @var string
@@ -62,7 +62,7 @@ class User implements AdvancedUserInterface
      *
      * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
-    protected $email;
+    private $email;
 
     /**
      * @var string
@@ -74,14 +74,14 @@ class User implements AdvancedUserInterface
      *
      * @ORM\Column(name="password", type="string", length=255)
      */
-    protected $password;
+    private $password;
 
     /**
      * @var string
      *
      * @ORM\Column(name="passwordLegacy", type="string", length=255)
      */
-    protected $passwordLegacy;
+    private $passwordLegacy;
 
     /**
      * @var string
@@ -93,7 +93,7 @@ class User implements AdvancedUserInterface
      *
      * @ORM\Column(name="rescueEmail", type="string", length=255, nullable=true)
      */
-    protected $rescueEmail;
+    private $rescueEmail;
 
     /**
      * @var string
@@ -105,7 +105,7 @@ class User implements AdvancedUserInterface
      *
      * @ORM\Column(name="forwardingEmail", type="string", length=255, nullable=true)
      */
-    protected $forwardingEmail;
+    private $forwardingEmail;
 
     const PLAN_BASIC = 'basic';
     const PLAN_PREMIUM = 'premium';
@@ -115,14 +115,14 @@ class User implements AdvancedUserInterface
      *
      * @ORM\Column(name="plan", type="string", length=255, nullable=true)
      */
-    protected $plan;
+    private $plan;
 
     /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Ban", mappedBy="user", fetch="LAZY")
      */
-    protected $bans;
+    private $bans;
 
     /**
      * @var \DateTime
@@ -136,7 +136,7 @@ class User implements AdvancedUserInterface
      *
      * @ORM\Column(name="isEnabled", type="boolean")
      */
-    protected $isEnabled;
+    private $isEnabled;
 
 
     public function __construct() {

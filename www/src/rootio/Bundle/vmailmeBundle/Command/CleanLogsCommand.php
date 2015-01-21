@@ -34,6 +34,7 @@ class CleanLogsCommand extends ContainerAwareCommand
       //   - Remove from vmailme.Ban
       //   - Remove from vmailme.Forgot
       //   - Remove from vmailme.User
+      //   - Remove Roundcube data
       //   - Remove Maildir !DANGER!
     }
 }
