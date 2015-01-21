@@ -144,7 +144,7 @@ EOF
     ## Roundcube
     pacman -S roundcubemail mysql-python --noconfirm
     cp $REPO_PATH/installer/roundcube/config.inc.php /etc/webapps/roundcubemail/config/config.inc.php
-    sed -i -e "s/SECRET/$(apg -n 1 -m 24 -x 24)/g" /etc/webapps/roundcubemail/config/config.inc.php
+    sed -i -e "s/SECRET/$(apg -MCLN -m 24 -n 1)/g" /etc/webapps/roundcubemail/config/config.inc.php
     rm -r /usr/share/webapps/roundcubemail/installer/
     echo '' > /usr/share/webapps/roundcubemail/skins/classic/includes/header.html
     echo '' > /usr/share/webapps/roundcubemail/skins/larry/includes/header.html

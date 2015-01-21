@@ -17,7 +17,7 @@ if [ -f $REPO_PATH/installer/config.conf ]; then
     cp /var/www/app/config/parameters.yml.dist /var/www/app/config/parameters.yml
     sed -i -e "s/CONFIG_MARIADB_WWW_PASSWORD/$CONFIG_MARIADB_WWW_PASSWORD/g" /var/www/app/config/parameters.yml
     sed -i -e "s/CONFIG_DOMAIN/$CONFIG_DOMAIN/g" /var/www/app/config/parameters.yml
-    sed -i -e "s/SECRET/$(apg -n 1 -m 24 -x 24)/g" /var/www/app/config/parameters.yml
+    sed -i -e "s/SECRET/$(apg -n 1 -m 24)/g" /var/www/app/config/parameters.yml
     composer self-update
     cd /var/www
     composer update

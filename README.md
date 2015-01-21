@@ -84,12 +84,12 @@ openssl x509 -req -days 365 -in /etc/ssl/certs/server.csr -signkey /etc/ssl/priv
 
 Generate passwords
 ```sh
-apg -a 1 -m 16 -n 5
+apg -MCLN -m 48 -x 64 -n 5
 ```
 
 Erase disk
 ```sh
-shred -f -z -v -u /dev/sdx
+shred -fuzv /dev/sdx
 ```
 
 
