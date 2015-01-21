@@ -28,8 +28,9 @@ class RegisterCommand extends ContainerAwareCommand
         $username = $input->getArgument('username');
         $password = sha1(uniqid('', true));
         $recipient = $input->getArgument('recipient');
+        $rescueEmail = $recipient;
 
-        $user = $this->getContainer()->get('rootiovmailme.user_manager')->createUser($username, $password);
+        $user = $this->getContainer()->get('rootiovmailme.user_manager')->createUser($username, $password, $rescueEmail);
 
         if ($user) {
 

@@ -141,7 +141,7 @@ class UserManager {
      *
      * @return User
      */
-    public function createUser($username, $password)
+    public function createUser($username, $password, $rescueEmail = null)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -153,6 +153,7 @@ class UserManager {
         $passwordEncoded = $encoder->encodePassword($password, $user->getSalt());
         $user->setPassword($passwordEncoded);
         $user->setPasswordLegacy($password);
+        $user->setRescueEmail($rescueEmail);
 
         $em->persist($user);
         $em->flush();
