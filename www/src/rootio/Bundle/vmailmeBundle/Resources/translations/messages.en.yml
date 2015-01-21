@@ -15,7 +15,7 @@ EMAILING_QUOTA_WARNING: |
 
   Your mailbox is %percent%%% full, please follow the link below to get an upgrade:
 
-  https://www.vmail.me/plans
+  %link%
 
   Thanks,
   The vmail team
@@ -29,13 +29,13 @@ EMAILING_REGISTER_COMMAND: |
 
   Username: %username%
   Email:    %username%@vmail.me
-  Password: %password% (change it now: https://www.vmail.me/user/password/)
+  Password: %password% (change it now: %link%)
 
 
   Thanks,
   The vmail team
 
-EMAILING_WARDEN: |
+EMAILING_SPAM: |
   Hello,
 
   You have sent too many emails recently.

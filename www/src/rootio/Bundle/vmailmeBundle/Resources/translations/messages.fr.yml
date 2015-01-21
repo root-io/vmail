@@ -20,7 +20,7 @@ Sign up: S'inscrire
 Sign up (temporarily disabled): S'inscrire (temporairement désactivé)
 Login: Se connecter
 Legal documents: Mentions légales
-Legal: Mentions légales
+Legal: Légal
 Terms of service: Conditions d'utilisation
 Terms: CGU
 Simplicity, security & privacy: Simplicité, sécurité & vie privée
@@ -48,7 +48,7 @@ Spam protection: Antispam
 Secure browsing: Navigation sécurisée
 Secure email transit: Transport des emails sécurisée
 No advertising: Pas de publicité
-IMAP & POP: IMAP & POP
+POP & IMAP: POP & IMAP
 Current password: Mot de passe actuel
 Warning!: Avertissement!
 Account suspension is irreversible: La suspension de compte est irréversible
@@ -81,7 +81,7 @@ Account now suspended!: Compte maintenant suspendu!
 Bad login: Erreur de connexion
 You have written two different passwords: Vous avez écrit deux mots de passe différents
 Privacy policy: Politique de confidentialité
-Privacy: Politique de confidentialité
+Privacy: Confidentialité
 Register an account without providing any personal information: Créer un compte sans fournir la moindre information personnelle
 Encrypted data storage (LUKS disk-encryption): Stockage de données chiffrées (chiffrement de disque LUKS)
 Account deletion: Suppression de votre compte

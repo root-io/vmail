@@ -3,7 +3,7 @@ vmail - {% trans %}Forgot your password?{% endtrans %}
 {% endblock %}
 
 {% block body %}
-{% trans with {'%link%': 'https://www.vmail.me/reset/' ~ rescueEmail|url_encode ~ '/' ~ token ~ '/'} %}
+{% trans with {'%link%': 'https://www.vmail.me' ~ path('reset, {'rescueEmail': rescueEmail|url_encode, 'token': token})} %}
 EMAILING_FORGOT
 {% endtrans %}
 {% endblock %}

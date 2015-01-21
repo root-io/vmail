@@ -3,7 +3,7 @@ vmail - {% trans %}Get started!{% endtrans %}
 {% endblock %}
 
 {% block body %}
-{% trans with {'%username%': username, '%password%': password} %}
+{% trans with {'%username%': username, '%password%': password, '%link%': 'https://www.vmail.me' ~ path('user_password')} %}
 EMAILING_REGISTER_COMMAND
 {% endtrans %}
 {% endblock %}
