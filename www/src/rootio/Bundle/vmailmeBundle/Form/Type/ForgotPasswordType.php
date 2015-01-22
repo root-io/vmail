@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 /**
  * @author David Routhieau <rootio@vmail.me>
  */
-class ForgotType extends AbstractType
+class ForgotPasswordType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -17,6 +17,6 @@ class ForgotType extends AbstractType
 
     public function getName()
     {
-        return 'forgot';
+        return 'forgotPassword';
     }
 }

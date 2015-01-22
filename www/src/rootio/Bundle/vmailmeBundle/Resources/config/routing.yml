@@ -61,13 +61,13 @@ registration_new:
     pattern: /registration/new
     defaults: { _controller: rootiovmailmeBundle:Default:registrationNew }
 
-forgot:
+forgot_password:
     pattern: /forgot
-    defaults:  { _controller: rootiovmailmeBundle:Default:forgot }
+    defaults:  { _controller: rootiovmailmeBundle:Default:forgotPassword }
 
-forgot_check:
+forgot_password_check:
     pattern: /forgot/check
-    defaults:  { _controller: rootiovmailmeBundle:Default:forgotCheck }
+    defaults:  { _controller: rootiovmailmeBundle:Default:forgotPasswordCheck }
 
 reset:
     pattern: /reset/{rescueEmail}/{token}/

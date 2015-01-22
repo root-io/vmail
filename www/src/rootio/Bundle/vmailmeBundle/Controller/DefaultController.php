@@ -12,8 +12,8 @@ use rootio\Bundle\vmailmeBundle\Lib\RoundcubeLogin;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
-use rootio\Bundle\vmailmeBundle\Entity\Forgot;
-use rootio\Bundle\vmailmeBundle\Form\Type\ForgotType;
+use rootio\Bundle\vmailmeBundle\Entity\ForgotPassword;
+use rootio\Bundle\vmailmeBundle\Form\Type\ForgotPasswordType;
 
 use rootio\Bundle\vmailmeBundle\Form\Type\ResetType;
 
@@ -77,18 +77,18 @@ class DefaultController extends Controller
         ));
     }
 
-    public function forgotAction()
+    public function forgotPasswordAction()
     {
-        $form = $this->createForm(new ForgotType(), new User());
+        $form = $this->createForm(new ForgotPasswordType(), new User());
 
-        return $this->render('rootiovmailmeBundle:Default:forgot.html.twig', array('form' => $form->createView()));
+        return $this->render('rootiovmailmeBundle:Default:forgotPassword.html.twig', array('form' => $form->createView()));
     }
 
-    public function forgotCheckAction()
+    public function forgotPasswordCheckAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $form = $this->createForm(new ForgotType(), new User());
+        $form = $this->createForm(new ForgotPasswordType(), new User());
 
         $form->bind($this->getRequest());
 
@@ -106,29 +106,29 @@ class DefaultController extends Controller
 
                 foreach ($users as $user) {
 
-                    $forgot = $this->getDoctrine()
-                        ->getRepository('rootiovmailmeBundle:Forgot')
+                    $forgotPassword = $this->getDoctrine()
+                        ->getRepository('rootiovmailmeBundle:ForgotPassword')
                         ->findOneByUser($user);
 
-                    if (!$forgot || $forgot->getExpire() < new \DateTime('now')) { // No forgot or expired
+                    if (!$forgotPassword || $forgotPassword->getExpire() < new \DateTime('now')) { // No forgot password token or expired
 
                         // Generate token
                         $token = hash('sha256', uniqid('', true));
 
-                        if ($forgot) {
-                            $em->remove($forgot);
+                        if ($forgotPassword) {
+                            $em->remove($forgotPassword);
                             $em->flush();
                         }
 
-                        $forgot = new Forgot();
-                        $forgot->setUser($user);
-                        $forgot->setToken($token);
-                        $forgot->setExpire(new \DateTime('+5 minutes'));
-                        $em->persist($forgot);
+                        $forgotPassword = new ForgotPassword();
+                        $forgotPassword->setUser($user);
+                        $forgotPassword->setToken($token);
+                        $forgotPassword->setExpire(new \DateTime('+5 minutes'));
+                        $em->persist($forgotPassword);
                         $em->flush();
 
-                        // Send forgot token to rescue email
-                        $templateContent = $this->get('twig')->loadTemplate('rootiovmailmeBundle::Emailing/forgot.text.twig');
+                        // Send forgot password token to rescue email
+                        $templateContent = $this->get('twig')->loadTemplate('rootiovmailmeBundle::Emailing/forgot_password.text.twig');
 
                         $subject = $templateContent->renderBlock('subject', array());
                         $body = $templateContent->renderBlock('body', array('rescueEmail' => $rescueEmail, 'token' => $token));
@@ -148,7 +148,7 @@ class DefaultController extends Controller
             }
         }
 
-        return $this->render('rootiovmailmeBundle:Default:forgot.html.twig', array('form' => $form->createView()));
+        return $this->render('rootiovmailmeBundle:Default:forgotPassword.html.twig', array('form' => $form->createView()));
     }
 
     public function resetAction()
@@ -178,11 +178,11 @@ class DefaultController extends Controller
 
             if ($user) {
 
-                $forgot = $this->getDoctrine()
-                    ->getRepository('rootiovmailmeBundle:Forgot')
+                $forgotPassword = $this->getDoctrine()
+                    ->getRepository('rootiovmailmeBundle:ForgotPassword')
                     ->findOneBy(array('user' => $user->getId(), 'token' => $token));
 
-                if ($forgot) {
+                if ($forgotPassword) {
 
                     $factory = $this->get('security.encoder_factory');
                     $encoder = $factory->getEncoder($user);
@@ -190,7 +190,7 @@ class DefaultController extends Controller
                     $user->setPassword($password);
                     $user->setPasswordLegacy($newPassword);
 
-                    $em->remove($forgot);
+                    $em->remove($forgotPassword);
                     $em->flush();
 
                     $t = $this->get('translator')->trans('Password updated!');

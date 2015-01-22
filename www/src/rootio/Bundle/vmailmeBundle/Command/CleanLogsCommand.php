@@ -32,7 +32,7 @@ class CleanLogsCommand extends ContainerAwareCommand
       // Disable inactive users
       // Users with 12 months of inactivity (check vmailme.User.lastActivity):
       //   - Remove from vmailme.Ban
-      //   - Remove from vmailme.Forgot
+      //   - Remove from vmailme.ForgotPassword
       //   - Remove from vmailme.User
       //   - Remove Roundcube data
       //   - Remove Maildir !DANGER!

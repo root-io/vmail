@@ -5,14 +5,14 @@ namespace rootio\Bundle\vmailmeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Forgot
+ * ForgotPassword
  *
  * @author David Routhieau <rootio@vmail.me>
  *
- * @ORM\Table(name="forgot")
- * @ORM\Entity(repositoryClass="rootio\Bundle\vmailmeBundle\Repository\ForgotRepository")
+ * @ORM\Table(name="forgot_password")
+ * @ORM\Entity(repositoryClass="rootio\Bundle\vmailmeBundle\Repository\ForgotPasswordRepository")
  */
-class Forgot
+class ForgotPassword
 {
     /**
      * @var integer
@@ -42,7 +42,7 @@ class Forgot
      * Set user
      *
      * @param integer user
-     * @return Forgot
+     * @return ForgotPassword
      */
     public function setUser($user)
     {
@@ -65,7 +65,7 @@ class Forgot
      * Set token
      *
      * @param string $token
-     * @return Forgot
+     * @return ForgotPassword
      */
     public function setToken($token)
     {
@@ -88,7 +88,7 @@ class Forgot
      * Set expire
      *
      * @param \DateTime $expire
-     * @return Forgot
+     * @return ForgotPassword
      */
     public function setExpire($expire)
     {
