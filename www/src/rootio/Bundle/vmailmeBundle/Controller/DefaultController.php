@@ -96,6 +96,8 @@ class DefaultController extends Controller
 
             $rescueEmail = $form->getData()->getRescueEmail();
 
+            // FIXME
+            // Need to be move to ForgotPasswordManager
             $users = $this->getDoctrine()
                 ->getRepository('rootiovmailmeBundle:User')
                 ->findByRescueEmail($rescueEmail);
@@ -168,6 +170,8 @@ class DefaultController extends Controller
 
             $newPassword = $form->getData()->getPassword();
 
+            // FIXME
+            // Need to be move to ForgotPasswordManager
             $user = $this->getDoctrine()
                 ->getRepository('rootiovmailmeBundle:User')
                 ->findOneByRescueEmail($rescueEmail);

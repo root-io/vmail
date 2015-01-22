@@ -160,4 +160,89 @@ class UserManager {
 
         return $user;
     }
+
+    /**
+     * Edit password
+     *
+     * @return User
+     */
+    public function editPassword($user, $newPassword)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $factory = $this->container->get('security.encoder_factory');
+        $encoder = $factory->getEncoder($user);
+        $password = $encoder->encodePassword($newPassword, $user->getSalt());
+        $user->setPassword($password);
+        $user->setPasswordLegacy($newPassword);
+
+        $em->persist($user);
+        $em->flush();
+
+        return $user;
+    }
+
+    /**
+     * Edit rescue email
+     *
+     * @return User
+     */
+    public function editRescueEmail($user, $rescueEmail)
+    {
+          if ($rescueEmail !== $user->getEmail()) {
+              $em = $this->getDoctrine()->getManager();
+
+              $user->setRescueEmail($rescueEmail);
+
+              $em->persist($user);
+              $em->flush();
+
+              return $user;
+          }
+    }
+
+    /**
+     * Edit forwarding email
+     *
+     * @return User
+     */
+    public function editForwardingEmail($user, $forwardingEmail)
+    {
+        if (empty($forwardingEmail) || $forwardingEmail == $user->getEmail()) {
+            $forwardingEmail = null;
+        }
+
+        // Avoid user1 forwards to user2 and user2 forwards to user1
+        $loop = $this->getDoctrine()
+            ->getRepository('rootiovmailmeBundle:User')
+            ->findOneBy(array('email' => $forwardingEmail, 'forwardingEmail' => $user->getEmail()));
+
+        if (!$loop) {
+            $em = $this->getDoctrine()->getManager();
+
+            $user->setForwardingEmail($forwardingEmail);
+
+            $em->persist($user);
+            $em->flush();
+
+            return $user;
+        }
+    }
+
+    /**
+     * Suspend a User
+     *
+     * @return User
+     */
+    public function suspendUser($user)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $user->setIsEnabled(false);
+
+        $em->persist($user);
+        $em->flush();
+
+        return $user;
+    }
 }

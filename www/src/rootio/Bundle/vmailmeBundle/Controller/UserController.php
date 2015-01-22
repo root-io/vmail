@@ -41,46 +41,6 @@ class UserController extends Controller
         return $this->render('rootiovmailmeBundle:User:settings.html.twig');
     }
 
-    public function rescueAction()
-    {
-        $form = $this->createForm(new RescueType(), new User());
-
-        return $this->render('rootiovmailmeBundle:User:rescue.html.twig', array('form' => $form->createView()));
-    }
-
-    public function rescueEditAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $form = $this->createForm(new RescueType(), new User());
-
-        $form->bind($this->getRequest());
-
-        $user = $this->get('security.context')->getToken()->getUser();
-
-        if ($form->isValid()) {
-
-            $rescueEmail = $form->getData()->getRescueEmail();
-
-            // Remove rescue email
-            if (empty($rescueEmail)) {
-                $rescueEmail = null;
-            }
-
-            if ($rescueEmail !== $user->getEmail()) {
-                $user->setRescueEmail($rescueEmail);
-
-                $em->persist($user);
-                $em->flush();
-
-                $t = $this->get('translator')->trans('Rescue email updated!');
-                $this->get('session')->getFlashBag()->set('success', $t);
-            }
-        }
-
-        return $this->render('rootiovmailmeBundle:User:rescue.html.twig', array('form' => $form->createView()));
-    }
-
     public function passwordAction()
     {
         $form = $this->createForm(new PasswordType(), new Password());
@@ -102,14 +62,7 @@ class UserController extends Controller
 
             $newPassword = $form->getData()->getNewPassword();
 
-            $factory = $this->get('security.encoder_factory');
-            $encoder = $factory->getEncoder($user);
-            $password = $encoder->encodePassword($newPassword, $user->getSalt());
-            $user->setPassword($password);
-            $user->setPasswordLegacy($newPassword);
-
-            $em->persist($user);
-            $em->flush();
+            $editPassword = $this->get('rootiovmailme.user_manager')->editPassword($user, $newPassword);
 
             // Update session password
             $token = $this->get( 'security.context' )->getToken();
@@ -120,6 +73,36 @@ class UserController extends Controller
         }
 
         return $this->render('rootiovmailmeBundle:User:password.html.twig', array('form' => $form->createView()));
+    }
+
+    public function rescueAction()
+    {
+        $form = $this->createForm(new RescueType(), new User());
+
+        return $this->render('rootiovmailmeBundle:User:rescue.html.twig', array('form' => $form->createView()));
+    }
+
+    public function rescueEditAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $form = $this->createForm(new RescueType(), new User());
+
+        $form->bind($this->getRequest());
+
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        if ($form->isValid()) {
+
+            $rescueEmail = $form->getData()->getRescueEmail();
+
+            $editRescueEmail = $this->get('rootiovmailme.user_manager')->editRescueEmail($user, $rescueEmail);
+
+            $t = $this->get('translator')->trans('Rescue email updated!');
+            $this->get('session')->getFlashBag()->set('success', $t);
+        }
+
+        return $this->render('rootiovmailmeBundle:User:rescue.html.twig', array('form' => $form->createView()));
     }
 
     public function forwardingAction()
@@ -143,25 +126,10 @@ class UserController extends Controller
 
             $forwardingEmail = $form->getData()->getForwardingEmail();
 
-            // Remove forwarding email
-            if (empty($forwardingEmail)) {
-                $forwardingEmail = null;
-            }
+            $editForwardingEmail = $this->get('rootiovmailme.user_manager')->editForwardingEmail($user, $forwardingEmail);
 
-            // Avoid user1 forwards to user2 and user2 forwards to user1
-            $loop = $this->getDoctrine()
-                ->getRepository('rootiovmailmeBundle:User')
-                ->findOneBy(array('email' => $forwardingEmail, 'forwardingEmail' => $user->getEmail()));
-
-            if ($forwardingEmail !== $user->getEmail() && !$loop) {
-                $user->setForwardingEmail($forwardingEmail);
-
-                $em->persist($user);
-                $em->flush();
-
-                $t = $this->get('translator')->trans('Forwarding email updated!');
-                $this->get('session')->getFlashBag()->set('success', $t);
-            }
+            $t = $this->get('translator')->trans('Forwarding email updated!');
+            $this->get('session')->getFlashBag()->set('success', $t);
         }
 
         return $this->render('rootiovmailmeBundle:User:forwarding.html.twig', array('form' => $form->createView()));
@@ -186,10 +154,7 @@ class UserController extends Controller
 
         if ($form->isValid()) {
 
-            $user->setIsEnabled(false);
-
-            $em->persist($user);
-            $em->flush();
+            $suspendUser = $this->get('rootiovmailme.user_manager')->suspendUser($user);
 
             $t = $this->get('translator')->trans('Account now suspended!');
             $this->get('session')->getFlashBag()->set('success', $t . ' =\'(');
