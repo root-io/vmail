@@ -121,7 +121,7 @@ class ForgotPasswordManager {
                   ;
                   $this->getMailer()->send($message);
 
-                  return true
+                  return true;
               } else {
                   // Return true if a token has not expire yet
                   return true;
