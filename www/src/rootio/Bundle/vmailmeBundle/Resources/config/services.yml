@@ -8,7 +8,7 @@ parameters:
 services:
     rootiovmailme.forgot_password_manager:
         class: %rootiovmailme.forgot_password_manager.class%
-        arguments: [@doctrine, @service_container]
+        arguments: [@doctrine, @service_container, @twig, @mailer]
 
     rootiovmailme.ban_manager:
         class: %rootiovmailme.ban_manager.class%

@@ -76,7 +76,7 @@ reset_password:
         token: "[0-9a-f]{64}"
 
 reset_password_check:
-    pattern: /reset/check/{rescueEmail}/{token}/
+    pattern: /reset/{rescueEmail}/{token}/check
     defaults:  { _controller: rootiovmailmeBundle:Default:resetPasswordCheck }
     requirements:
         token: "[0-9a-f]{64}"

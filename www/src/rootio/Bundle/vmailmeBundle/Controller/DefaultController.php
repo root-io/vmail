@@ -98,18 +98,30 @@ class DefaultController extends Controller
 
             $createToken = $this->get('rootiovmailme.forgot_password_manager')->createToken($rescueEmail);
 
-            $t = $this->get('translator')->trans('Password reset\'s instructions sent!');
-            $this->get('session')->getFlashBag()->set('success', $t);
+            if ($createToken) {
+                $t = $this->get('translator')->trans('Password reset\'s instructions sent!');
+                $this->get('session')->getFlashBag()->set('success', $t);
+            } else {
+                $t = $this->get('translator')->trans('Rescue email incorrect!');
+                $this->get('session')->getFlashBag()->set('error', $t);
+            }
         }
 
         return $this->render('rootiovmailmeBundle:Default:forgotPassword.html.twig', array('form' => $form->createView()));
     }
 
-    public function resetPasswordAction()
+    public function resetPasswordAction($rescueEmail, $token)
     {
-        $form = $this->createForm(new ResetPasswordType(), new User());
+        $checkToken = $this->get('rootiovmailme.forgot_password_manager')->checkToken($rescueEmail, $token);
 
-        return $this->render('rootiovmailmeBundle:Default:resetPassword.html.twig', array('form' => $form->createView()));
+        if ($checkToken) {
+            $form = $this->createForm(new ResetPasswordType(), new User());
+            return $this->render('rootiovmailmeBundle:Default:resetPassword.html.twig', array('form' => $form->createView()));
+        } else {
+            return $this->redirect(
+                $this->generateUrl('homepage')
+            );
+        }
     }
 
     public function resetPasswordCheckAction($rescueEmail, $token)
@@ -124,7 +136,18 @@ class DefaultController extends Controller
 
             $newPassword = $form->getData()->getPassword();
 
-            $checkToken = $this->get('rootiovmailme.forgot_password_manager')->checkToken($rescueEmail, $token, $newPassword);
+            $checkToken = $user = $this->get('rootiovmailme.forgot_password_manager')->checkToken($rescueEmail, $token);
+
+            if ($checkToken) {
+                $editPassword = $this->get('rootiovmailme.user_manager')->editPassword($user, $newPassword);
+
+                $t = $this->get('translator')->trans('Password updated!');
+                $this->get('session')->getFlashBag()->set('success', $t);
+            } else {
+                return $this->redirect(
+                    $this->generateUrl('homepage')
+                );
+            }
 
             return $this->render('rootiovmailmeBundle:Default:resetPassword.html.twig', array('form' => $form->createView()));
         }
