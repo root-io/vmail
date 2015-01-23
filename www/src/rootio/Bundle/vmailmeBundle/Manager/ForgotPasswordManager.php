@@ -126,8 +126,9 @@ class ForgotPasswordManager {
                   // Return true if a token has not expire yet
                   return true;
               }
+        } else {
+          return false;
         }
-        return false;
     }
 
     /**
@@ -151,9 +152,12 @@ class ForgotPasswordManager {
 
             // Check if the user and the associated rescue email exist
             if ($user && $rescueEmail == $user->getRescueEmail()) {
-              return $user;
+                return $user;
+            } else {
+              return false;
             }
+        } else {
+            return false;
         }
-        return false;
     }
 }
