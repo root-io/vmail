@@ -168,6 +168,12 @@ class DefaultController extends Controller
                 $errors['message'] = $this->get('translator')->trans('Email not available');
             }
 
+            $isPasswordForbidden = $this->get('rootiovmailme.user_manager')->isPasswordForbidden($password);
+
+            if ($isPasswordForbidden) {
+                $errors['message'] = $this->get('translator')->trans('Your password is too easy to guess');
+            }
+
             if (empty($errors)) {
                 $user = $this->get('rootiovmailme.user_manager')->createUser($username, $password);
 
