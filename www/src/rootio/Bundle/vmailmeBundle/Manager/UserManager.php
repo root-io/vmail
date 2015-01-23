@@ -137,6 +137,51 @@ class UserManager {
     }
 
     /**
+     * Is password forbidden ?
+     *
+     * @return boolean
+     */
+    public function isPasswordForbidden($password)
+    {
+
+        // The 25 most popular passwords of 2014
+        $forbiddenPasswords = [
+            "123456",
+            "password",
+            "12345",
+            "12345678",
+            "qwerty",
+            "123456789",
+            "1234",
+            "baseball",
+            "dragon",
+            "football",
+            "1234567",
+            "monkey",
+            "letmein",
+            "abc123",
+            "111111",
+            "mustang",
+            "access",
+            "shadow",
+            "master",
+            "michael",
+            "superman",
+            "696969",
+            "123123",
+            "batman",
+            "trustno1"
+        ];
+
+        if (in_array($password, $forbiddenPasswords)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    /**
      * Create user
      *
      * @return User

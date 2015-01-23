@@ -15,7 +15,7 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use rootio\Bundle\vmailmeBundle\Entity\ForgotPassword;
 use rootio\Bundle\vmailmeBundle\Form\Type\ForgotPasswordType;
 
-use rootio\Bundle\vmailmeBundle\Form\Type\ResetType;
+use rootio\Bundle\vmailmeBundle\Form\Type\ResetPasswordType;
 
 
 use Symfony\Component\Security\Core\SecurityContext;
@@ -96,73 +96,27 @@ class DefaultController extends Controller
 
             $rescueEmail = $form->getData()->getRescueEmail();
 
-            // FIXME
-            // Need to be move to ForgotPasswordManager
-            $users = $this->getDoctrine()
-                ->getRepository('rootiovmailmeBundle:User')
-                ->findByRescueEmail($rescueEmail);
+            $createToken = $this->get('rootiovmailme.forgot_password_manager')->createToken($rescueEmail);
 
-            if ($users) {
-
-                foreach ($users as $user) {
-
-                    $forgotPassword = $this->getDoctrine()
-                        ->getRepository('rootiovmailmeBundle:ForgotPassword')
-                        ->findOneByUser($user);
-
-                    if (!$forgotPassword || $forgotPassword->getExpire() < new \DateTime('now')) { // No forgot password token or expired
-
-                        // Generate token
-                        $token = hash('sha256', uniqid('', true));
-
-                        if ($forgotPassword) {
-                            $em->remove($forgotPassword);
-                            $em->flush();
-                        }
-
-                        $forgotPassword = new ForgotPassword();
-                        $forgotPassword->setUser($user);
-                        $forgotPassword->setToken($token);
-                        $forgotPassword->setExpire(new \DateTime('+5 minutes'));
-                        $em->persist($forgotPassword);
-                        $em->flush();
-
-                        // Send forgot password token to rescue email
-                        $templateContent = $this->get('twig')->loadTemplate('rootiovmailmeBundle::Emailing/forgot_password.text.twig');
-
-                        $subject = $templateContent->renderBlock('subject', array());
-                        $body = $templateContent->renderBlock('body', array('rescueEmail' => $rescueEmail, 'token' => $token));
-
-                        $message = \Swift_Message::newInstance()
-                            ->setSubject($subject)
-                            ->setFrom('noreply@vmail.me')
-                            ->setTo($rescueEmail)
-                            ->setBody($body)
-                        ;
-                        $this->get('mailer')->send($message);
-                    }
-
-                    $t = $this->get('translator')->trans('Password reset\'s instructions sent!');
-                    $this->get('session')->getFlashBag()->set('success', $t);
-                }
-            }
+            $t = $this->get('translator')->trans('Password reset\'s instructions sent!');
+            $this->get('session')->getFlashBag()->set('success', $t);
         }
 
         return $this->render('rootiovmailmeBundle:Default:forgotPassword.html.twig', array('form' => $form->createView()));
     }
 
-    public function resetAction()
+    public function resetPasswordAction()
     {
-        $form = $this->createForm(new ResetType(), new User());
+        $form = $this->createForm(new ResetPasswordType(), new User());
 
-        return $this->render('rootiovmailmeBundle:Default:reset.html.twig', array('form' => $form->createView()));
+        return $this->render('rootiovmailmeBundle:Default:resetPassword.html.twig', array('form' => $form->createView()));
     }
 
-    public function resetCheckAction($rescueEmail, $token)
+    public function resetPasswordCheckAction($rescueEmail, $token)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $form = $this->createForm(new ResetType(), new User());
+        $form = $this->createForm(new ResetPasswordType(), new User());
 
         $form->bind($this->getRequest());
 
@@ -170,36 +124,10 @@ class DefaultController extends Controller
 
             $newPassword = $form->getData()->getPassword();
 
-            // FIXME
-            // Need to be move to ForgotPasswordManager
-            $user = $this->getDoctrine()
-                ->getRepository('rootiovmailmeBundle:User')
-                ->findOneByRescueEmail($rescueEmail);
+            $checkToken = $this->get('rootiovmailme.forgot_password_manager')->checkToken($rescueEmail, $token, $newPassword);
 
-            if ($user) {
-
-                $forgotPassword = $this->getDoctrine()
-                    ->getRepository('rootiovmailmeBundle:ForgotPassword')
-                    ->findOneBy(array('user' => $user->getId(), 'token' => $token));
-
-                if ($forgotPassword) {
-
-                    $factory = $this->get('security.encoder_factory');
-                    $encoder = $factory->getEncoder($user);
-                    $password = $encoder->encodePassword($newPassword, $user->getSalt());
-                    $user->setPassword($password);
-                    $user->setPasswordLegacy($newPassword);
-
-                    $em->remove($forgotPassword);
-                    $em->flush();
-
-                    $t = $this->get('translator')->trans('Password updated!');
-                    $this->get('session')->getFlashBag()->set('success', $t);
-                }
-            }
+            return $this->render('rootiovmailmeBundle:Default:resetPassword.html.twig', array('form' => $form->createView()));
         }
-
-        return $this->render('rootiovmailmeBundle:Default:reset.html.twig', array('form' => $form->createView()));
     }
 
     public function registrationAction()

@@ -69,15 +69,15 @@ forgot_password_check:
     pattern: /forgot/check
     defaults:  { _controller: rootiovmailmeBundle:Default:forgotPasswordCheck }
 
-reset:
+reset_password:
     pattern: /reset/{rescueEmail}/{token}/
-    defaults:  { _controller: rootiovmailmeBundle:Default:reset }
+    defaults:  { _controller: rootiovmailmeBundle:Default:resetPassword }
     requirements:
         token: "[0-9a-f]{64}"
 
-reset_check:
+reset_password_check:
     pattern: /reset/check/{rescueEmail}/{token}/
-    defaults:  { _controller: rootiovmailmeBundle:Default:resetCheck }
+    defaults:  { _controller: rootiovmailmeBundle:Default:resetPasswordCheck }
     requirements:
         token: "[0-9a-f]{64}"
 

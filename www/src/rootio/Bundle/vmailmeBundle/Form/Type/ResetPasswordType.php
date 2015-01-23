@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 /**
  * @author David Routhieau <rootio@vmail.me>
  */
-class ResetType extends AbstractType
+class ResetPasswordType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -21,6 +21,6 @@ class ResetType extends AbstractType
 
     public function getName()
     {
-        return 'reset';
+        return 'resetPassword';
     }
 }

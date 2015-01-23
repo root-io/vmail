@@ -1,9 +1,19 @@
 parameters:
+    rootiovmailme.forgot_password_manager.class: rootio\Bundle\vmailmeBundle\Manager\ForgotPasswordManager
+    rootiovmailme.ban_manager.class: rootio\Bundle\vmailmeBundle\Manager\BanManager
     rootiovmailme.user_manager.class: rootio\Bundle\vmailmeBundle\Manager\UserManager
     rootiovmailme.loginSuccess_handler.class: rootio\Bundle\vmailmeBundle\Authentication\LoginSuccessHandler
     rootiovmailme.logoutSuccess_handler.class: rootio\Bundle\vmailmeBundle\Authentication\LogoutSuccessHandler
 
 services:
+    rootiovmailme.forgot_password_manager:
+        class: %rootiovmailme.forgot_password_manager.class%
+        arguments: [@doctrine, @service_container]
+
+    rootiovmailme.ban_manager:
+        class: %rootiovmailme.ban_manager.class%
+        arguments: [@doctrine, @service_container]
+
     rootiovmailme.user_manager:
         class: %rootiovmailme.user_manager.class%
         arguments: [@doctrine, @service_container]
