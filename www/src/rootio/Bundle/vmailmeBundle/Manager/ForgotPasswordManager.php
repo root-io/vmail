@@ -33,8 +33,8 @@ class ForgotPasswordManager {
     {
         $this->doctrine = $doctrine;
         $this->container = $container;
-        $this->container = $twig;
-        $this->container = $mailer;
+        $this->twig = $twig;
+        $this->mailer = $mailer;
     }
 
     public function getDoctrine()
@@ -123,7 +123,7 @@ class ForgotPasswordManager {
 
                   return true;
               } else {
-                  // Return true if a token has not expire yet
+                  // Return true if a token has not expired yet
                   return true;
               }
         } else {
@@ -143,7 +143,7 @@ class ForgotPasswordManager {
             ->getRepository('rootiovmailmeBundle:ForgotPassword')
             ->findOneByToken($token);
 
-        // Check if token exists and is has not expired
+        // Check if token exists and has not expired
         if ($forgotPassword && $forgotPassword->getExpire() >= new \DateTime('now')) {
             // Find user associated with the token
             $user = $this->getDoctrine()
