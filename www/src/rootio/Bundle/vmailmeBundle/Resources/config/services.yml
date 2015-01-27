@@ -6,11 +6,11 @@ parameters:
     rootiovmailme.logoutSuccess_handler.class: rootio\Bundle\vmailmeBundle\Authentication\LogoutSuccessHandler
 
 services:
-#    kernel.listener.exception:
-#        class: rootio\Bundle\vmailmeBundle\EventListener\ExceptionListener
-#        arguments: [@twig]
-#        tags:
-#            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+    kernel.listener.exception:
+        class: rootio\Bundle\vmailmeBundle\EventListener\ExceptionListener
+        arguments: [@twig]
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
 
     rootiovmailme.forgot_password_manager:
         class: %rootiovmailme.forgot_password_manager.class%

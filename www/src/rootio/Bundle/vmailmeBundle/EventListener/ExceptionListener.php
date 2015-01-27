@@ -26,7 +26,12 @@ class ExceptionListener
     public function onKernelException(GetResponseForExceptionEvent $event)
     {
         $exception = $event->getException();
-        $status_code = $exception->getStatusCode();
+
+        if ($exception instanceof HttpExceptionInterface) {
+            $status_code = $exception->getStatusCode();
+        } else {
+            $status_code = 500;
+        }
 
         $response = new Response($this->getTwig()->render('rootiovmailmeBundle::error.html.twig', array('status_code' => $status_code)));
 
