@@ -3,7 +3,7 @@
 {% endblock %}
 
 {% block body %}
-    {% trans with {'%username%': username, '%password%': password, '%link%': app.request.schemeAndHttpHost ~ path('user_password')} %}
+    {% trans with {'%username%': username, '%password%': password, '%link%': url ~ path('user_password')} %}
     EMAILING_REGISTER_COMMAND
     {% endtrans %}
 {% endblock %}

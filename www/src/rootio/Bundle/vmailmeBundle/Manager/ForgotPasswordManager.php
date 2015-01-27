@@ -111,7 +111,11 @@ class ForgotPasswordManager
                 $templateContent = $this->getTwig()->loadTemplate('rootiovmailmeBundle::Emailing/forgot_password.text.twig');
 
                 $subject = $templateContent->renderBlock('subject', array());
-                $body = $templateContent->renderBlock('body', array('rescueEmail' => $rescueEmail, 'token' => $token));
+                $body = $templateContent->renderBlock('body', array(
+                  'rescueEmail' => $rescueEmail,
+                  'token'       => $token,
+                  'url'         => $this->getContainer()->getParameter('url')
+                ));
 
                 $message = \Swift_Message::newInstance()
                     ->setSubject($subject)

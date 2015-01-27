@@ -37,7 +37,11 @@ class RegisterCommand extends ContainerAwareCommand
             $templateContent = $this->getContainer()->get('twig')->loadTemplate('rootiovmailmeBundle::Emailing/register_command.text.twig');
 
             $subject = $templateContent->renderBlock('subject', array());
-            $body = $templateContent->renderBlock('body', array('username' => $username, 'password' => $password));
+            $body = $templateContent->renderBlock('body', array(
+              'username' => $username,
+              'password' => $password,
+              'url'      => $this->getContainer()->getParameter('url')
+            ));
 
             $message = \Swift_Message::newInstance()
                 ->setSubject($subject)

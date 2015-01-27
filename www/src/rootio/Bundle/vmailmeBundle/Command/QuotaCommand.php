@@ -31,7 +31,10 @@ class QuotaCommand extends ContainerAwareCommand
         $templateContent = $this->getContainer()->get('twig')->loadTemplate('rootiovmailmeBundle::Emailing/quota_warning.text.twig');
 
         $subject = $templateContent->renderBlock('subject', array());
-        $body = $templateContent->renderBlock('body', array('percent' => $percent));
+        $body = $templateContent->renderBlock('body', array(
+          'percent' => $percent,
+          'url'     => $this->getContainer()->getParameter('url')
+        ));
 
         $message = \Swift_Message::newInstance()
             ->setSubject($subject)

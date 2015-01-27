@@ -3,7 +3,7 @@
 {% endblock %}
 
 {% block body %}
-    {% trans with {'%percent%': percent, '%link%': app.request.schemeAndHttpHost ~ path('plans')} %}
+    {% trans with {'%percent%': percent, '%link%': url ~ path('plans')} %}
     EMAILING_QUOTA_WARNING
     {% endtrans %}
 {% endblock %}
