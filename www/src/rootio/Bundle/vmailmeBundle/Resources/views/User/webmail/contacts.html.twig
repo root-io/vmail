@@ -1,6 +1,6 @@
 {% extends 'rootiovmailmeBundle::base.html.twig' %}
 
-{% block title %} &bull; {% trans %}Settings{% endtrans %}{% endblock %}
+{% block title %} &bull; {% trans %}Contacts{% endtrans %}{% endblock %}
 
 {% block content %}
     <style type="text/css">
@@ -34,6 +34,6 @@
     </style>
 
     <div class="container webmail">
-        <iframe src="{{ app.request.schemeAndHttpHost }}/webmail/?_task=settings" frameborder="no"></iframe>
+        <iframe src="{{ app.request.schemeAndHttpHost }}/webmail/?_task=addressbook" frameborder="no"></iframe>
     </div>
 {% endblock %}

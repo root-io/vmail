@@ -33,6 +33,14 @@ class Registration
     protected $password;
 
     /**
+     * @Assert\Email(
+     *     message = "Rescue email {{ value }} is incorrect",
+     *     checkMX = true
+     * )
+     */
+    protected $rescueEmail;
+
+    /**
      * @Assert\NotBlank()
      */
     protected $termsOfService;
@@ -84,6 +92,29 @@ class Registration
     }
 
     /**
+     * Set rescueEmail
+     *
+     * @param string $rescueEmail
+     * @return Registration
+     */
+    public function setRescueEmail($rescueEmail)
+    {
+        $this->rescueEmail = $rescueEmail;
+
+        return $this;
+    }
+
+    /**
+     * Get rescueEmail
+     *
+     * @return string
+     */
+    public function getRescueEmail()
+    {
+        return $this->rescueEmail;
+    }
+
+    /**
      * Set termsOfService
      *
      * @param boolean $termsOfService
@@ -91,7 +122,7 @@ class Registration
      */
     public function setTermsOfService($termsOfService)
     {
-        $this->termsOfService = (Boolean) $termsOfService;
+        $this->termsOfService = (Boolean)$termsOfService;
 
         return $this;
     }

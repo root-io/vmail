@@ -1,19 +1,22 @@
 {% extends 'rootiovmailmeBundle::base.html.twig' %}
 
-{% block title %}{% trans %}Privacy policy{% endtrans %}{% endblock %}
+{% block title %} &bull; {% trans %}Privacy policy{% endtrans %}{% endblock %}
 
 {% block content %}
-<div class="page-header">
-    <h1>{% trans %}Privacy policy{% endtrans %}</h1>
-</div>
+    <div class="container privacy">
 
-<pre>
-    <span class="glyphicon glyphicon-asterisk"></span> {% trans %}Register an account without providing any personal information{% endtrans %}.
-    <span class="glyphicon glyphicon-asterisk"></span> {% trans %}Account deletion{% endtrans %}.
-    <span class="glyphicon glyphicon-asterisk"></span> {% trans %}Encrypted data storage (LUKS disk-encryption){% endtrans %}.
-    <span class="glyphicon glyphicon-asterisk"></span> {% trans %}Minimal server logs (comply with European Data Retention Directive){% endtrans %}.
-    <span class="glyphicon glyphicon-asterisk"></span> {% trans %}IP addresses and user agent are removed from email headers{% endtrans %}.
-    <span class="glyphicon glyphicon-asterisk"></span> {% trans %}No use of closed source software, third party services or hosted libraries{% endtrans %}.
-    <span class="glyphicon glyphicon-asterisk"></span> {% trans %}Piwik web analytics respects the Do Not Track (DNT) technology and anonymizes the last two bits visitors' IP addresses{% endtrans %}.
-</pre>
+        <div class="page-header">
+            <h1>{% trans %}Privacy policy{% endtrans %}</h1>
+        </div>
+
+  <pre>
+      <span class="glyphicon glyphicon-asterisk"></span> {% trans %}Register an account without providing any personal information{% endtrans %}.
+      <span class="glyphicon glyphicon-asterisk"></span> {% trans %}Account deletion{% endtrans %}.
+      <span class="glyphicon glyphicon-asterisk"></span> {% trans %}Encrypted data storage (LUKS disk-encryption){% endtrans %}.
+      <span class="glyphicon glyphicon-asterisk"></span> {% trans %}Minimal server logs (comply with European Data Retention Directive){% endtrans %}.
+      <span class="glyphicon glyphicon-asterisk"></span> {% trans %}IP addresses and user agent are removed from email headers{% endtrans %}.
+      <span class="glyphicon glyphicon-asterisk"></span> {% trans %}No use of closed source software, third party services or hosted libraries{% endtrans %}.
+      <span class="glyphicon glyphicon-asterisk"></span> {% trans %}Piwik web analytics respects the Do Not Track (DNT) technology and anonymizes the last two bits visitors' IP addresses{% endtrans %}.
+  </pre>
+    </div>
 {% endblock %}

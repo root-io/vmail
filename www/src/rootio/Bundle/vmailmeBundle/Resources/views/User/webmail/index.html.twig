@@ -1,34 +1,39 @@
 {% extends 'rootiovmailmeBundle::base.html.twig' %}
 
-{% block content %}
-<style type="text/css">
-body {
-    padding-top: 0;
-}
-@media (max-width: 980px) {
-    body {
-        padding-top: 0;
-    }
-    .navbar-fixed-top {
-        margin-bottom: 0;
-    }
-}
-html, body {
-    height: 100%;
-}
-.container.content {
-    min-height: 100%;
-    height: 100%;
-    width: 100%;
-    padding-right: 0px;
-    padding-left: 0px;
-}
-iframe {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-</style>
+{% block title %} &bull; {% trans %}Webmail{% endtrans %}{% endblock %}
 
-<iframe src="{{ app.request.schemeAndHttpHost }}/webmail/" frameborder="no"></iframe>
+{% block content %}
+    <style type="text/css">
+        body {
+            padding-top: 0;
+        }
+
+        @media (max-width: 980px) {
+            body {
+                padding-top: 0;
+            }
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        .content .container {
+            min-height: 100%;
+            height: 100%;
+            width: 100%;
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+
+    <div class="container webmail">
+        <iframe src="{{ app.request.schemeAndHttpHost }}/webmail/" frameborder="no"></iframe>
+    </div>
 {% endblock %}

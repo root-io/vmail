@@ -26,9 +26,9 @@ class UserController extends Controller
         return $this->render('rootiovmailmeBundle:User:webmail/index.html.twig');
     }
 
-    public function webmailAddressBookAction()
+    public function webmailContactsAction()
     {
-        return $this->render('rootiovmailmeBundle:User:webmail/addressBook.html.twig');
+        return $this->render('rootiovmailmeBundle:User:webmail/contacts.html.twig');
     }
 
     public function webmailSettingsAction()
@@ -36,9 +36,9 @@ class UserController extends Controller
         return $this->render('rootiovmailmeBundle:User:webmail/settings.html.twig');
     }
 
-    public function settingsAction()
+    public function expertAction()
     {
-        return $this->render('rootiovmailmeBundle:User:settings.html.twig');
+        return $this->render('rootiovmailmeBundle:User:expert.html.twig');
     }
 
     public function passwordAction()
@@ -65,7 +65,7 @@ class UserController extends Controller
             $editPassword = $this->get('rootiovmailme.user_manager')->editPassword($user, $newPassword);
 
             // Update session password
-            $token = $this->get( 'security.context' )->getToken();
+            $token = $this->get('security.context')->getToken();
             $token->setAuthenticated(false);
 
             $t = $this->get('translator')->trans('Password updated!');

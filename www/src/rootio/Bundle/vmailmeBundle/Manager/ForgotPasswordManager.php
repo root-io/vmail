@@ -7,8 +7,8 @@ use Symfony\Component\DependencyInjection\Container;
 
 use rootio\Bundle\vmailmeBundle\Entity\ForgotPassword;
 
-class ForgotPasswordManager {
-
+class ForgotPasswordManager
+{
     /**
      * @var Registry $doctrine
      */
@@ -25,7 +25,7 @@ class ForgotPasswordManager {
     protected $twig;
 
     /**
-     * @var \Swift_Mailer
+     * @var \Swift_Mailer $mailer
      */
     protected $mailer;
 
@@ -81,53 +81,52 @@ class ForgotPasswordManager {
 
         if ($user) {
 
-              // Find a forgot password database entry
-              $forgotPassword = $this->getDoctrine()
-                  ->getRepository('rootiovmailmeBundle:ForgotPassword')
-                  ->findOneByUser($user);
+            // Find a forgot password database entry
+            $forgotPassword = $this->getDoctrine()
+                ->getRepository('rootiovmailmeBundle:ForgotPassword')
+                ->findOneByUser($user);
 
-              // No forgot password token or expired
-              if (!$forgotPassword || $forgotPassword->getExpire() < new \DateTime('now')) {
-                  $em = $this->getDoctrine()->getManager();
+            // No forgot password token or expired
+            if (!$forgotPassword || $forgotPassword->getExpire() < new \DateTime('now')) {
+                $em = $this->getDoctrine()->getManager();
 
-                  // Generate token
-                  $token = hash('sha256', uniqid('', true));
+                // Generate token
+                $token = hash('sha256', uniqid('', true));
 
-                  // Update expired forgot password token or create a new one
-                  if ($forgotPassword) {
-                      $forgotPassword->setToken($token);
-                      $forgotPassword->setExpire(new \DateTime('+5 minutes'));
-                  } else {
-                      $forgotPassword = new ForgotPassword();
-                      $forgotPassword->setUser($user);
-                      $forgotPassword->setToken($token);
-                      $forgotPassword->setExpire(new \DateTime('+5 minutes'));
-                  }
+                // Update expired forgot password token or create a new one
+                if ($forgotPassword) {
+                    $forgotPassword->setToken($token);
+                    $forgotPassword->setExpire(new \DateTime('+5 minutes'));
+                } else {
+                    $forgotPassword = new ForgotPassword();
+                    $forgotPassword->setUser($user);
+                    $forgotPassword->setToken($token);
+                    $forgotPassword->setExpire(new \DateTime('+5 minutes'));
+                }
 
-                  $em->persist($forgotPassword);
-                  $em->flush();
+                $em->persist($forgotPassword);
+                $em->flush();
 
-                  // Send forgot password token to the rescue email
-                  $templateContent = $this->getTwig()->loadTemplate('rootiovmailmeBundle::Emailing/forgot_password.text.twig');
+                // Send forgot password token to the rescue email
+                $templateContent = $this->getTwig()->loadTemplate('rootiovmailmeBundle::Emailing/forgot_password.text.twig');
 
-                  $subject = $templateContent->renderBlock('subject', array());
-                  $body = $templateContent->renderBlock('body', array('rescueEmail' => $rescueEmail, 'token' => $token));
+                $subject = $templateContent->renderBlock('subject', array());
+                $body = $templateContent->renderBlock('body', array('rescueEmail' => $rescueEmail, 'token' => $token));
 
-                  $message = \Swift_Message::newInstance()
-                      ->setSubject($subject)
-                      ->setFrom('noreply@vmail.me')
-                      ->setTo($rescueEmail)
-                      ->setBody($body)
-                  ;
-                  $this->getMailer()->send($message);
+                $message = \Swift_Message::newInstance()
+                    ->setSubject($subject)
+                    ->setFrom('noreply@vmail.me')
+                    ->setTo($rescueEmail)
+                    ->setBody($body);
+                $this->getMailer()->send($message);
 
-                  return true;
-              } else {
-                  // Return true if a token has not expired yet
-                  return true;
-              }
+                return true;
+            } else {
+                // Return true if a token has not expired yet
+                return true;
+            }
         } else {
-          return false;
+            return false;
         }
     }
 
@@ -154,7 +153,7 @@ class ForgotPasswordManager {
             if ($user && $rescueEmail == $user->getRescueEmail()) {
                 return $user;
             } else {
-              return false;
+                return false;
             }
         } else {
             return false;

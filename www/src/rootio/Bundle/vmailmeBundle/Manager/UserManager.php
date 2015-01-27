@@ -7,8 +7,8 @@ use Symfony\Component\DependencyInjection\Container;
 
 use rootio\Bundle\vmailmeBundle\Entity\User;
 
-class UserManager {
-
+class UserManager
+{
     /**
      * @var Registry $doctrine
      */
@@ -40,8 +40,8 @@ class UserManager {
      *
      * @return boolean
      */
-    public function isUsernameForbidden($username) {
-
+    public function isUsernameForbidden($username)
+    {
         $forbiddenUsers = [
             "admin",
             "administrator",
@@ -143,7 +143,6 @@ class UserManager {
      */
     public function isPasswordForbidden($password)
     {
-
         // The 25 most popular passwords of 2014
         $forbiddenPasswords = [
             "123456",
@@ -234,16 +233,16 @@ class UserManager {
      */
     public function editRescueEmail($user, $rescueEmail)
     {
-          if ($rescueEmail !== $user->getEmail()) {
-              $em = $this->getDoctrine()->getManager();
+        if ($rescueEmail !== $user->getEmail()) {
+            $em = $this->getDoctrine()->getManager();
 
-              $user->setRescueEmail($rescueEmail);
+            $user->setRescueEmail($rescueEmail);
 
-              $em->persist($user);
-              $em->flush();
+            $em->persist($user);
+            $em->flush();
 
-              return $user;
-          }
+            return $user;
+        }
     }
 
     /**

@@ -1,36 +1,39 @@
 {% extends 'rootiovmailmeBundle::base.html.twig' %}
 
-{% block title %}{% trans %}Login{% endtrans %}{% endblock %}
+{% block title %} &bull; {% trans %}Login{% endtrans %}{% endblock %}
 
 {% block content %}
-<div class="page-header">
-    <h1>{% trans %}Login{% endtrans %}</h1>
-</div>
+    <div class="container login">
 
-<form class="form-horizontal" action="{{ path('login_check')}}" method="post">
+        <div class="page-header">
+            <h1>{% trans %}Login{% endtrans %}</h1>
+        </div>
 
-    {% if error %}
-        <div class="alert alert-danger">{{ error.message|trans }}</div>
-    {% endif %}
+        <form class="form-horizontal" action="{{ path('login_check') }}" method="post">
 
-    <div class="form-group">
-        <label class="control-label" for="username">{% trans %}Email{% endtrans %}</label>
-            <input type="text"  id="username" name="_username" class="form-control input-lg" value="{{ last_username }}">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.message|trans }}</div>
+            {% endif %}
+
+            <div class="form-group">
+                <label class="control-label" for="username">{% trans %}Email{% endtrans %}</label>
+                <input type="text" id="username" name="_username" class="form-control input-lg"
+                       value="{{ last_username }}">
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="password">{% trans %}Password{% endtrans %}</label>
+                <input type="password" id="password" name="_password" class="form-control input-lg">
+            </div>
+
+            <div class="form-group">
+                <a href="{{ path('forgot_password') }}">{% trans %}Forgot your password?{% endtrans %}</a><br>
+            </div>
+
+            <div class="form-actions">
+                <input class="btn btn-primary btn-lg" type="submit" value="{% trans %}Login{% endtrans %} »"/>
+            </div>
+
+        </form>
     </div>
-
-    <div class="form-group">
-        <label class="control-label" for="password">{% trans %}Password{% endtrans %}</label>
-        <input type="password" id="password" name="_password" class="form-control input-lg">
-    </div>
-
-    <div class="form-group">
-        <a href="{{ path('forgot_password')}}">{% trans %}Forgot your password?{% endtrans %}</a><br>
-    </div>
-
-    <div class="form-actions">
-        <input class="btn btn-inverse btn-lg" type="submit" value="{% trans %}Login{% endtrans %} »" />
-    </div>
-
-</form>
-
 {% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'rootiovmailmeBundle::base.html.twig' %}
+
+{% block title %} &bull; {% trans %}Expert{% endtrans %}{% endblock %}
+
+{% block content %}
+    <div class="container expert">
+
+        <div class="page-header">
+            <h1>{% trans %}Expert{% endtrans %}</h1>
+        </div>
+
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td>&nbsp;</td>
+                <td>POP3 ({% trans %}not recommended{% endtrans %})</td>
+                <td>IMAP</td>
+                <td>SMTP</td>
+            </tr>
+            <tr>
+                <td>{% trans %}Username{% endtrans %}</td>
+                <td>{{ app.user.email }}</td>
+                <td>{{ app.user.email }}</td>
+                <td>{{ app.user.email }}</td>
+            </tr>
+            <tr>
+                <td>{% trans %}Authentication method{% endtrans %}</td>
+                <td>{% trans %}Normal password{% endtrans %}</td>
+                <td>{% trans %}Normal password{% endtrans %}</td>
+                <td>{% trans %}Normal password{% endtrans %}</td>
+            </tr>
+            <tr>
+                <td>{% trans %}Server{% endtrans %}</td>
+                <td>vmail.me</td>
+                <td>vmail.me</td>
+                <td>vmail.me</td>
+            </tr>
+            <tr>
+                <td>{% trans %}Port{% endtrans %}</td>
+                <td>995</td>
+                <td>993</td>
+                <td>465</td>
+            </tr>
+            <tr>
+                <td>{% trans %}Connection security{% endtrans %}</td>
+                <td>SSL/TLS</td>
+                <td>SSL/TLS</td>
+                <td>SSL/TLS</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

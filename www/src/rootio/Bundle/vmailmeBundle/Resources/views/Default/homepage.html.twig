@@ -1,9 +1,30 @@
 {% extends 'rootiovmailmeBundle::base.html.twig' %}
 
 {% block content %}
-<div class="jumbotron text-center registration">
-    <h1>{% trans %}Simplicity, security & privacy{% endtrans %}</h1>
-    <p>{% trans %}The simple and secure email service which respects your privacy{% endtrans %}</p>
-    <p><a class="btn btn-xlarge btn-inverse" href="{{ path('registration') }}">{% trans %}Create a mailbox{% endtrans %}</a></p>
-</div>
+    <div class="homepage">
+        <div class="alpha">
+            <div class="content">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <img src="{{ asset('/media/images/logo.png') }}" alt="logo" width="150" height=""/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Vmail</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>{% trans %}The simple and secure email service which respects your privacy{% endtrans %}</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a class="btn btn-primary" href="{{ path('registration') }}">{% trans %}Get started{% endtrans %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

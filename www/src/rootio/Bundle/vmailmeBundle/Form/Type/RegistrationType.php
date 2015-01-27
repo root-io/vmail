@@ -14,16 +14,17 @@ class RegistrationType extends AbstractType
     {
         $builder->add('username', 'text');
         $builder->add('password', 'repeated', array(
-           'first_name' => 'password',
-           'second_name' => 'confirm',
-           'invalid_message' => 'You have written two different passwords',
-           'type' => 'password'
+            'first_name'      => 'password',
+            'second_name'     => 'confirm',
+            'invalid_message' => 'You have written two different passwords',
+            'type'            => 'password'
         ));
+        $builder->add('rescueEmail', 'text', array('required' => false));
         $builder->add('captcha', 'captcha', array(
-            'disabled' => false,
-            'width'    => 220,
-            'height'   => 50,
-            'length'   => 8,
+            'disabled'        => false,
+            'width'           => 220,
+            'height'          => 50,
+            'length'          => 8,
             'invalid_message' => 'Bad security code'
         ));
         $builder->add('termsOfService', 'checkbox');

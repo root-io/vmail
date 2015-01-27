@@ -53,7 +53,7 @@ class Suspend
      */
     public function setAgreement($agreement)
     {
-        $this->agreement = (Boolean) $agreement;
+        $this->agreement = (Boolean)$agreement;
 
         return $this;
     }

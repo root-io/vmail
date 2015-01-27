@@ -1,9 +1,9 @@
 {% block subject %}
-vmail - {% trans %}Get started!{% endtrans %}
+    vmail - {% trans %}Get started!{% endtrans %}
 {% endblock %}
 
 {% block body %}
-{% trans with {'%username%': username, '%password%': password, '%link%': 'https://www.vmail.me' ~ path('user_password')} %}
-EMAILING_REGISTER_COMMAND
-{% endtrans %}
+    {% trans with {'%username%': username, '%password%': password, '%link%': app.request.schemeAndHttpHost ~ path('user_password')} %}
+    EMAILING_REGISTER_COMMAND
+    {% endtrans %}
 {% endblock %}

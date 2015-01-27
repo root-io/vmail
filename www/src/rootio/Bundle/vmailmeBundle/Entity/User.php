@@ -139,7 +139,8 @@ class User implements AdvancedUserInterface
     private $isEnabled;
 
 
-    public function __construct() {
+    public function __construct()
+    {
 
         $this->rescueEmail = null;
         $this->forwardingEmail = null;
@@ -233,7 +234,7 @@ class User implements AdvancedUserInterface
         $strLength = strlen($hex);
         $returnVal = '';
 
-        for($i=0; $i<$strLength; $i+=2) {
+        for ($i = 0; $i < $strLength; $i += 2) {
             $dec_val = hexdec(substr($hex, $i, 2));
             $returnVal .= chr($dec_val);
         }

@@ -1,40 +1,70 @@
-body {
-    padding-top: 70px;
+@font-face {
+    font-family: 'PT Sans';
+    src: local('PT Sans Bold'), local('PTSans-Bold'), url(/media/fonts/PT-Sans.woff) format('woff');
 }
 
-@media (max-width:980px) {
-    body {
-        padding-top: 30px;
-    }
+.alpha {
+    height: 100%;
+    padding-top: 10%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.homepage {
+    padding-top: 0;
+    color: #fff;
+    text-align: center;
+    background: url(/media/images/background.jpg) no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
+.notfound {
+    padding-top: 0;
+    color: #fff;
+    text-align: center;
+    background: url(/media/images/notfound.gif) no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
+.homepage h1, .notfound h1 {
+    font-family: 'PT Sans', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 110px;
+    color: #FFF;
+    margin-bottom: 0;
+}
+
+.homepage h2, .notfound h2 {
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+.homepage .row, .notfound .row {
+    margin: 0;
+}
+
+.homepage .btn, .notfound .btn {
+    font-size: 21px;
+    padding: 7px 92px;
+}
+
+.navbar-nav.navbar-right:last-child {
+    margin-right: 0;
 }
 
 .navbar-brand {
-    padding: 12px 15px;
+    padding: 10px 15px;
 }
 
 .navbar-nav > li > button {
     margin-top: 10px;
-}
-
-.registration {
-    padding: 40px;
-}
-
-#registration_captcha {
-    height: 64px;
-}
-
-.price {
-    font-size: 12px;
-    vertical-align: middle;
-}
-
-.pricing li {
-    border-color: #E5E5E5;
-    border-style: none none solid;
-    border-width: 0 0 1px;
-    margin: 18px 10px;
-    padding-bottom: 10px;
 }
 
 .form-horizontal .form-group {
@@ -51,30 +81,11 @@ body {
 
 .login.dropdown-menu {
     padding: 20px;
-    text-align: center;
     width: 300px;
 }
 
 .login.dropdown-menu input[type="submit"] {
     width: 100%;
-}
-
-.btn-inverse {
-    color: #fff;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-    background-color: #363636;
-    background-image: linear-gradient(to bottom, #444, #222);
-    background-repeat: repeat-x;
-    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-}
-
-.btn-inverse:hover, .btn-inverse:focus, .btn-inverse:active, .btn-inverse.active, .btn-inverse.disabled, .btn-inverse[disabled] {
-    color: #fff;
-    background-color: #222;
-}
-
-.red {
-    color: #ff0000;
 }
 
 .followus, .bitcoin, .github {
@@ -85,4 +96,32 @@ body {
 .navbar-nav > li > p {
     padding-top: 15px;
     padding-bottom: 15px;
+}
+
+.content {
+    height: 100%;
+}
+
+.content .container .homepage {
+    padding: 0;
+    margin: 0;
+}
+
+.content .container {
+    margin-top: 30px;
+}
+
+.registration .plans {
+    border-left: 1px solid #E5E5E5;
+    margin-top: 30px;
+    padding-left: 40px;
+}
+
+.registration .plans li {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.registration #registration_captcha {
+    height: 64px;
 }

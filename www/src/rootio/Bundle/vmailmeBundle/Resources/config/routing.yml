@@ -1,17 +1,39 @@
 homepage:
     pattern: /
-    defaults: { _controller: rootiovmailmeBundle:Default:index }
+    defaults: { _controller: rootiovmailmeBundle:Default:homepage }
 
-legal_documents:
-    pattern: /legal
-    defaults: { _controller: rootiovmailmeBundle:Default:legalDocuments }
-
-legal_documents_alias:
-    pattern: /legalDocuments
+plans:
+    pattern: /plans
     defaults:
         _controller: FrameworkBundle:Redirect:redirect
-        route: legal_documents
+        route: registration
         permanent: true
+
+registration:
+    pattern: /register
+    defaults: { _controller: rootiovmailmeBundle:Default:registration }
+
+registration_alias_1:
+    pattern: /registration
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: registration
+        permanent: true
+
+registration_alias_2:
+    pattern: /subscribe
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: registration
+        permanent: true
+
+registration_new:
+    pattern: /registration/new
+    defaults: { _controller: rootiovmailmeBundle:Default:registrationNew }
+
+donate:
+    pattern: /donate
+    defaults: { _controller: rootiovmailmeBundle:Default:donate }
 
 terms_of_service:
     pattern: /terms
@@ -35,31 +57,16 @@ privacy_policy_alias:
         route: privacy_policy
         permanent: true
 
-plans:
-    pattern: /plans
-    defaults: { _controller: rootiovmailmeBundle:Default:plans }
+legal_documents:
+    pattern: /legal
+    defaults: { _controller: rootiovmailmeBundle:Default:legalDocuments }
 
-registration:
-    pattern: /register
-    defaults: { _controller: rootiovmailmeBundle:Default:registration }
-
-registration_alias_1:
-    pattern: /registration
+legal_documents_alias:
+    pattern: /legalDocuments
     defaults:
         _controller: FrameworkBundle:Redirect:redirect
-        route: registration
+        route: legal_documents
         permanent: true
-
-registration_alias_2:
-    pattern: /subscribe
-    defaults:
-        _controller: FrameworkBundle:Redirect:redirect
-        route: registration
-        permanent: true
-
-registration_new:
-    pattern: /registration/new
-    defaults: { _controller: rootiovmailmeBundle:Default:registrationNew }
 
 forgot_password:
     pattern: /forgot
@@ -95,17 +102,17 @@ user_webmail:
     pattern: /user/webmail/
     defaults:  { _controller: rootiovmailmeBundle:User:webmail }
 
-user_webmail_addressbook:
-    pattern: /user/webmail/addressbook/
-    defaults:  { _controller: rootiovmailmeBundle:User:webmailAddressbook }
+user_webmail_contacts:
+    pattern: /user/webmail/contacts/
+    defaults:  { _controller: rootiovmailmeBundle:User:webmailContacts }
 
 user_webmail_settings:
     pattern: /user/webmail/settings/
     defaults:  { _controller: rootiovmailmeBundle:User:webmailSettings }
 
-user_settings:
-    pattern: /user/settings
-    defaults:  { _controller: rootiovmailmeBundle:User:settings }
+user_expert:
+    pattern: /user/expert
+    defaults:  { _controller: rootiovmailmeBundle:User:expert }
 
 user_password:
     pattern: /user/password/

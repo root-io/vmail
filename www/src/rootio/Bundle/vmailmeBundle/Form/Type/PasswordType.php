@@ -14,9 +14,9 @@ class PasswordType extends AbstractType
     {
         $builder->add('currentPassword', 'password');
         $builder->add('newPassword', 'repeated', array(
-           'first_name' => 'password',
-           'second_name' => 'confirm',
-           'type' => 'password'
+            'first_name'  => 'password',
+            'second_name' => 'confirm',
+            'type'        => 'password'
         ));
     }
 

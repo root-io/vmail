@@ -55,8 +55,8 @@ class Ban
     private $reason;
 
 
-    public function __construct() {
-
+    public function __construct()
+    {
         $this->date = new \DateTime('now');
     }
 

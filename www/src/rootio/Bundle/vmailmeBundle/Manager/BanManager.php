@@ -7,6 +7,7 @@ use Symfony\Component\DependencyInjection\Container;
 
 use rootio\Bundle\vmailmeBundle\Entity\Ban;
 
-class BanManager {
-// FIXME
+class BanManager
+{
+    // FIXME
 }

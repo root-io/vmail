@@ -1,18 +1,22 @@
 {% extends 'rootiovmailmeBundle::base.html.twig' %}
 
-{% block title %}{% trans %}Legal documents{% endtrans %}{% endblock %}
+{% block title %} &bull; {% trans %}Legal documents{% endtrans %}{% endblock %}
 
 {% block content %}
-<div class="page-header">
-    <h1>{% trans %}Legal documents{% endtrans %}</h1>
-</div>
+    <div class="container legal">
 
-<h5>{% trans %}Website hosting{% endtrans %}</h5>
+        <div class="page-header">
+            <h1>{% trans %}Legal documents{% endtrans %}</h1>
+        </div>
 
-<pre>
-ONLINE SAS
-BP 438
-75366 PARIS CEDEX 08
-France <img width="16" height="11" alt="France" src="{{ asset('/media/images/flags/fr.png') }}">
-</pre>
+        <pre>
+        {% trans %}Website hosting{% endtrans %}:
+
+        ONLINE SAS
+        BP 438
+        75366 PARIS CEDEX 08
+        France <img width="16" height="11" alt="France" src="{{ asset('/media/images/flags/fr.png') }}">
+        </pre>
+
+    </div>
 {% endblock %}

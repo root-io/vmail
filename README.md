@@ -1,7 +1,7 @@
-vmail
-=========
+Vmail
+=====
 
-![vmail](https://pbs.twimg.com/profile_images/1515989449/vmail_wallpaper.png)
+![Vmail](https://pbs.twimg.com/profile_images/1515989449/vmail_wallpaper.png)
 
 The simple and secure email service which respects your privacy.
 
@@ -9,31 +9,23 @@ Website: https://www.vmail.me
 
 
 Technologies
---------------
+------------
 
 Arch Linux
 
 Symfony2 (PHP)
 
 
-Community
---------------
-
-Follow vmail on [Twitter](https://twitter.com/vmail).
-
-Help us with [translation](./www/src/rootio/Bundle/vmailmeBundle/Resources/translations).
-
-
 Reporting a security issue
---------------
+--------------------------
 
-If you think that you have found a security issue in vmail project, please don't use the bug tracker and don't publish it publicly.
+If you think that you have found a security issue in Vmail project, please don't use the bug tracker and don't publish it publicly.
 
 Instead, all security issues must be sent to security [at] vmail.me ([PGP public key](https://keybase.io/rootio)).
 
 
 Getting started
---------------
+---------------
 
 See [LUKS.md](./LUKS.md) for disk encryption
 
@@ -49,7 +41,7 @@ See [LUKS.md](./LUKS.md) for disk encryption
 
 
 Production environment
---------------
+----------------------
 
 ```sh
 rm /var/www/web/app_dev.php
@@ -58,7 +50,7 @@ rm /var/www/web/config.php
 
 
 Commands
----------
+--------
 
 ```sh
 php app/console vmail:ban [username or email] [reason]
@@ -70,7 +62,7 @@ php app/console vmail:register [username] [recipient]
 
 
 Tools
----------
+-----
 
 Generate SSL/TLS certificates
 ```sh
@@ -94,7 +86,7 @@ shred -fuzv /dev/sdx
 
 
 Development environment
---------------
+-----------------------
 
 Download and install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
@@ -129,6 +121,7 @@ Linux
 [Let's go](https://www.vmail.dev/app_dev.php/)
 
 
-Donate
---------------
-Bitcoin: `19n7XtXfS2VpCDMkjKkDA6b3KZqMXxwAg`
+License
+-------
+
+Vmail is licensed under the MIT license.
