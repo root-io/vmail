@@ -23,7 +23,6 @@ class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
 
         try {
            $rcl->logout();
-
         } catch (RoundcubeLoginException $ex) {}
 
         return new RedirectResponse($this->router->generate('homepage'));

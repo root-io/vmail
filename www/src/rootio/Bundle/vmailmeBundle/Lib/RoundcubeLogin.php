@@ -376,6 +376,11 @@ class RoundcubeLogin {
             $this->rcLoginStatus = 1;
         }
 
+        else if (preg_match('/<div.+id="messagetoolbar"/mi', $response)) {
+            $this->addDebug("LOGGED IN", "Detected that we're logged in.");
+            $this->rcLoginStatus = 1;
+        }
+
         else {
             $this->addDebug("UNKNOWN LOGIN STATE", "Unable to determine the login status. Did you change the RC version?");
             throw new RoundcubeLoginException("Unable to determine the login status. Unable to continue due to technical problems.");

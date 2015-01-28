@@ -19,6 +19,8 @@ use rootio\Bundle\vmailmeBundle\Form\Type\ResetPasswordType;
 
 use Symfony\Component\Security\Core\SecurityContext;
 
+use rootio\Bundle\vmailmeBundle\Lib\RoundcubeLogin;
+
 /**
  * @author David Routhieau <rootio@vmail.me>
  */
@@ -81,15 +83,20 @@ class DefaultController extends Controller
             if (empty($errors)) {
                 $user = $this->get('rootiovmailme.user_manager')->createUser($username, $password);
 
-                $token = new UsernamePasswordToken($user, null, 'main', array('ROLE_USER'));
-                $this->get('security.context')->setToken($token);
+                if ($user) {
+                    $token = new UsernamePasswordToken($user, null, 'main', array('ROLE_USER'));
+                    $this->get('security.context')->setToken($token);
 
-                // FIXME
-                // Roundcube auth
+                    $rcl = new RoundcubeLogin($request, '/webmail/');
 
-                return $this->redirect(
-                    $this->generateUrl('user_webmail')
-                );
+                    try {
+                       $rcl->login($user->getEmail(), $password);
+                    } catch (RoundcubeLoginException $ex) {}
+
+                    return $this->redirect(
+                        $this->generateUrl('user_webmail')
+                    );
+                }
             }
         }
 
