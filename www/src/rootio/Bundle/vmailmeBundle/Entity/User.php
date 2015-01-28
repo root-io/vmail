@@ -38,7 +38,7 @@ class User implements AdvancedUserInterface
      * @var string
      *
      * @Assert\Regex(
-     *     pattern="/^[a-z0-9]+(?:[\.-][a-z0-9]+)*$/",
+     *     pattern="/^[a-zA-Z0-9]+(?:[\.-][a-zA-Z0-9]+)*$/",
      *     message="Email {{ value }}@vmail.me is incorrect (Only letters (a-z), numbers (0-9), dashes (-) and dots (.) are allowed)"
      * )
      *
@@ -168,7 +168,7 @@ class User implements AdvancedUserInterface
      */
     public function setUsername($username)
     {
-        $this->username = $username;
+        $this->username = strtolower($username);
 
         return $this;
     }
@@ -191,7 +191,7 @@ class User implements AdvancedUserInterface
      */
     public function setEmail($email)
     {
-        $this->email = $email;
+        $this->email = strtolower($email);
 
         return $this;
     }
