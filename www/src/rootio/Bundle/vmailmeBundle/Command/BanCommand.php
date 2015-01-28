@@ -7,6 +7,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Input\ArrayInput;
 
 use rootio\Bundle\vmailmeBundle\Entity\Ban;
 
@@ -34,21 +35,24 @@ class BanCommand extends ContainerAwareCommand
             ->getRepository('rootiovmailmeBundle:User')
             ->loadUserByUsername($emailOrUsername);
 
-        if ($user && $user->isEnabled()) {
+        if ($user) {
 
-            $em = $this->getContainer()->get('doctrine')->getManager();
+            if ($user->isEnabled()) {
 
-            $user->setIsEnabled(false);
+                $em = $this->getContainer()->get('doctrine')->getManager();
 
-            $em->persist($user);
+                $user->setIsEnabled(false);
 
-            $ban = new Ban();
-            $ban->setUser($user);
-            $ban->setType(Ban::TYPE_PERMANENTLY);
-            $ban->setReason($reason);
+                $em->persist($user);
 
-            $em->persist($ban);
-            $em->flush();
+                $ban = new Ban();
+                $ban->setUser($user);
+                $ban->setType(Ban::TYPE_PERMANENTLY);
+                $ban->setReason($reason);
+
+                $em->persist($ban);
+                $em->flush();
+            }
 
             $command = $this->getApplication()->find('vmail:pfdel');
             $arguments = array(
