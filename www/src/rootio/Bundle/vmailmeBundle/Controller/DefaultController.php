@@ -131,6 +131,10 @@ class DefaultController extends Controller
 
     public function forgotPasswordAction()
     {
+        if ($this->get('security.context')->isGranted('ROLE_USER')) {
+            return $this->redirect($this->generateUrl('user_webmail'));
+        }
+
         $form = $this->createForm(new ForgotPasswordType(), new User());
 
         return $this->render('rootiovmailmeBundle:Default:forgotPassword.html.twig', array('form' => $form->createView()));
@@ -207,6 +211,10 @@ class DefaultController extends Controller
 
     public function loginAction()
     {
+        if ($this->get('security.context')->isGranted('ROLE_USER')) {
+            return $this->redirect($this->generateUrl('user_webmail'));
+        }
+
         $request = $this->getRequest();
         $session = $request->getSession();
 
