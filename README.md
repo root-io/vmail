@@ -1,7 +1,7 @@
 Vmail
 =====
 
-![Vmail](https://pbs.twimg.com/profile_images/1515989449/vmail_wallpaper.png)
+![Vmail](https://www.vmail.me/media/images/facebook_share.png)
 
 The simple and secure email service which respects your privacy.
 
