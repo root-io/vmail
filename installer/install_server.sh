@@ -121,7 +121,7 @@ EOF
 
 
     ## PHP-FPM
-    pacman -S php php-fpm php-mcrypt php-gd php-apcu php-intl --noconfirm
+    pacman -S php php-fpm php-apcu php-gd php-intl --noconfirm
     mv /etc/php/php.ini /etc/php/php.ini.save
     cp $REPO_PATH/installer/php/php.ini /etc/php/php.ini
     sed -i -e "s/CONFIG_DOMAIN/$CONFIG_DOMAIN/g" /etc/php/php.ini
