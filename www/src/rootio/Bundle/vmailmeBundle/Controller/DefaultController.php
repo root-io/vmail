@@ -81,7 +81,7 @@ class DefaultController extends Controller
             }
 
             if (empty($errors)) {
-                $user = $this->get('rootiovmailme.user_manager')->createUser($username, $password);
+                $user = $this->get('rootiovmailme.user_manager')->createUser($username, $password, $rescueEmail);
 
                 if ($user) {
                     $token = new UsernamePasswordToken($user, null, 'main', array('ROLE_USER'));
