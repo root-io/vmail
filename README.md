@@ -29,21 +29,50 @@ Getting started
 
 See [LUKS.md](./LUKS.md) for disk encryption
 
-1. `git clone https://github.com/root-io/vmail.git /home/vmail`
 
-1. `cd /home/vmail/installer`
+### Development environment
 
-1. `cp config.conf.example config.conf`
+Download and install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
-1. `bash install_server.sh`
-
-1. `bash install_website.sh`
-
-
-Production environment
-----------------------
+Download and install [Vagrant](https://www.vagrantup.com/downloads.html)
 
 ```sh
+git clone https://github.com/root-io/vmail.git
+cd vmail
+cp installer/config.conf.example installer/config.conf
+vagrant up
+```
+
+Windows
+
+1. Open "C:\Windows\System32\drivers\etc\hosts" with a text editor in administrator mode
+
+1. Add a new line to the file, with the following text: `1.3.3.7 vmail.dev www.vmail.dev`
+
+1. Save
+
+Mac
+
+1. Open Terminal
+
+1. In the terminal window, type: `sudo bash -c 'echo -e "1.3.3.7 vmail.dev www.vmail.dev" >> /private/etc/hosts'`
+
+Linux
+
+1. Open Terminal
+
+1. In the terminal window, type: `sudo bash -c 'echo -e "1.3.3.7 vmail.dev www.vmail.dev" >> /etc/hosts'`
+
+[Let's go](https://www.vmail.dev/app_dev.php/)
+
+
+### Production environment
+
+```sh
+git clone https://github.com/root-io/vmail.git /home/vmail
+cd /home/vmail/installer
+bash install_server.sh
+bash install_website.sh
 rm /var/www/web/app_dev.php
 rm /var/www/web/config.php
 ```
@@ -83,42 +112,6 @@ Erase disk
 ```sh
 shred -fuzv /dev/sdx
 ```
-
-
-Development environment
------------------------
-
-Download and install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-
-Download and install [Vagrant](https://www.vagrantup.com/downloads.html)
-
-```sh
-git clone https://github.com/root-io/vmail.git
-cd vmail/
-vagrant up
-```
-
-Windows
-
-1. Open "C:\Windows\System32\drivers\etc\hosts" with a text editor in administrator mode
-
-1. Add a new line to the file, with the following text: `1.3.3.7 vmail.dev www.vmail.dev`
-
-1. Save
-
-Mac
-
-1. Open Terminal
-
-1. In the terminal window, type: `sudo bash -c 'echo -e "1.3.3.7 vmail.dev www.vmail.dev" >> /private/etc/hosts'`
-
-Linux
-
-1. Open Terminal
-
-1. In the terminal window, type: `sudo bash -c 'echo -e "1.3.3.7 vmail.dev www.vmail.dev" >> /etc/hosts'`
-
-[Let's go](https://www.vmail.dev/app_dev.php/)
 
 
 License
