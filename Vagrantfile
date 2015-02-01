@@ -16,4 +16,9 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder 'www/app/logs', '/var/www/app/logs', mount_options: ['dmode=777,fmode=777']
 
   config.vm.provision :shell, :path => 'bootstrap.sh'
+
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 512
+    v.cpus = 1
+  end
 end
