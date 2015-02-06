@@ -113,7 +113,7 @@ EOF
 
 
     ## SSL/TLS
-    openssl req -nodes -newkey rsa:4096 -nodes -keyout /etc/ssl/private/server.key -out /etc/ssl/certs/server.csr -subj "/C=$CONFIG_SSL_COUNTRY_CODE/ST=$CONFIG_SSL_STATE/L=$CONFIG_SSL_CITY/O=$CONFIG_DOMAIN/OU=Secure Services Department/CN=$CONFIG_DOMAIN"
+    openssl req -nodes -newkey rsa:4096 -nodes -keyout /etc/ssl/private/server.key -out /etc/ssl/certs/server.csr -subj "/C=$CONFIG_SSL_COUNTRY_CODE/ST=$CONFIG_SSL_STATE/L=$CONFIG_SSL_CITY/O=$CONFIG_DOMAIN/OU=Secure Services Department/CN=*.$CONFIG_DOMAIN"
     openssl x509 -req -days 365 -in /etc/ssl/certs/server.csr -signkey /etc/ssl/private/server.key -out /etc/ssl/certs/server.crt
     chown nobody:nobody /etc/ssl/private/server.key
     chmod 600 /etc/ssl/private/server.key
