@@ -191,7 +191,6 @@ EOF
     sed -i -e "s/CONFIG_DOMAIN/$CONFIG_DOMAIN/g" /etc/postfix/main.cf
     sed -i -e "s/CONFIG_IP_PRIMARY/$CONFIG_IP_PRIMARY/g" /etc/postfix/main.cf
     sed -i -e "s/CONFIG_MARIADB_SERVER_PASSWORD/$CONFIG_MARIADB_SERVER_PASSWORD/g" /etc/postfix/mysql/virtual_alias_maps.cf
-    sed -i -e "s/CONFIG_MARIADB_SERVER_PASSWORD/$CONFIG_MARIADB_SERVER_PASSWORD/g" /etc/postfix/mysql/virtual_mailbox_domains.cf
     sed -i -e "s/CONFIG_MARIADB_SERVER_PASSWORD/$CONFIG_MARIADB_SERVER_PASSWORD/g" /etc/postfix/mysql/virtual_mailbox_maps.cf
     sed -i -e "s/CONFIG_MARIADB_SERVER_PASSWORD/$CONFIG_MARIADB_SERVER_PASSWORD/g" /etc/postfix/mysql/sender_login_maps.cf
 
