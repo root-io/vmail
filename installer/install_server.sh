@@ -126,6 +126,7 @@ EOF
     cp $REPO_PATH/installer/php/php.ini /etc/php/php.ini
     sed -i -e "s/CONFIG_DOMAIN/$CONFIG_DOMAIN/g" /etc/php/php.ini
     sed -i -e "s#CONFIG_TIMEZONE#$CONFIG_TIMEZONE#g" /etc/php/php.ini
+    chmod 644 /etc/php/php.ini
     systemctl enable php-fpm.service
     systemctl start php-fpm.service
     echo "PHP [OK]."
