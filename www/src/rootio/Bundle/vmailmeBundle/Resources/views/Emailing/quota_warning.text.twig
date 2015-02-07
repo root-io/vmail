@@ -1,9 +1,9 @@
 {% block subject %}
-    vmail - {% trans %}Quota warning!{% endtrans %}
+    Vmail &bull; {% trans %}Quota warning!{% endtrans %}
 {% endblock %}
 
 {% block body %}
-    {% trans with {'%percent%': percent, '%link%': url ~ path('plans')} %}
-    EMAILING_QUOTA_WARNING
-    {% endtrans %}
+{% trans with {'%percent%': percent, '%link%': url ~ path('plans')} %}
+EMAILING_QUOTA_WARNING
+{% endtrans %}
 {% endblock %}
