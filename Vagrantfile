@@ -7,6 +7,11 @@ Vagrant.configure("2") do |config|
 
   config.vm.network :private_network, ip: "1.3.3.7"
 
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--memory", 512]
+    vb.customize ["modifyvm", :id, "--cpus", 1]
+  end
+
   config.vm.synced_folder '.', '/home/vmail'
   config.vm.synced_folder 'www', '/var/www', id: 'vagrant-root',
     owner: 'http',
@@ -15,10 +20,6 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder 'www/app/cache', '/var/www/app/cache', mount_options: ['dmode=777,fmode=777']
   config.vm.synced_folder 'www/app/logs', '/var/www/app/logs', mount_options: ['dmode=777,fmode=777']
 
+  config.vm.provision :shell, inline: 'sed -i -e "s|Server = http://mirrors.kernel.org|#Server = http://mirrors.kernel.org|g" /etc/pacman.d/mirrorlist'
   config.vm.provision :shell, :path => 'bootstrap.sh'
-
-  config.vm.provider "virtualbox" do |v|
-    v.memory = 512
-    v.cpus = 1
-  end
 end
