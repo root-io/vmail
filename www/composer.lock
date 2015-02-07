@@ -617,17 +617,17 @@
         },
         {
             "name": "gregwar/captcha",
-            "version": "v1.0.11",
+            "version": "v1.0.12",
             "target-dir": "Gregwar/Captcha",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Gregwar/Captcha.git",
-                "reference": "68c27a070922cf306984dc04a92a27525e534e83"
+                "reference": "c5357cb6f6d2c09f70ed1712382d44af6eae0865"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Gregwar/Captcha/zipball/68c27a070922cf306984dc04a92a27525e534e83",
-                "reference": "68c27a070922cf306984dc04a92a27525e534e83",
+                "url": "https://api.github.com/repos/Gregwar/Captcha/zipball/c5357cb6f6d2c09f70ed1712382d44af6eae0865",
+                "reference": "c5357cb6f6d2c09f70ed1712382d44af6eae0865",
                 "shasum": ""
             },
             "require": {
@@ -662,7 +662,7 @@
                 "captcha",
                 "spam"
             ],
-            "time": "2014-03-19 15:13:34"
+            "time": "2015-01-03 12:41:56"
         },
         {
             "name": "gregwar/captcha-bundle",
@@ -671,16 +671,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Gregwar/CaptchaBundle.git",
-                "reference": "c844d0a440af820da085a87305493193b03d02d9"
+                "reference": "d6c6de0f83cd954e637b083790480cd0de0db1ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Gregwar/CaptchaBundle/zipball/c844d0a440af820da085a87305493193b03d02d9",
-                "reference": "c844d0a440af820da085a87305493193b03d02d9",
+                "url": "https://api.github.com/repos/Gregwar/CaptchaBundle/zipball/d6c6de0f83cd954e637b083790480cd0de0db1ab",
+                "reference": "d6c6de0f83cd954e637b083790480cd0de0db1ab",
                 "shasum": ""
             },
             "require": {
-                "gregwar/captcha": "~1.0.11",
+                "gregwar/captcha": "~1.0.12",
                 "php": ">=5.3.0",
                 "symfony/form": "~2.1",
                 "symfony/framework-bundle": "~2.1"
@@ -717,7 +717,7 @@
                 "spam",
                 "visual"
             ],
-            "time": "2015-01-13 13:43:37"
+            "time": "2015-01-27 16:12:52"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1535,16 +1535,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.17.0",
+            "version": "v1.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "2493970fa4d587eca73f77e6d8bd48a8bdd4c608"
+                "reference": "4cf7464348e7f9893a93f7096a90b73722be99cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/2493970fa4d587eca73f77e6d8bd48a8bdd4c608",
-                "reference": "2493970fa4d587eca73f77e6d8bd48a8bdd4c608",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/4cf7464348e7f9893a93f7096a90b73722be99cf",
+                "reference": "4cf7464348e7f9893a93f7096a90b73722be99cf",
                 "shasum": ""
             },
             "require": {
@@ -1553,7 +1553,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.17-dev"
+                    "dev-master": "1.18-dev"
                 }
             },
             "autoload": {
@@ -1588,7 +1588,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-01-14 10:15:49"
+            "time": "2015-01-25 17:32:08"
         }
     ],
     "packages-dev": [],
