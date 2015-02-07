@@ -8,7 +8,7 @@ parameters:
 services:
     kernel.listener.exception:
         class: rootio\Bundle\vmailmeBundle\EventListener\ExceptionListener
-        arguments: [@twig]
+        arguments: [@twig, @kernel]
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
 

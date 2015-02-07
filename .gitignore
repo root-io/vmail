@@ -10,3 +10,5 @@ Thumbs.db
 
 ## Vagrant
 .vagrant/
+/installer/piwik.tar.gz.1
+nbproject
