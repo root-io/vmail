@@ -248,9 +248,6 @@ EOF
     sed -i -e "s/CONFIG_MARIADB_SERVER_PASSWORD/$CONFIG_MARIADB_SERVER_PASSWORD/g" /etc/dovecot/dovecot-sql.conf
     sed -i -e "s/CONFIG_DOMAIN/$CONFIG_DOMAIN/g" /etc/dovecot/dovecot.conf
 
-    touch /var/log/dovecot-deliver.log
-    chmod 777 /var/log/dovecot-deliver.log
-
     systemctl enable dovecot.service
     systemctl start dovecot.service
     echo "Dovecot [OK]."

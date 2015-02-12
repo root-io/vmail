@@ -10,7 +10,7 @@ enabled = true
 [symfony2-auth]
 enabled = true
 port    = https,pop3s,imaps,smtp,465
-logpath = /var/log/nginx.log
+logpath = /var/log/nginx/access.log
 
 [roundcube-auth]
 enabled = true
@@ -20,7 +20,7 @@ logpath = /var/log/roundcubemail/userlogins
 [piwik-auth]
 enabled = true
 port    = https,pop3s,imaps,smtp,465
-logpath = /var/log/nginx.log
+logpath = /var/log/nginx/access.log
 
 [dovecot]
 enabled = true
