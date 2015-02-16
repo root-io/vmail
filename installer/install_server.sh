@@ -170,7 +170,7 @@ EOF
     wget https://aur.archlinux.org/packages/pi/piwik/piwik.tar.gz
     tar zxvf piwik.tar.gz
     cd piwik
-    makepkg -s
+    makepkg -s --asroot
     pacman -U *.xz --noconfirm
     cd ../
     rm -f piwik.tar.gz
