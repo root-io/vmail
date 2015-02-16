@@ -20,6 +20,5 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder 'www/app/cache', '/var/www/app/cache', mount_options: ['dmode=777,fmode=777']
   config.vm.synced_folder 'www/app/logs', '/var/www/app/logs', mount_options: ['dmode=777,fmode=777']
 
-  config.vm.provision :shell, inline: 'sed -i -e "s|Server = http://mirrors.kernel.org|#Server = http://mirrors.kernel.org|g" /etc/pacman.d/mirrorlist'
   config.vm.provision :shell, :path => 'bootstrap.sh'
 end
