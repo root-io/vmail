@@ -64,12 +64,14 @@ class UserController extends Controller
 
             $editPassword = $this->get('rootiovmailme.user_manager')->editPassword($user, $newPassword);
 
-            // Update session password
-            $token = $this->get('security.context')->getToken();
-            $token->setAuthenticated(false);
+            if ($editPassword) {
+                // Update session password
+                $token = $this->get('security.context')->getToken();
+                $token->setAuthenticated(false);
 
-            $t = $this->get('translator')->trans('Password updated!');
-            $this->get('session')->getFlashBag()->set('success', $t);
+                $t = $this->get('translator')->trans('Password updated!');
+                $this->get('session')->getFlashBag()->set('success', $t);
+            }
         }
 
         return $this->render('rootiovmailmeBundle:User:password.html.twig', array('form' => $form->createView()));
@@ -98,8 +100,10 @@ class UserController extends Controller
 
             $editRescueEmail = $this->get('rootiovmailme.user_manager')->editRescueEmail($user, $rescueEmail);
 
-            $t = $this->get('translator')->trans('Rescue email updated!');
-            $this->get('session')->getFlashBag()->set('success', $t);
+            if ($editRescueEmail) {
+                $t = $this->get('translator')->trans('Rescue email updated!');
+                $this->get('session')->getFlashBag()->set('success', $t);
+            }
         }
 
         return $this->render('rootiovmailmeBundle:User:rescue.html.twig', array('form' => $form->createView()));
@@ -128,8 +132,10 @@ class UserController extends Controller
 
             $editForwardingEmail = $this->get('rootiovmailme.user_manager')->editForwardingEmail($user, $forwardingEmail);
 
-            $t = $this->get('translator')->trans('Forwarding email updated!');
-            $this->get('session')->getFlashBag()->set('success', $t);
+            if ($editForwardingEmail) {
+                $t = $this->get('translator')->trans('Forwarding email updated!');
+                $this->get('session')->getFlashBag()->set('success', $t);
+            }
         }
 
         return $this->render('rootiovmailmeBundle:User:forwarding.html.twig', array('form' => $form->createView()));
@@ -156,8 +162,10 @@ class UserController extends Controller
 
             $suspendUser = $this->get('rootiovmailme.user_manager')->suspendUser($user);
 
-            $t = $this->get('translator')->trans('Account now suspended!');
-            $this->get('session')->getFlashBag()->set('success', $t . ' =\'(');
+            if ($suspendUser) {
+                $t = $this->get('translator')->trans('Account now suspended!');
+                $this->get('session')->getFlashBag()->set('success', $t . ' =\'(');
+            }
         }
 
         return $this->render('rootiovmailmeBundle:User:suspend.html.twig', array('form' => $form->createView()));

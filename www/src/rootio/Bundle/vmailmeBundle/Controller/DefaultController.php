@@ -196,9 +196,11 @@ class DefaultController extends Controller
 
             if ($checkToken) {
                 $editPassword = $this->get('rootiovmailme.user_manager')->editPassword($user, $newPassword);
-
-                $t = $this->get('translator')->trans('Password updated!');
-                $this->get('session')->getFlashBag()->set('success', $t);
+                if ($editPassword) {
+                    $this->get('rootiovmailme.forgot_password_manager')->deleteToken($token);
+                    $t = $this->get('translator')->trans('Password updated!');
+                    $this->get('session')->getFlashBag()->set('success', $t);
+                }
             } else {
                 return $this->redirect(
                     $this->generateUrl('homepage')

@@ -163,4 +163,27 @@ class ForgotPasswordManager
             return false;
         }
     }
+
+    /**
+     * Delete token
+     *
+     * @return Boolean
+     */
+    public function deleteToken($token)
+    {
+        $forgotPassword = $this->getDoctrine()
+            ->getRepository('rootiovmailmeBundle:ForgotPassword')
+            ->findOneByToken($token);
+
+        if ($forgotPassword) {
+            $em = $this->getDoctrine()->getManager();
+
+            $em->remove($forgotPassword);
+            $em->flush();
+
+            return true;
+        } else {
+          return false;
+        }
+    }
 }
