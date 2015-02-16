@@ -24,6 +24,9 @@ virtual_mailbox_maps = mysql:/etc/postfix/mysql/virtual_mailbox_maps.cf
 virtual_uid_maps = static:5000
 virtual_gid_maps = static:5000
 
+# Bounce message template
+bounce_template_file = /etc/postfix/bounce.cf
+
 # SASL
 smtpd_sasl_type = dovecot
 smtpd_sasl_path = private/auth

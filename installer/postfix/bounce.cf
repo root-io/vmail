@@ -1,0 +1,30 @@
+failure_template = <<EOF
+Charset: UTF-8
+From: noreply@vmail.me
+Subject: Vmail &bull; Undelivered mail
+
+I'm sorry to have to inform you that your mail (attached below) could not
+be delivered.
+
+For further assistance, please send mail to support@vmail.me
+
+Make a donation could improve our service ;-)
+https://www.vmail.me/en/donate
+
+The vmail team
+EOF
+
+Charset: UTF-8
+From: noreply@vmail.me
+Subject: Vmail &bull; Delayed mail
+
+I'm sorry to have to inform you that your mail (attached below) is delayed in delivery.
+You don't need to resend your mail, we take care of it.
+
+For further assistance, please send mail to support@vmail.me
+
+Make a donation could improve our service ;-)
+https://www.vmail.me/en/donate
+
+The vmail team
+EOF
