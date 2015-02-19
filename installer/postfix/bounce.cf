@@ -1,7 +1,7 @@
 failure_template = <<EOF
 Charset: UTF-8
 From: noreply@vmail.me
-Subject: Vmail &bull; Undelivered mail
+Subject: Vmail - Undelivered mail
 
 I'm sorry to have to inform you that your mail (attached below) could not
 be delivered.
@@ -18,7 +18,7 @@ EOF
 delay_template = <<EOF
 Charset: UTF-8
 From: noreply@vmail.me
-Subject: Vmail &bull; Delayed mail
+Subject: Vmail - Delayed mail
 
 I'm sorry to have to inform you that your mail (attached below) is delayed in delivery.
 You don't need to resend your mail, we take care of it.
