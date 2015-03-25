@@ -14,77 +14,13 @@ id=REJECT_HELO_NODNS; \
   HIT_helo==1; HIT_nodns==1; \
   action=REJECT Blocked - contact postmaster@vmail.me for help - Suspicious HELO [$$helo_name] and missing reverse DNS [$$client_address]
 
-id=REJECT_RBL_ZEN; \
-  rbl=zen.spamhaus.org; \
-  action=REJECT Blocked - contact postmaster@vmail.me for help - DNSBL [$$dnsbltext]
-
-&&DNSBLS { \
-  rbl=bl.spamcop.net; \
-};
-
-id=EVAL_DNSBLS; \
-  &&DNSBLS; rblcount=all; \
-  action=set(HIT_rbls=$$rblcount,HIT_dtxt=$$dnsbltext)
-
-id=REJECT_RBL_MULTI; \
-  HIT_rbls>=2; \
-  action=REJECT Blocked - contact postmaster@vmail.me for help - Multiple DNSBLs [$$HIT_dtxt]
-
-&&RHSBLS_REVERSE { \
-  rhsbl_reverse_client=dynamic.rhs.mailpolice.com; \
-};
-
-&&RHSBLS_SENDER { \
-  rhsbl_sender=dbl.spamhaus.org; \
-};
-
-id=EVAL_RHSBLS; \
-  &&RHSBLS_REVERSE; &&RHSBLS_SENDER; rhsblcount=all; \
-  action=set(HIT_rhsbls=$$rhsblcount,HIT_rtxt=$$dnsbltext)
-
-id=REJECT_RHSBL_MULTI; \
-  HIT_rhsbls>=2; \
-  action=REJECT Blocked - contact postmaster@vmail.me for help - Multiple RHSBLs [$$HIT_rtxt]
-
-id=REJECT_RBL_RHSBL; \
-  HIT_rbls>=1; HIT_rhsbls>=1; \
-  action=REJECT Blocked - contact postmaster@vmail.me for help - RHSBL and DNSBL [$$HIT_rtxt] [$$HIT_dtxt]
-
-id=REJECT_RBL_HELO; \
-  HIT_rbls>=1; HIT_helo==1; \
-  action=REJECT Blocked - contact postmaster@vmail.me for help - DNSBL [$$HIT_dtxt] and suspicious HELO [$$helo_name]
-
-id=REJECT_RBL_NODNS; \
-  HIT_rbls>=1; HIT_nodns==1; \
-  action=REJECT Blocked - contact postmaster@vmail.me for help - DNSBL [$$HIT_dtxt] and missing reverse DNS [$$client_address]
-
-id=REJECT_RHSBL_HELO; \
-  HIT_rhsbls>=1; HIT_helo==1; \
-  action=REJECT Blocked - contact postmaster@vmail.me for help - RHSBL [$$HIT_rtxt] and suspicious HELO [$$helo_name]
-
-id=REJECT_RHSBL_NODNS; \
-  HIT_rhsbls>=1; HIT_nodns==1; \
-  action=REJECT Blocked - contact postmaster@vmail.me for help - RHSBL [$$HIT_rtxt] and missing reverse DNS [$$client_address]
-
-id=GREY_HELO; HIT_helo==1; action=check_postgrey
-id=GREY_NODNS; HIT_nodns==1; action=check_postgrey
-id=GREY_RBL; HIT_rbls>=1; action=check_postgrey
-id=GREY_RHSBL; HIT_rhsbls>=1; action=check_postgrey
-
-&&DNSBLS_GREY { \
-  rbl=dnsbl-2.uceprotect.net; \
-  rbl=dnsbl-3.uceprotect.net; \
-};
-
-id=GREY_DNSBL; &&DNSBLS_GREY; action=check_postgrey
-
 id=LIMIT_PER_DAY; \
 sasl_username=~/./; \
-action=rate(sasl_username/100/86400/REJECT only 100 messages per day for $$sasl_username)
+action=rcpt(sasl_username/100/86400/REJECT only 100 messages per day for $$sasl_username)
 
 id=LIMIT_PER_MONTH; \
 sasl_username=~/./; \
-action=rate(sasl_username/500/2628000/REJECT only 500 messages per month for $$sasl_username)
+action=rcpt(sasl_username/500/2628000/REJECT only 500 messages per month for $$sasl_username)
 
 
 
