@@ -1,5 +1,5 @@
 # OS
-daemon_directory = /usr/lib/postfix
+daemon_directory = /usr/lib/postfix/bin
 
 # Hostname
 myhostname = CONFIG_REVERSE_PRIMARY
