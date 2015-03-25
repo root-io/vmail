@@ -58,6 +58,8 @@ smtpd_recipient_restrictions =
   reject_unknown_sender_domain,
   reject_unauth_destination,
   reject_unknown_recipient_domain,
+  reject_rbl_client zen.spamhaus.org,
+  reject_rbl_client bl.spamcop.net,
   reject_non_fqdn_recipient
 
 smtpd_data_restrictions =
