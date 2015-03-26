@@ -69,6 +69,7 @@ if [ -f $REPO_PATH/installer/config.conf ]; then
 
     ## MariaDB
     pacman -S mariadb expect --noconfirm
+    mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
     systemctl start mysqld.service
 
     expect << EOF
