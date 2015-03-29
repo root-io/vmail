@@ -2,190 +2,195 @@
 <html lang="{{ app.request.locale }}">
 
 <head>
-    <meta charset="utf-8">
-    <title>Vmail{% block title %}{% endblock %}</title>
+  <meta charset="utf-8">
+  <title>Vmail{% block title %}{% endblock %}</title>
 
-    <link rel="icon" type="image/png" href="{{ asset('/media/images/favicon.png') }}"/>
+  <link rel="icon" type="image/png" href="{{ asset('/media/images/favicon.png') }}" />
 
-    <meta name="description"
-          content="{% trans %}The simple and secure email service which respects your privacy{% endtrans %}.">
-    <meta name="keywords"
-          content="vmail, mail, email, e-mail, imap, pop3, simplicity, security, privacy, webmail, spam protection, ssl, encryption">
-    <meta name="robots" content="noarchive">
+  <meta name="description" content="{% trans %}The simple and secure email service which respects your privacy{% endtrans %}.">
+  <meta name="keywords" content="vmail, mail, email, e-mail, imap, pop3, simplicity, security, privacy, webmail, spam protection, ssl, encryption">
+  <meta name="robots" content="noarchive">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="canonical" href="{{ app.request.schemeAndHttpHost }}">
-    <link rel="alternate" hreflang="en" href="{{ app.request.schemeAndHttpHost }}/en/">
-    <link rel="alternate" hreflang="fr" href="{{ app.request.schemeAndHttpHost }}/fr/">
+  <link rel="canonical" href="{{ app.request.schemeAndHttpHost }}">
+  <link rel="alternate" hreflang="en" href="{{ app.request.schemeAndHttpHost }}/en/">
+  <link rel="alternate" hreflang="fr" href="{{ app.request.schemeAndHttpHost }}/fr/">
 
-    <link type="text/css" rel="stylesheet" href="{{ asset('/media/css/bootstrap.min.css') }}"/>
-    <link type="text/css" rel="stylesheet" href="{{ asset('/media/css/vmailme.css') }}"/>
+  <link type="text/css" rel="stylesheet" href="{{ asset('/media/css/bootstrap.min.css') }}" />
+  <link type="text/css" rel="stylesheet" href="{{ asset('/media/css/vmailme.css') }}" />
 
-    <meta property="og:image"
-          content="{{ app.request.schemeAndHttpHost ~ asset('/media/images/facebook_share.png') }}"/>
+  <meta property="og:image" content="{{ app.request.schemeAndHttpHost ~ asset('/media/images/facebook_share.png') }}" />
 </head>
 
 <body>
 
-<!-- Read source code, ain't nobody got time fo dat -->
+  <!-- Read source code, ain't nobody got time fo dat -->
 
-<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menus">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{ path('homepage') }}">
-                <img src="{{ asset('/media/images/logo_nav.png') }}" alt="logo" width="45" height="33" />
-            </a>
-        </div>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menus">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{{ path('homepage') }}">
+          <img src="{{ asset('/media/images/logo_nav.png') }}" alt="logo" width="45" height="33" />
+        </a>
+      </div>
 
-        <div class="collapse navbar-collapse" id="menus">
-            <ul class="nav navbar-nav">
-                {% if app.user %}
-                    <li class="{% if app.request.attributes.get('_route') == 'user_webmail' %}active{% endif %}"><a
-                                href="{{ path('user_webmail') }}">{% trans %}Home{% endtrans %}</a>
-                    </li>
-                    <li class="dropdown">
-                        {% if app.user.forwardingEmail %}
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                               title="{% trans with {'%user%': app.user.email} %}Forward emails from %user% to{% endtrans %} {{ app.user.forwardingEmail }}">{{ app.user.email }}
+      <div class="collapse navbar-collapse" id="menus">
+        <ul class="nav navbar-nav">
+          {% if app.user %}
+          <li class="{% if app.request.attributes.get('_route') == 'user_webmail' %}active{% endif %}"><a href="{{ path('user_webmail') }}">{% trans %}Home{% endtrans %}</a>
+          </li>
+          <li class="dropdown">
+            {% if app.user.forwardingEmail %}
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{% trans with {'%user%': app.user.email} %}Forward emails from %user% to{% endtrans %} {{ app.user.forwardingEmail }}">{{ app.user.email }}
                                 <span class="glyphicon glyphicon-random"></span> {{ app.user.forwardingEmail }} <b
                                         class="caret"></b></a> {% else %}
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ app.user.email }} <b
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ app.user.email }} <b
                                         class="caret"></b></a> {% endif %}
-                        <ul class="dropdown-menu">
-                            <li class="{% if app.request.attributes.get('_route') == 'user_webmail_settings' %}active{% endif %}">
-                                <a href="{{ path('user_webmail_settings') }}">{% trans %}Settings{% endtrans %}</a>
-                            </li>
-                            <li class="{% if app.request.attributes.get('_route') == 'user_password' %}active{% endif %}">
-                                <a href="{{ path('user_password') }}">{% trans %}Edit password{% endtrans %}</a>
-                            </li>
-                            <li class="{% if app.request.attributes.get('_route') == 'user_rescue' %}active{% endif %}">
-                                <a href="{{ path('user_rescue') }}">{% trans %}Edit rescue email{% endtrans %}</a>
-                            </li>
-                            <li class="{% if app.request.attributes.get('_route') == 'user_forwarding' %}active{% endif %}">
-                                <a href="{{ path('user_forwarding') }}">{% trans %}Edit email forwarding{% endtrans %}</a>
-                            </li>
-                            <li class="{% if app.request.attributes.get('_route') == 'user_account' %}active{% endif %}">
-                                <a href="{{ path('user_account') }}">{% trans %}Suspend account{% endtrans %}</a>
-                            </li>
-                            <li class="{% if app.request.attributes.get('_route') == 'user_expert' %}active{% endif %}">
-                                <a href="{{ path('user_expert') }}">{% trans %}Expert{% endtrans %}</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="{% if app.request.attributes.get('_route') == 'user_webmail_contacts' %}active{% endif %}">
-                        <a href="{{ path('user_webmail_contacts') }}">{% trans %}Contacts{% endtrans %}</a>
-                    </li>
-                {% else %}
-                    <li class="{% if app.request.attributes.get('_route') == 'homepage' %}active{% endif %}"><a
-                                href="{{ path('homepage') }}">{% trans %}Home{% endtrans %}</a>
-                    </li>
-                    <li class="{% if app.request.attributes.get('_route') == 'registration' %}active{% endif %}"><a
-                                href="{{ path('registration') }}">{% trans %}Register{% endtrans %}</a>
-                    </li>
-                {% endif %}
-                <li class="{% if app.request.attributes.get('_route') == 'donate' %}active{% endif %}"><a
-                            href="{{ path('donate') }}" rel="nofollow">{% trans %}Donate{% endtrans %}</a>
-                </li>
+            <ul class="dropdown-menu">
+              <li class="{% if app.request.attributes.get('_route') == 'user_webmail_settings' %}active{% endif %}">
+                <a href="{{ path('user_webmail_settings') }}">{% trans %}Settings{% endtrans %}</a>
+              </li>
+              <li class="{% if app.request.attributes.get('_route') == 'user_password' %}active{% endif %}">
+                <a href="{{ path('user_password') }}">{% trans %}Edit password{% endtrans %}</a>
+              </li>
+              <li class="{% if app.request.attributes.get('_route') == 'user_rescue' %}active{% endif %}">
+                <a href="{{ path('user_rescue') }}">{% trans %}Edit rescue email{% endtrans %}</a>
+              </li>
+              <li class="{% if app.request.attributes.get('_route') == 'user_forwarding' %}active{% endif %}">
+                <a href="{{ path('user_forwarding') }}">{% trans %}Edit email forwarding{% endtrans %}</a>
+              </li>
+              <li class="{% if app.request.attributes.get('_route') == 'user_account' %}active{% endif %}">
+                <a href="{{ path('user_account') }}">{% trans %}Suspend account{% endtrans %}</a>
+              </li>
+              <li class="{% if app.request.attributes.get('_route') == 'user_expert' %}active{% endif %}">
+                <a href="{{ path('user_expert') }}">{% trans %}Expert{% endtrans %}</a>
+              </li>
             </ul>
+          </li>
+          <li class="{% if app.request.attributes.get('_route') == 'user_webmail_contacts' %}active{% endif %}">
+            <a href="{{ path('user_webmail_contacts') }}">{% trans %}Contacts{% endtrans %}</a>
+          </li>
+          {% else %}
+          <li class="{% if app.request.attributes.get('_route') == 'homepage' %}active{% endif %}"><a href="{{ path('homepage') }}">{% trans %}Home{% endtrans %}</a>
+          </li>
+          <li class="{% if app.request.attributes.get('_route') == 'registration' %}active{% endif %}"><a href="{{ path('registration') }}">{% trans %}Register{% endtrans %}</a>
+          </li>
+          {% endif %}
+          <li class="{% if app.request.attributes.get('_route') == 'donate' %}active{% endif %}"><a href="{{ path('donate') }}" rel="nofollow">{% trans %}Donate{% endtrans %}</a>
+          </li>
+        </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-                {% if app.user %}
-                    <li class="{% if app.request.attributes.get('_route') == 'logout' %}active{% endif %}"><a
-                                href="{{ path('logout') }}">{% trans %}Logout{% endtrans %}</a>
-                    </li>
-                {% else %}
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans %}Login{% endtrans %}</a>
+        <ul class="nav navbar-nav navbar-right">
+          {% if app.user %}
+          <li class="{% if app.request.attributes.get('_route') == 'logout' %}active{% endif %}"><a href="{{ path('logout') }}">{% trans %}Logout{% endtrans %}</a>
+          </li>
+          {% else %}
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans %}Login{% endtrans %}</a>
 
-                        <form method="post" action="{{ path('login_check') }}"
-                              class="login form-horizontal dropdown-menu">
-                            <div class="form-group">
-                                <label class="control-label" for="username">Email</label>
-                                <input type="text" class="form-control" id="username" name="_username">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="_password">
-                            </div>
+            <form method="post" action="{{ path('login_check') }}" class="login form-horizontal dropdown-menu">
+              <div class="form-group">
+                <label class="control-label" for="username">Email</label>
+                <input type="text" class="form-control" id="username" name="_username">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="_password">
+              </div>
 
               <span class="help-block text-center"><a href="{{ path('forgot_password') }}">
                       {% trans %}Forgot your password?{% endtrans %}</a>
               </span>
 
-                            <input class="btn btn-primary" type="submit" value="{% trans %}Login{% endtrans %} »"/>
-                        </form>
-                    </li>
-                {% endif %}
-                <li class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <img src="{{ asset('/media/images/flags/' ~ app.request.locale ~ '.png') }}" width="16"
-                             height="11" alt=""/> <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        {% if app.request.get('_route_params') is not null %}
-                            <li>
-                                <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">
-                                    <img src="{{ asset('/media/images/flags/en.png') }}" width="16" height="11"
-                                         alt="English" title="English"/> English</a>
-                            </li>
-                            <li>
-                                <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}">
-                                    <img src="{{ asset('/media/images/flags/fr.png') }}" width="16" height="11"
-                                         alt="Français" title="Français"/> Français</a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </li>
+              <input class="btn btn-primary" type="submit" value="{% trans %}Login{% endtrans %} »" />
+            </form>
+          </li>
+          {% endif %}
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+              <img src="{{ asset('/media/images/flags/' ~ app.request.locale ~ '.png') }}" width="16" height="11" alt="" /> <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              {% if app.request.get('_route_params') is not null %}
+              <li>
+                <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">
+                  <img src="{{ asset('/media/images/flags/en.png') }}" width="16" height="11" alt="English" title="English" /> English</a>
+              </li>
+              <li>
+                <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}">
+                  <img src="{{ asset('/media/images/flags/fr.png') }}" width="16" height="11" alt="Français" title="Français" /> Français</a>
+              </li>
+              {% endif %}
             </ul>
-        </div>
+          </li>
+        </ul>
+      </div>
     </div>
-</div>
+  </div>
 
-<div class="content">
+  <div class="content">
     {% block content %}{% endblock %}
-</div>
+  </div>
 
-<div class="footer">
-    <ul class="list-unstyled text-center">
-        <li>
-            <a href="{{ path('terms_of_service') }}">{% trans %}Terms{% endtrans %}</a> -
-            <a href="{{ path('privacy_policy') }}">{% trans %}Privacy{% endtrans %}</a> -
-            <a href="{{ path('legal_documents') }}">{% trans %}Legal{% endtrans %}</a>
-        </li>
-        <li>&copy; 2010-{{ "now"|date("Y") }} vmail.me</li>
-    </ul>
-</div>
+  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <ul>
+            <li><a href="{{ path('terms_of_service') }}">{% trans %}Terms{% endtrans %}</a></li>
+            <li><a href="{{ path('privacy_policy') }}">{% trans %}Privacy{% endtrans %}</a></li>
+            <li><a href="{{ path('legal_documents') }}">{% trans %}Legal{% endtrans %}</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <ul>
+            <li><a href="https://github.com/root-io/vmail">Sources</a></li>
+            <li><a href="https://github.com/root-io/vmail/issues">Issues</a></li>
+            <li><a href="https://github.com/root-io/vmail/tree/master/www/src/rootio/Bundle/vmailmeBundle/Resources/translations">Translate</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <ul>
+            <li><a href="https://twitter.com/vmail">Twitter</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <p>&copy; 2010-{{ "now"|date("Y") }} vmail.me</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<script type="text/javascript" src="{{ asset('/media/js/jquery-1.11.2.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/media/js/bootstrap.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('/media/js/jquery-1.11.2.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('/media/js/bootstrap.min.js') }}"></script>
 
-<!-- Piwik -->
-<script type="text/javascript">
+  <!-- Piwik -->
+  <script type="text/javascript">
     var _paq = _paq || [];
     _paq.push(["trackPageView"]);
     _paq.push(["enableLinkTracking"]);
 
-    (function () {
-        var u = (("https:" == document.location.protocol) ? "https" : "http") + "://www.vmail.me/piwik/";
-        _paq.push(["setTrackerUrl", u + "piwik.php"]);
-        _paq.push(["setSiteId", "1"]);
-        var d = document,
-                g = d.createElement("script"),
-                s = d.getElementsByTagName("script")[0];
-        g.type = "text/javascript";
-        g.defer = true;
-        g.async = true;
-        g.src = u + "piwik.js";
-        s.parentNode.insertBefore(g, s);
+    (function() {
+      var u = (("https:" == document.location.protocol) ? "https" : "http") + "://www.vmail.me/piwik/";
+      _paq.push(["setTrackerUrl", u + "piwik.php"]);
+      _paq.push(["setSiteId", "1"]);
+      var d = document,
+        g = d.createElement("script"),
+        s = d.getElementsByTagName("script")[0];
+      g.type = "text/javascript";
+      g.defer = true;
+      g.async = true;
+      g.src = u + "piwik.js";
+      s.parentNode.insertBefore(g, s);
     })();
-</script>
-<!-- End Piwik Code -->
+  </script>
+  <!-- End Piwik Code -->
 
 </body>
 
