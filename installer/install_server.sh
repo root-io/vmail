@@ -118,6 +118,7 @@ EOF
     openssl x509 -req -days 365 -in /etc/ssl/certs/server.csr -signkey /etc/ssl/private/server.key -out /etc/ssl/certs/server.crt
     chown nobody:nobody /etc/ssl/private/server.key
     chmod 600 /etc/ssl/private/server.key
+    openssl dhparam -out /etc/ssl/dhparams.pem 2048
     echo "SSL/TLS [OK]."
 
 

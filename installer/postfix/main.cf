@@ -78,6 +78,7 @@ smtpd_tls_CAfile = /etc/ssl/certs/server.crt
 smtpd_tls_loglevel = 1
 smtpd_tls_received_header = yes
 smtpd_tls_security_level = may
+smtpd_tls_dh1024_param_file = /etc/ssl/dhparams.pem
 # Output
 smtp_tls_mandatory_protocols = $smtpd_tls_mandatory_protocols
 smtp_tls_mandatory_ciphers = $smtpd_tls_mandatory_ciphers
