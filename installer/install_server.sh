@@ -150,6 +150,7 @@ EOF
     sed -i -e "s/SECRET/$(apg -MCLN -m 24 -n 1)/g" /etc/webapps/roundcubemail/config/config.inc.php
     rm -r /usr/share/webapps/roundcubemail/installer/
     echo '' > /usr/share/webapps/roundcubemail/skins/classic/includes/header.html
+    echo '' > /usr/share/webapps/roundcubemail/skins/classic/includes/taskbar.html
     echo '' > /usr/share/webapps/roundcubemail/skins/larry/includes/header.html
     sed -i -e "s/ <roundcube:object name=\"version\" \/>//g" /usr/share/webapps/roundcubemail/skins/*/templates/about.html
 
