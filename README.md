@@ -1,6 +1,8 @@
 Vmail
 =====
 
+**Info: this repo is not maintained anymore.**
+
 ![Vmail](https://www.vmail.me/media/images/facebook_share.png)
 
 The simple and secure email service which respects your privacy.
